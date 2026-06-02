@@ -16,6 +16,12 @@ Resource        PO/Payment.robot
 &{CREDIT CARD}               Name=TAHA MOE EOM       Card Number=8709 9213 1245 2810            CVC=720        Expiration Date month=3     Expiration Date Year=2029
 
 
+
+
+
+
+
+
 *** Keywords ***
 Register a New Account
     [Arguments]                                     ${User}          ${Date}        ${Details}
@@ -74,9 +80,6 @@ Complete Account Creation
     Verify Account Signed in Successfully           ${User.Username}
 
 
-
-
-
 Login
     [Arguments]                                   ${user}
     Navigate to Signup and Login Page
@@ -89,6 +92,97 @@ Enter Login Credentials
     Enter Email to Login            ${Credentials.Email}
     Enter Password to Login         ${Credentials.Password}
     Click on Login Button
+
+
+Logout
+    [Arguments]         ${User}
+    Click on Logout
+    Verify Home Page is Loaded
+    Verify Account Signed Out Successfully      ${User}
+
+
+Editing the Quantity of an Item to a minus Number
+    [Arguments]                       ${Numbers}             ${Product Path}
+    Editing the Quantity              ${Numbers}
+    Click Add to cart Button from Product Details Page
+    Verify Product Added to Cart
+    Click View Cart Button after Adding an Item
+    Verify Shopping Cart Page is Loaded
+    Verify Cart Item And Quantity        ${Product Path}        ${Numbers}
+
+
+
+
+
+Submit Product Review
+    [Arguments]             ${User}             ${Review}
+    Enter Name for Review           ${User}
+    Enter Email for Review          ${User}
+    Write a Review                  ${Review}
+    Click Submit Review
+    Verify Review Submitted
+
+
+
+Adding a Product to the Cart from Products Page
+    Click Add to Cart Button
+    Verify Product Added to Cart
+
+
+
+Verify Cart Item And Quantity
+    [Arguments]                  ${Product Path}        ${Numbers}
+    Verify Product In Cart      ${Product Path}
+    Verify Product Quantity        ${Product Path}     ${Numbers}
+
+
+
+
+Complete Placing Order
+    [Arguments]            ${User}       ${Product Path}        ${Numbers}
+    Verify Checkout Page Loaded
+    Verify Delivery and Billing Address Details         ${User}
+    Verify Cart Item And Quantity           ${Product Path}        ${Numbers}
+    Click Place Order Button
+
+
+Complete payment and Confirm Order
+    [Arguments]                             ${CARD}
+    Entering Credit Card Details            ${CARD}
+    Click Pay and Confirm Order Button
+    Verify that Order was Submitted
+
+
+Entering Credit Card Details
+    [Arguments]                          ${CARD}
+    Enter Name on Card                   ${CARD.Name}
+    Enter Card Number                    ${CARD.Card Number}
+    Enter CVC                            ${CARD.CVC}
+    Enter Expiration Month               ${CARD.Expiration Date month}
+    Enter Expiration Year                ${CARD.Expiration Date Year}
+
+
+
+Delete an Item from the Shopping Cart
+    [Arguments]                         ${Product Path}
+    Click Delete Item Button            ${Product Path}
+    Verify that Items is Deleted        ${Product Path}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
