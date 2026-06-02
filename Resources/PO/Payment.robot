@@ -7,7 +7,6 @@ Library         SeleniumLibrary
 Verify Payment page is Loaded
     Wait Until Page Contains    Payment
 
-
 Enter Name on Card
     [Arguments]                       ${NAME}
     Input Text            xpath=//*[@data-qa='name-on-card']    ${NAME}
@@ -23,8 +22,6 @@ Enter Expiration Month
 Enter Expiration Year
     [Arguments]                       ${YEAR}
     Input Text            xpath=//*[@data-qa='expiry-year']    ${YEAR}
-
-
 
 Click Pay and Confirm Order Button
     Click Element    xpath=//*[text()='Pay and Confirm Order']

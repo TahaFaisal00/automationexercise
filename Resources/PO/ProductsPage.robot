@@ -7,12 +7,10 @@ Library         SeleniumLibrary
 
 
 Editing the Quantity
-    [Arguments]                       ${Numbers}
+    [Arguments]                       ${Quantity}
     Click Element                     xpath=//*[@id='Cart']
     Press Keys                        xpath=//*[@id='Cart']           CTRL+a+DELETE
-    Input Text                        xpath=//*[@id='Cart']           ${Numbers}
-
-
+    Input Text                        xpath=//*[@id='Cart']           ${Quantity}
 
 Enter Name for Review
     [Arguments]                 ${User}
@@ -31,8 +29,6 @@ Click Submit Review
 
 Verify Review Submitted
     Wait Until Page Contains    Thank you for your review.
-
-
 
 Click Add to cart Button from Product Details Page
     Click Element    xpath=//*[text()='Add to cart']

@@ -16,14 +16,11 @@ Verify Account Signed in Successfully
     Wait Until Page Contains         Logged in as ${User}
 
 Click on Logout
-    Click Element                    xpath=//*[text()='Logout']
+    Click Link                    xpath=//*[text()=' Logout']
 
 Verify Account Signed Out Successfully
     [Arguments]             ${User}
     Page Should Not Contain         Logged in as ${User}
-
-
-
 
 Click Add to Cart Button
     Click Element                xpath=//*[text()='Men Tshirt' and text()='Add to cart']
@@ -39,3 +36,9 @@ View a Product Details
 Navigate to the Shopping Cart
     Click Link                            xpath=//*[text()='Cart']
 
+Click Delete Account
+    Click Link                  xpath=//*[text()=' Delete Account']
+
+Verify Account Deleted
+    Wait Until Page Contains    Account Deleted!
+    Page Should Contain         Your account has been permanently deleted!
