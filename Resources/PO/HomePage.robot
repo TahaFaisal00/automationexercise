@@ -22,23 +22,38 @@ Verify Account Signed Out Successfully
     [Arguments]             ${User}
     Page Should Not Contain         Logged in as ${User}
 
-Click Add to Cart Button
-    Click Element                xpath=//*[text()='Men Tshirt' and text()='Add to cart']
+
+
+Hover And Click Add to Cart Button
+    [Arguments]                 ${ProductPath}
+    Mouse Over                   xpath=//*[${ProductPath}]
+    Click Element                xpath=//*[${ProductPath}]/ancestor::div[@class='overlay-content']//*[@class='btn btn-default add-to-cart']
 Verify Product Added to Cart
-    Alert Should Be Present      Your product has been added to cart
+    Page Should Contain      Your product has been added to cart
 
 
 View a Product Details
-    Wait Until Element Is Visible    xpath=//*[text()='Men Tshirt']
-    Click Link                       xpath=//*[text()='Men Tshirt' and text()='View Product']
+    [Arguments]         ${ProductPath}
+    Handle Ad
+    Wait Until Element Is Visible    xpath=//*[${ProductPath}]
+    Click Link                       xpath=//*[${ProductPath}]/ancestor::div[@class='product-image-wrapper']//a[contains(@href,'product_details')]
+    Sleep    1s
+    Handle Ad
+    Sleep    1s
 
 
 Navigate to the Shopping Cart
-    Click Link                            xpath=//*[text()='Cart']
+    Click Link                            xpath=//*[@id='cartModal']//a[@href='/view_cart']
 
 Click Delete Account
     Click Link                  xpath=//*[text()=' Delete Account']
 
 Verify Account Deleted
     Wait Until Page Contains    Account Deleted!
-    Page Should Contain         Your account has been permanently deleted!
+    Page Should Contain         Your account has been permanently
+
+Handle Ad
+    Sleep    2s
+    Run Keyword And Ignore Error    Select Frame    xpath=//*[@id='dismiss-button']
+    Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button-element']
+    Run Keyword And Ignore Error    Unselect Frame

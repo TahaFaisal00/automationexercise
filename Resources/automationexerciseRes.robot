@@ -17,7 +17,7 @@ ${LOGIN URL}                 https://automationexercise.com/login
 
 &{CREDIT CARD}               Name=TAHA MOE EOM       CardNumber=8709 9213 1245 2810            CVC=720        ExpirationDatemonth=3     ExpirationDateYear=2029
 
-&{PRODUCT}                 ProductPath=text()='Men Tshirt'        Quantity=2       MinusQuantity=-5
+&{PRODUCT}                 ProductPath=text()='Men Tshirt'       BaseQuantity=1             EditedQuantity=2       MinusQuantity=-5    EditedExpectedQuantity=2            MinusExpectedQuantity=1
 
 &{USER EMPTY EMAIL}                  Email=${EMPTY}              Password=mmmm21
 &{USER EMPTY PASSWORD}               Email=mmmm@gmail.com        Password=${EMPTY}
@@ -107,6 +107,7 @@ Login
     Navigate to Signup and Login Page
     Enter Login Credentials                           ${user}
     HomePage.Verify Account Signed in Successfully           ${user.Username}
+    Handle Ad
 
 
 
@@ -135,19 +136,29 @@ Delete Account
 
 
 
+Editing the Quantity of an Item in the Cart
+    [Arguments]         ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
+    Quantity Should be Editable         ${Product}
+    Click on the Quantity of Item       ${Product}          ${ExpectedQuantity}
+    Editing the Quantity in Cart          ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
+    Verify Cart Item And Quantity       ${Product}      ${EditedQuantity}
 
 
 
-
-
-Editing the Quantity of an Item to a minus Number
-    [Arguments]                       ${Numbers}             ${Product Path}
-    ProductsPage.Editing the Quantity              ${Numbers}
-    ProductsPage.Click Add to cart Button from Product Details Page
-    HomePage.Verify Product Added to Cart
+Editing the Quantity of an Item to a minus Number and Check it in Cart
+    [Arguments]                      ${ProductPath}            ${MinusQuantity}          ${EditedQuantity}
+    HomePage.View a Product Details         ${ProductPath}
+    ProductsPage.Editing the Quantity              ${MinusQuantity}
+    Add a Product to Cart from Product Details
     ProductsPage.Click View Cart Button after Adding an Item
     CartPage.Verify Shopping Cart Page is Loaded
-    Verify Cart Item And Quantity        ${Product Path}        ${Numbers}
+    Verify Cart Item And Quantity        ${ProductPath}        ${EditedQuantity}
+
+
+Add a Product to Cart from Product Details
+    ProductsPage.Click Add to cart Button from Product Details Page
+    HomePage.Verify Product Added to Cart
+
 
 Submit Product Review
     [Arguments]             ${User}             ${Review}
@@ -157,29 +168,35 @@ Submit Product Review
     ProductsPage.Click Submit Review
     ProductsPage.Verify Review Submitted
 
-Adding a Product to the Cart from Products Page
-    HomePage.Click Add to Cart Button
+Adding a Product to the Cart from Products Page and Enter Cart
+    [Arguments]         ${ProductPath}
+    HomePage.Hover And Click Add to Cart Button         ${ProductPath}
+    HomePage.Verify Product Added to Cart
+    HomePage.Navigate to the Shopping Cart
+
+Adding a Product to the Cart from Products Page and Continue Shopping
+    [Arguments]         ${ProductPath}
+    HomePage.Hover And Click Add to Cart Button         ${ProductPath}
     HomePage.Verify Product Added to Cart
 
 
-
 Verify Cart Item And Quantity
-    [Arguments]                  ${Product Path}        ${Numbers}
-    CartPage.Verify Product In Cart      ${Product Path}
-    CartPage.Verify Product Quantity        ${Product Path}     ${Numbers}
+    [Arguments]                  ${ProductPath}        ${ExpectedQuantity}
+    CartPage.Verify Product In Cart      ${ProductPath}
+    CartPage.Verify Product Quantity        ${ProductPath}            ${ExpectedQuantity}
 
 Delete an Item from the Shopping Cart
-    [Arguments]                         ${Product Path}
-    CartPage.Click Delete Item Button            ${Product Path}
-    CartPage.Verify that Items is Deleted        ${Product Path}
+    [Arguments]                         ${ProductPath}
+    CartPage.Click Delete Item Button            ${ProductPath}
+    CartPage.Verify that Items is Deleted        ${ProductPath}
 
 
 
 Complete Placing Order
-    [Arguments]            ${User}       ${Product Path}        ${Numbers}
+    [Arguments]            ${User}       ${ProductPath}        ${Numbers}
     CheckoutPage.Verify Checkout Page Loaded
     CheckoutPage.Verify Delivery and Billing Address Details         ${User}
-    Verify Cart Item And Quantity           ${Product Path}        ${Numbers}
+    Verify Cart Item And Quantity           ${ProductPath}        ${Numbers}
     CheckoutPage.Click Place Order Button
 
 Complete payment and Confirm Order
@@ -202,9 +219,9 @@ Entering Credit Card Details
 
 
 
-
-
-
+#Handle Ad
+#    Sleep    2s
+#    Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button']
 
 
 

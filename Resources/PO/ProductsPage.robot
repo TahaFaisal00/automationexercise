@@ -8,9 +8,9 @@ Library         SeleniumLibrary
 
 Editing the Quantity
     [Arguments]                       ${Quantity}
-    Click Element                     xpath=//*[@id='Cart']
-    Press Keys                        xpath=//*[@id='Cart']           CTRL+a+DELETE
-    Input Text                        xpath=//*[@id='Cart']           ${Quantity}
+    Click Element                     xpath=//*[@id='quantity']
+    Press Keys                        xpath=//*[@id='quantity']           CTRL+a+DELETE
+    Input Text                        xpath=//*[@id='quantity']           ${Quantity}
 
 Enter Name for Review
     [Arguments]                 ${User}
@@ -31,13 +31,13 @@ Verify Review Submitted
     Wait Until Page Contains    Thank you for your review.
 
 Click Add to cart Button from Product Details Page
-    Click Element    xpath=//*[text()='Add to cart']
+    Click Element    xpath=//*[@class='btn btn-default cart']
 
 Click Continue Shopping Button After Adding an Item
     Click Element               xpath=//*[text()='Continue Shopping']
 
 Click View Cart Button after Adding an Item
-    Click Link                   xpath=//*[text()='View Cart']
+    Click Link                   xpath=//*[@id='cartModal']//a[@href='/view_cart']
 
 
 
