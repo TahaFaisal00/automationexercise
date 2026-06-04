@@ -15,34 +15,87 @@ ${LOGIN URL}                 https://automationexercise.com/login
 &{DATE OF BIRTH}             Day=20            Month=August          Year=2000
 &{SIGNUP DETAILS}            Title=Mr    Company=Robo    Address1=1    Address2=2    Country=United States    State=NY    City=NY    Zipcode=10001    MobileNumber=71264241
 
-&{CREDIT CARD}               Name=TAHA MOE EOM       CardNumber=8709 9213 1245 2810            CVC=720        ExpirationDatemonth=3     ExpirationDateYear=2029
-
-&{PRODUCT}                 ProductPath=text()='Men Tshirt'       BaseQuantity=1             EditedQuantity=2       MinusQuantity=-5    EditedExpectedQuantity=2            MinusExpectedQuantity=1
-
 &{USER EMPTY EMAIL}                  Email=${EMPTY}              Password=mmmm21
 &{USER EMPTY PASSWORD}               Email=mmmm@gmail.com        Password=${EMPTY}
 
+&{CREDIT CARD}               Name=TAHA MOE EOM       CardNumber=8709 9213 1245 2810            CVC=720        ExpirationDatemonth=3     ExpirationDateYear=2029
 
+&{PRODUCT}                   BaseQuantity=1             EditedQuantity=2       MinusQuantity=-5    EditedExpectedQuantity=2            MinusExpectedQuantity=1          Review=This is a Good Quality T-Shirt           Comment=Test comment
 
+${MEN TSHIRT}                       Men Tshirt
+${LACE TOP FOR WOMEN}               Lace Top For Women
+${FROZEN TOPS FOR KIDS}             Frozen Tops For Kids
+${BLUE TOP}                         Blue Top
+${INVALIDSEARCHINPUT}               xxxxxxxxx
+
+${WOMENMENU}                       xpath=//*[@href='#Women']
+${TOPSCATEGORY}                    xpath=//*[text()='Tops ']
+${WOMENTOPSPAGE}                   Women - Tops Products
+${ALLENSOLLYJUNIORBRAND}           xpath=//*[@href='/brand_products/Allen Solly Junior']
+${ALLENSOLLYJUNIORPAGE}            Brand - Allen Solly Junior Products
 
 *** Keywords ***
 
+Navigate to Products Use Search and Assert Results
+    [Arguments]                         ${Product}      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+    Navigate to Products and verify Products
+    Search for a Product                ${Product}
+    Search Results                      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+
+Navigate to Products Use Category Filtering and Assert Results
+    [Arguments]                         ${CategoryMenu}         ${Category}          ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+    Navigate to Products and verify Products
+    Choose a Category                   ${CategoryMenu}         ${Category}
+    Search Results                      ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+
+Navigate to Products Use Brands Filtering and Assert Results
+    [Arguments]                         ${Brand}            ${Category}             ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+    Navigate to Products and verify Products
+    Choose a Brand                      ${Brand}            ${Category}
+    Search Results                      ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+
+Navigate to Products Use Search with Invalid Input and Assert Results
+    [Arguments]                         ${Product}          ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+    Navigate to Products and verify Products
+    Search for a Product                ${Product}
+    Results Should Be Empty                      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+
+Results Should Be Empty
+    [Arguments]            ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+    ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+
+Choose a Brand
+    [Arguments]     ${Brand}            ${Category}
+    ProductsPage.Click on a Brand                ${Brand}
+    ProductsPage.Verify Filtering Result         ${Category}
+
+Choose a Category
+    [Arguments]                             ${CategoryMenu}         ${Category}
+    ProductsPage.Click on Category Menu                  ${CategoryMenu}
+    ProductsPage.Click on a Category from a Menu         ${Category}
+
+Navigate to Products and verify Products
+    HomePage.Navigate to Products
+    ProductsPage.Verify Products Page Loaded
+    ProductsPage.All Products       ${MEN TSHIRT}   ${LACE TOP FOR WOMEN}     ${FROZEN TOPS FOR KIDS}       ${BLUE TOP}
+
+Search for a Product
+    [Arguments]             ${Product}
+    ProductsPage.Write into the Search Bar           ${Product}
+    ProductsPage.Click the Search Button
+
+Search Results
+    [Arguments]         ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+    ProductsPage.Search Result Should Contain            ${Product}
+    ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+
+
 Invalid Credentials
     [Arguments]                                       ${User}
-    Go To                                        ${URL}
-    Navigate to Signup and Login Page
+    Go To                                             ${LOGIN URL}
+    Signup&LoginPage.Verify Signup and Login Page is Loaded
     Enter Login Credentials                           ${User}
     Signup&LoginPage.Error                            ${User}       ${LOGIN URL}
-
-
-
-
-
-
-
-
-
-
 
 
 Register a New Account
@@ -100,8 +153,6 @@ Complete Account Creation
     HomePage.Verify Home Page is Loaded
     HomePage.Verify Account Signed in Successfully           ${User.Username}
 
-
-
 Login
     [Arguments]                                   ${user}
     Navigate to Signup and Login Page
@@ -109,25 +160,19 @@ Login
     HomePage.Verify Account Signed in Successfully           ${user.Username}
     Handle Ad
 
-
-
-
 Enter Login Credentials
     [Arguments]         ${Credentials}
     Signup&LoginPage.Enter Email to Login            ${Credentials.Email}
     Signup&LoginPage.Enter Password to Login         ${Credentials.Password}
     Signup&LoginPage.Click on Login Button
 
-
-
 Logout
     [Arguments]         ${User}
     HomePage.Click on Logout
     HomePage.Verify Account Signed Out Successfully      ${User}
 
-
 Delete Account
-    [Arguments]             ${user}
+    [Arguments]             ${User}
     Click Delete Account
     Verify Account Deleted
     Signup&LoginPage.Click Continue Button
@@ -135,30 +180,28 @@ Delete Account
     HomePage.Verify Account Signed Out Successfully      ${User}
 
 
-
 Editing the Quantity of an Item in the Cart
     [Arguments]         ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
     Quantity Should be Editable         ${Product}
     Click on the Quantity of Item       ${Product}          ${ExpectedQuantity}
     Editing the Quantity in Cart          ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
-    Verify Cart Item And Quantity       ${Product}      ${EditedQuantity}
 
-
-
-Editing the Quantity of an Item to a minus Number and Check it in Cart
-    [Arguments]                      ${ProductPath}            ${MinusQuantity}          ${EditedQuantity}
+Editing the Quantity of an Item to a minus Number and Navigate to Cart
+    [Arguments]                      ${ProductPath}            ${MinusQuantity}
     HomePage.View a Product Details         ${ProductPath}
     ProductsPage.Editing the Quantity              ${MinusQuantity}
     Add a Product to Cart from Product Details
     ProductsPage.Click View Cart Button after Adding an Item
     CartPage.Verify Shopping Cart Page is Loaded
-    Verify Cart Item And Quantity        ${ProductPath}        ${EditedQuantity}
 
+Navigate to a Product Page and Write a Review
+    [Arguments]                             ${ProductPath}     ${User}             ${Review}
+    HomePage.View a Product Details         ${ProductPath}
+    Submit Product Review                   ${User}             ${Review}
 
 Add a Product to Cart from Product Details
     ProductsPage.Click Add to cart Button from Product Details Page
     HomePage.Verify Product Added to Cart
-
 
 Submit Product Review
     [Arguments]             ${User}             ${Review}
@@ -167,6 +210,19 @@ Submit Product Review
     ProductsPage.Write a Review                  ${Review}
     ProductsPage.Click Submit Review
     ProductsPage.Verify Review Submitted
+
+Adding A product to The Cart and Comment on the Order from the Checkout Page
+    [Arguments]         ${ProductPath}          ${Comment}
+    Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
+    CartPage.Click Proceed to Checkout Button
+    CheckoutPage.Verify Checkout Page Loaded
+    CheckoutPage.Add a Comment About your Order             ${Comment}
+
+Adding A product to The Cart and Delete it
+    [Arguments]             ${ProductPath}
+    Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
+    Delete an Item from the Shopping Cart               ${ProductPath}
+
 
 Adding a Product to the Cart from Products Page and Enter Cart
     [Arguments]         ${ProductPath}
@@ -191,7 +247,6 @@ Delete an Item from the Shopping Cart
     CartPage.Verify that Items is Deleted        ${ProductPath}
 
 
-
 Complete Placing Order
     [Arguments]            ${User}       ${ProductPath}        ${Numbers}
     CheckoutPage.Verify Checkout Page Loaded
@@ -214,14 +269,16 @@ Entering Credit Card Details
     Payment.Enter Expiration Year                ${CARD.ExpirationDateYear}
 
 
+Verify The Total Price Valditiy in Cart
+    [Arguments]                       ${Productpath}
+    CartPage.Total Price Shouldn't be Negative          ${Productpath}
 
 
-
-
-
-#Handle Ad
-#    Sleep    2s
-#    Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button']
+Handle Ad
+    Sleep    2s
+    Run Keyword And Ignore Error    Select Frame    xpath=//*[@id='ad_iframe']
+    Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button']
+    Run Keyword And Ignore Error    Unselect Frame
 
 
 

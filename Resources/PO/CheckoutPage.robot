@@ -17,12 +17,13 @@ Verify Delivery and Billing Address Details
     Page Should Contain    ${Details.Company}
     Page Should Contain    ${Details.Address1}
     Page Should Contain    ${Details.Address2}
-    Page Should Contain    ${Details.NY}
-    Page Should Contain    ${Details.71264241}
+    Page Should Contain    ${Details.State}
+    Page Should Contain    ${Details.MobileNumber}
 
 Add a Comment About your Order
-    ${Arguments}            ${Comment}
+    [Arguments]            ${Comment}
     Input Text    xpath=//*[@class='form-control' and @name='message']    ${Comment}
+    Sleep    1s
 
 Click Place Order Button
     Click link    xpath=//*[text()='Place Order']
