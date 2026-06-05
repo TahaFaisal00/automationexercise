@@ -34,7 +34,7 @@ Click Add to cart Button from Product Details Page
     Click Element    xpath=//*[@class='btn btn-default cart']
 
 Click Continue Shopping Button After Adding an Item
-    Click Element               xpath=//*[text()='Continue Shopping']
+    Click Element               xpath=//*[contains (normalize-space() , 'Continue Shopping' )
 
 Click View Cart Button after Adding an Item
     Click Link                   xpath=//*[@id='cartModal']//a[@href='/view_cart']
@@ -44,10 +44,10 @@ Verify Products Page Loaded
 
 All Products
     [Arguments]              ${Product1}            ${Product2}     ${Product3}         ${Product4}
-    Element Should Be Visible               xpath=//*[text()='${Product1}']
-    Element Should Be Visible               xpath=//*[text()='${Product2}']
-    Element Should Be Visible               xpath=//*[text()='${Product3}']
-    Element Should Be Visible               xpath=//*[text()='${Product4}']
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product1}')]
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product2}')]
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product3}')]
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product4}')]
 
 Write into the Search Bar
     [Arguments]                    ${Search}
@@ -77,13 +77,13 @@ Verify Filtering Result
 
 Search Result Should Contain
     [Arguments]                 ${Product}
-    Element Should Be Visible    xpath=//*[text()='${Product}']
+    Element Should Be Visible    xpath=//*[contains(normalize-space() , '${Product}')]
 
 Search Result Should not Contain
     [Arguments]                  ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    Element Should Not Be Visible      xpath=//*[text()='${Invalid Product1}']
-    Element Should Not Be Visible      xpath=//*[text()='${Invalid Product2}']
-    Element Should Not Be Visible      xpath=//*[text()='${Invalid Product3}']
+    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${Invalid Product1}')]
+    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${Invalid Product2}')]
+    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${Invalid Product3}')]
 
 
 

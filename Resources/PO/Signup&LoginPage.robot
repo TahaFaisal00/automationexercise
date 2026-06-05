@@ -15,7 +15,7 @@ Enter Email to Signup a New User
     Input Text                       xpath=//*[@data-qa='signup-email' and @name='email']    ${Credentials}
 
 Click Signup Button to Continue The Signing Up
-    Click Element                    xpath=//*[@data-qa='signup-button' and text()='Signup']
+    Click Element                    xpath=//*[@data-qa='signup-button' and contains(normalize-space() , 'Signup')]
 Verify Signup Page is Loaded
    Wait Until Page Contains         Enter Account Information
 
@@ -86,13 +86,13 @@ Enter Mobile Number
     Input Text                       xpath=//*[@id='mobile_number']    ${Credentials}
 
 Click Create Account Button
-    Click Element                    xpath=//*[text()='Create Account']
+    Click Element                    xpath=//*[contains(normalize-space() , 'Create Account')]
 
 Verify Account is Created
     Wait Until Page Contains         Account Created!
 
 Click Continue Button
-    Click Element                    xpath=//*[text()='Continue']
+    Click Element                    xpath=//*[contains(normalize-space() , 'Continue')]
 
 Enter Email to Login
     [Arguments]                      ${Credentials}
@@ -103,13 +103,14 @@ Enter Password to Login
     Input Text                       xpath=//*[@data-qa='login-password' and @name='password']    ${Credentials}
 
 Click on Login Button
-    Click Element                    xpath=//*[text()='Login']
+    Click Element                    xpath=//*[contains(normalize-space() , 'Login')]
 
 Invalid Credentials
     Wait Until Page Contains                            Your email or password is incorrect!
 
 
 Error
+    [Documentation]         Checks that empty fields have 'required' attribute
     [Arguments]                                   ${User}            ${Url}
     IF    $User.Email == ""
          ${Required}     Get Element Attribute    xpath=//*[@name='email']       required

@@ -26,7 +26,7 @@ Add a Comment About your Order
     Sleep    1s
 
 Click Place Order Button
-    Click link    xpath=//*[text()='Place Order']
+    Click link    xpath=//*[contains(normalize-space() , 'Place Order')]
 
 
 

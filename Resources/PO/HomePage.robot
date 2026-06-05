@@ -16,7 +16,7 @@ Verify Account Signed in Successfully
     Wait Until Page Contains         Logged in as ${User}
 
 Click on Logout
-    Click Link                    xpath=//*[text()=' Logout']
+    Click Link                    xpath=//*[contains(normalize-space() , 'Logout')]
 
 Verify Account Signed Out Successfully
     [Arguments]             ${User}
@@ -26,16 +26,16 @@ Verify Account Signed Out Successfully
 
 Hover And Click Add to Cart Button
     [Arguments]                 ${ProductPath}
-    Mouse Over                   xpath=//*[text()='${ProductPath}']
-    Click Element                xpath=//*[text()='${ProductPath}']/ancestor::div[@class='overlay-content']//*[@class='btn btn-default add-to-cart']
+    Mouse Over                   xpath=//*[contains(normalize-space() , '${ProductPath}')]
+    Click Element                xpath=//*[contains(normalize-space() , '${ProductPath}')]/ancestor::div[@class='overlay-content']//*[@class='btn btn-default add-to-cart']
 Verify Product Added to Cart
     Page Should Contain      Your product has been added to cart
 
 
 View a Product Details
     [Arguments]         ${ProductPath}
-    Wait Until Element Is Visible    xpath=//*[text()='${ProductPath}']
-    Click Link                       xpath=//*[text()='${ProductPath}']/ancestor::div[@class='product-image-wrapper']//a[contains(@href,'product_details')]
+    Wait Until Element Is Visible    xpath=//*[contains(normalize-space() , '${ProductPath}')]
+    Click Link                       xpath=//*[contains(normalize-space() , '${ProductPath}')]/ancestor::div[@class='product-image-wrapper']//a[contains(@href,'product_details')]
 
 
 Navigate to Products
@@ -47,7 +47,7 @@ Navigate to the Shopping Cart
     Click Link                            xpath=//*[@id='cartModal']//a[@href='/view_cart']
 
 Click Delete Account
-    Click Link                  xpath=//*[text()=' Delete Account']
+    Click Link                  xpath=//*[contains(normalize-space() , 'Delete Account')]
 
 Verify Account Deleted
     Wait Until Page Contains    Account Deleted!

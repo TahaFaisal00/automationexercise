@@ -1,9 +1,13 @@
 *** Settings ***
 Library                                                                                                   SeleniumLibrary
 Resource                                                                                                  ../Resources/Common.robot
+Resource                                                                                                  ../Resources/TestData.robot
 Resource                                                                                                  ../Resources/automationexerciseRes.robot
 Suite Setup                                                                                               Common.Launch Browser
 Suite Teardown                                                                                            Common.Close Browser
+Test Setup                                                                                                Common.Test Isolation Setup
+
+
 
 *** Test Cases ***
 Login and Logout

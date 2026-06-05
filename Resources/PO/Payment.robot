@@ -24,7 +24,7 @@ Enter Expiration Year
     Input Text            xpath=//*[@data-qa='expiry-year']    ${YEAR}
 
 Click Pay and Confirm Order Button
-    Click Element    xpath=//*[text()='Pay and Confirm Order']
+    Click Element    xpath=//*[contains(normalize-space() , 'Pay and Confirm Order')]
 
 Verify that Order was Submitted
     Wait Until Page Contains    Your order has been placed successfully!
