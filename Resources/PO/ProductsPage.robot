@@ -6,25 +6,17 @@ Resource        ../automationexerciseRes.robot
 *** Keywords ***
 
 
-Editing the Quantity
-    [Arguments]                       ${Quantity}
+Editing Quantity
+    [Arguments]                       ${quantity}
     Click Element                     xpath=//*[@id='quantity']
     Press Keys                        xpath=//*[@id='quantity']           CTRL+a+DELETE
-    Input Text                        xpath=//*[@id='quantity']           ${Quantity}
+    Input Text                        xpath=//*[@id='quantity']           ${quantity}
 
-Enter Name for Review
-    [Arguments]                 ${User}
-    Input Text    xpath=//*[@id='name']      ${User.firstName} ${User.secondName}
-
-Enter Email for Review
-    [Arguments]               ${User}
-    Input Text    xpath=//*[@id='email']     ${User.Email}
-
-Write a Review
-    [Arguments]                 ${Review}
-    Input Text    xpath=//*[@id='review']    ${Review}
-
-Click Submit Review
+Write Review
+    [Arguments]     ${user}             ${review}
+    Input Text    xpath=//*[@id='name']      ${user}
+    Input Text    xpath=//*[@id='email']     ${user}
+    Input Text    xpath=//*[@id='review']    ${review}
     Click Element    xpath=//*[@type='submit']
 
 Verify Review Submitted
@@ -33,57 +25,45 @@ Verify Review Submitted
 Click Add to cart Button from Product Details Page
     Click Element    xpath=//*[@class='btn btn-default cart']
 
-Click Continue Shopping Button After Adding an Item
-    Click Element               xpath=//*[contains (normalize-space() , 'Continue Shopping' )
+Click Continue Shopping Button After Adding Item
+    Click Element               xpath=//*[contains (normalize-space(),'Continue Shopping')]
 
-Click View Cart Button after Adding an Item
+Click View Cart Button after Adding Item
     Click Link                   xpath=//*[@id='cartModal']//a[@href='/view_cart']
+    Wait Until Page Contains      Shopping Cart
 
-Verify Products Page Loaded
-    Wait Until Page Contains             All Products
+Verify All Products Visible
+    [Arguments]              ${product1}            ${product2}     ${product3}         ${product4}
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product1}')]
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product2}')]
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product3}')]
+    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product4}')]
 
-All Products
-    [Arguments]              ${Product1}            ${Product2}     ${Product3}         ${Product4}
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product1}')]
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product2}')]
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product3}')]
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${Product4}')]
+Use Search Bar
+    [Arguments]                    ${search}
+    Input Text              xpath=//*[@id='search_product']            ${search}
+    Click Element           xpath=//*[@id='submit_search']
 
-Write into the Search Bar
-    [Arguments]                    ${Search}
-    Input Text              xpath=//*[@id='search_product']            ${Search}
+Choose Category from Category Menu
+    [Arguments]                    ${category_menu}      ${category}
+    Click Element                 ${category_menu}
+    Click Link                   ${category}
+    Wait Until Page Contains     ${category}
 
-Click the Search Button
-    Click Element    xpath=//*[@id='submit_search']
-
-
-Click on Category Menu
-    [Arguments]                    ${CategoryMenu}
-    Click Element                 ${CategoryMenu}
-
-Click on a Category from a Menu
-    [Arguments]                    ${Category}
-    Click Link                   ${Category}
-
-Click on a Brand
-    [Arguments]                ${Brand}
-    Click Link                 ${Brand}
-
-Verify Filtering Result
-    [Arguments]                  ${Category}
-    Wait Until Page Contains     ${Category}
-
-
+Click on Brand
+    [Arguments]                 ${brand}     ${brand_page}
+    Click Link                  ${brand}
+    Wait Until Page Contains    ${brand_page}
 
 Search Result Should Contain
-    [Arguments]                 ${Product}
-    Element Should Be Visible    xpath=//*[contains(normalize-space() , '${Product}')]
+    [Arguments]                 ${product}
+    Element Should Be Visible    xpath=//*[contains(normalize-space() , '${product}')]
 
 Search Result Should not Contain
-    [Arguments]                  ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${Invalid Product1}')]
-    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${Invalid Product2}')]
-    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${Invalid Product3}')]
+    [Arguments]                  ${invalid_product1}         ${invalid_product2}         ${invalid_product3}
+    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${invalid_product1}')]
+    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${invalid_product2}')]
+    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${invalid_product3}')]
 
 
 

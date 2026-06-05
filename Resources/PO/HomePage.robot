@@ -4,52 +4,62 @@ Library         SeleniumLibrary
 
 
 *** Keywords ***
-Verify Home Page is Loaded
+Verify Home Page Loaded
     Wait Until Element Is Visible    xpath=//*[@alt='Website for automation practice']
     Wait Until Page Contains         Category
 
-Click on Signup and Login
+Navigate to Signup and Login Page
     Click link                       xpath=//*[@href='/login']
+    Wait Until Page Contains         New User Signup!
 
-Verify Account Signed in Successfully
-    [Arguments]             ${User}
-    Wait Until Page Contains         Logged in as ${User}
+Verify Account Signed in
+    [Arguments]             ${user}
+    Wait Until Page Contains         Logged in as ${user}
 
-Click on Logout
+Click Logout
+    [Arguments]             ${user}
     Click Link                    xpath=//*[contains(normalize-space() , 'Logout')]
 
-Verify Account Signed Out Successfully
-    [Arguments]             ${User}
-    Page Should Not Contain         Logged in as ${User}
+Verify Account Signed out
+    [Arguments]             ${user}
+    Page Should Not Contain         Logged in as ${user}
 
+Add Item to Cart From Products Page
+    [Arguments]                 ${product}
+    Mouse Over                   xpath=//*[contains(normalize-space() , '${product}')]
+    Click Element                xpath=//*[contains(normalize-space() , '${product}')]/ancestor::div[@class='overlay-content']//*[@class='btn btn-default add-to-cart']
 
-
-Hover And Click Add to Cart Button
-    [Arguments]                 ${ProductPath}
-    Mouse Over                   xpath=//*[contains(normalize-space() , '${ProductPath}')]
-    Click Element                xpath=//*[contains(normalize-space() , '${ProductPath}')]/ancestor::div[@class='overlay-content']//*[@class='btn btn-default add-to-cart']
 Verify Product Added to Cart
-    Page Should Contain      Your product has been added to cart
+    Page Should Contain          Your product has been added to cart
 
-
-View a Product Details
-    [Arguments]         ${ProductPath}
-    Wait Until Element Is Visible    xpath=//*[contains(normalize-space() , '${ProductPath}')]
-    Click Link                       xpath=//*[contains(normalize-space() , '${ProductPath}')]/ancestor::div[@class='product-image-wrapper']//a[contains(@href,'product_details')]
-
+View Product Details
+    [Arguments]         ${product}
+    Wait Until Element Is Visible    xpath=//*[contains(normalize-space() , '${product}')]
+    Click Link                       xpath=//*[contains(normalize-space() , '${product}')]/ancestor::div[@class='product-image-wrapper']//a[contains(@href,'product_details')]
 
 Navigate to Products
     Click Link                  xpath=//*[@href='/products']
+    Wait Until Page Contains             All Products
 
-
-
-Navigate to the Shopping Cart
+Navigate to Shopping Cart
     Click Link                            xpath=//*[@id='cartModal']//a[@href='/view_cart']
+    Wait Until Page Contains      Shopping Cart
 
 Click Delete Account
     Click Link                  xpath=//*[contains(normalize-space() , 'Delete Account')]
+    Wait Until Page Contains    Account Deleted!
 
 Verify Account Deleted
-    Wait Until Page Contains    Account Deleted!
-    Page Should Contain         Your account has been permanently
+    [Arguments]             ${user}
+    Wait Until Page Contains         Account Deleted!
+    Wait Until Page Contains         Your account has been permanently
+    Verify Account Signed out        ${user}
+
+Click Continue After Account Deletion
+    Click Link        xpath=//*[@data-qa='continue-button']
+    Verify Home Page Loaded
+
+
+
+
 

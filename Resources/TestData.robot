@@ -2,27 +2,27 @@
 Library                 SeleniumLibrary
 
 *** Variables ***
-${LOGIN URL}                 https://automationexercise.com/login
-&{MAIN USER}                 Username=Taha           Email=taha111@gmail.com      Password=taha2021       firstName=Taha      secondName=Moe
-&{DELETED USER}              Username=Delete           Email=Delete111@gmail.com      Password=Delete2021       firstName=Delete      secondName=Me
-&{DATE OF BIRTH}             Day=20            Month=August          Year=2000
-&{SIGNUP DETAILS}            Title=Mr    Company=Robo    Address1=1    Address2=2    Country=United States    State=NY    City=NY    Zipcode=10001    MobileNumber=71264241
+${LOGIN_URL}                 https://automationexercise.com/login
+&{MAIN_USER}                 user_name=Taha           email=taha111@gmail.com      password=taha2021       first_name=Taha      second_name=Moe
+&{DELETED_USER}              user_name=Delete           email=Delete111@gmail.com      password=Delete2021       first_name=Delete      second_name=Me
+&{DATE_OF_BIRTH}             day=20            month=August          year=2000
+&{SIGNUP_DETAILS}            title=Mr    company=Robo    address1=1    address2=2    country=United States    state=NY    city=NY    zipcode=10001    mobil_enumber=71264241
 
-&{USER EMPTY EMAIL}                  Email=${EMPTY}              Password=mmmm21
-&{USER EMPTY PASSWORD}               Email=mmmm@gmail.com        Password=${EMPTY}
+&{USER_EMPTY_EMAIL}                  email=${EMPTY}              password=mmmm21
+&{USER_EMPTY_PASSWORD}               email=mmmm@gmail.com        password=${EMPTY}
 
-&{CREDIT CARD}               Name=TAHA MOE EOM       CardNumber=8709 9213 1245 2810            CVC=720        ExpirationDatemonth=3     ExpirationDateYear=2029
+&{CREDIT_CARD}               name=TAHA MOE EOM       card_number=8709 9213 1245 2810            cvc=720        expiration_date_month=3     expiration_date_year=2029
 
-&{PRODUCT}                   BaseQuantity=1             EditedQuantity=2       MinusQuantity=-5    EditedExpectedQuantity=2            MinusExpectedQuantity=1          Review=This is a Good Quality T-Shirt           Comment=Test comment
+&{PRODUCT}                   base_quantity=1             edited_quantity=2       minus_quantity=-5    edited_expected_quantity=2            minus_expected_quantity=1          review=This is a Good Quality T-Shirt           comment=Test comment
 
-${MEN TSHIRT}                       Men Tshirt
-${LACE TOP FOR WOMEN}               Lace Top For Women
-${FROZEN TOPS FOR KIDS}             Frozen Tops For Kids
-${BLUE TOP}                         Blue Top
-${INVALIDSEARCHINPUT}               xxxxxxxxx
+${MEN_TSHIRT}                       Men Tshirt
+${LACE_TOP_FOR_WOMEN}               Lace Top For Women
+${FROZEN_TOPS_FOR_KIDS}             Frozen Tops For Kids
+${BLUE_TOP}                         Blue Top
+${INVALID_SEARCH_INPUT}               xxxxxxxxx
 
-${WOMENMENU}                       xpath=//*[@href='#Women']
-${TOPSCATEGORY}                    xpath=//*[text()='Tops ']
-${WOMENTOPSPAGE}                   Women - Tops Products
-${ALLENSOLLYJUNIORBRAND}           xpath=//*[@href='/brand_products/Allen Solly Junior']
-${ALLENSOLLYJUNIORPAGE}            Brand - Allen Solly Junior Products
+${WOMEN_MENU}                       xpath=//*[@href='#Women']
+${TOPS_CATEGORY}                    xpath=//*[text()='Tops ']
+${WOMEN_TOPS_PAGE}                   Women - Tops Products
+${ALLEN_SOLLY_JUNIOR_BRAND}           xpath=//*[@href='/brand_products/Allen Solly Junior']
+${ALLEN_SOLLY_JUNIOR_PAGE}            Brand - Allen Solly Junior Products

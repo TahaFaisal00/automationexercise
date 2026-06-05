@@ -15,7 +15,7 @@ Login and Logout
     automationexerciseRes.Login                                                                           ${MAIN USER}
     automationexerciseRes.Logout                                                                          ${MAIN USER}
 
-Delete an Account
+Delete Account
     [Tags]
     automationexerciseRes.Register a New Account                                                          ${DELETED USER}    ${DATE OF BIRTH}    ${SIGNUP DETAILS}
     automationexerciseRes.Delete Account                                                                  ${DELETED USER}
@@ -27,7 +27,7 @@ Login With Invalid Credential
     ${USER EMPTY PASSWORD}
     ${DELETED USER}
 
-Quantity Should be Editable from the Shopping Cart
+Quantity Should be Editable from Shopping Cart
     [Tags]      bug
     automationexerciseRes.Login                                                                           ${MAIN USER}
     automationexerciseRes.Adding a Product to the Cart from Products Page and Enter Cart                  ${MEN TSHIRT}
@@ -39,23 +39,23 @@ Quantity Should Not Accept Negative Values
     automationexerciseRes.Editing the Quantity of an Item to a minus Number and Navigate to Cart          ${MEN TSHIRT}           ${PRODUCT.MinusQuantity}
     automationexerciseRes.Verify Cart Item And Quantity                                                   ${MEN TSHIRT}       ${PRODUCT.MinusExpectedQuantity}
 
-Price Should Not Be Negative When Quantity Is Invalid
+Price Should Not Be Negative When Quantity Invalid
     [Tags]          bug
     automationexerciseRes.Login                                                                           ${MAIN USER}
     automationexerciseRes.Editing the Quantity of an Item to a minus Number and Navigate to Cart          ${MEN TSHIRT}           ${PRODUCT.MinusQuantity}
     automationexerciseRes.Verify The Total Price Valditiy in Cart                                         ${MEN TSHIRT}
 
-Give A Product a Review
+Give Product Review
     [Tags]
     automationexerciseRes.Login                                                                           ${MAIN USER}
     automationexerciseRes.Navigate to a Product Page and Write a Review                                   ${MEN TSHIRT}       ${MAIN USER}       ${PRODUCT.Review}
 
-Give a Comment on an Order
+Give Comment on Order
     [Tags]
     automationexerciseRes.Login                                                                                                 ${MAIN USER}
     automationexerciseRes.Adding A product to The Cart and Comment on the Order from the Checkout Page    ${MEN TSHIRT}       ${PRODUCT.Comment}
 
-Delete an Item from the Cart
+Delete Item from Cart
     [Tags]
     automationexerciseRes.Login                                                                                                 ${MAIN USER}
     automationexerciseRes.Adding A product to The Cart and Delete it                                      ${MEN TSHIRT}
@@ -75,7 +75,7 @@ Filter by brand
     automationexerciseRes.Login                                                                                                 ${MAIN USER}
     automationexerciseRes.Navigate to Products Use Brands Filtering and Assert Results                    ${ALLENSOLLYJUNIORBRAND}            ${ALLENSOLLYJUNIORPAGE}      ${FROZEN TOPS FOR KIDS}       ${LACE TOP FOR WOMEN}       ${MEN TSHIRT}      ${Blue Top}
 
-Search with Invalid Input
+Search Invalid Input
     [Tags]
     automationexerciseRes.Login                                                                                                 ${MAIN USER}
     automationexerciseRes.Navigate to Products Use Search with Invalid Input and Assert Results           ${INVALIDSEARCHINPUT}         ${MEN TSHIRT}                ${LACE TOP FOR WOMEN}           ${FROZEN TOPS FOR KIDS}

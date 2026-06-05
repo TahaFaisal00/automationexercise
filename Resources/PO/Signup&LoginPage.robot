@@ -4,125 +4,122 @@ Library         SeleniumLibrary
 
 
 *** Keywords ***
-Verify Signup and Login Page is Loaded
-    Wait Until Page Contains         New User Signup!
 
-Enter Name to Signup a New User
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@data-qa='signup-name' and @name='name']     ${Credentials}
-Enter Email to Signup a New User
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@data-qa='signup-email' and @name='email']    ${Credentials}
+Enter Name to Signup New User
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@data-qa='signup-name' and @name='name']     ${credentials}
 
-Click Signup Button to Continue The Signing Up
+Enter Email to Signup New User
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@data-qa='signup-email' and @name='email']    ${credentials}
+
+Click Signup Button
     Click Element                    xpath=//*[@data-qa='signup-button' and contains(normalize-space() , 'Signup')]
-Verify Signup Page is Loaded
-   Wait Until Page Contains         Enter Account Information
+    Wait Until Page Contains         Enter Account Information
 
-Choose a Title
-    [Arguments]                      ${Credentials}
-    Select Radio Button              title                             ${Credentials}
+Choose Title
+    [Arguments]                      ${credentials}
+    Select Radio Button              title                             ${credentials}
 
-Enter a Password
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='password']         ${Credentials}
+Enter Password
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='password']         ${credentials}
 
-Enter a Day in the Date of Birth
-    [Arguments]                      ${Credentials}
-    Select From List By Label        xpath=//*[@id='days']             ${Credentials}
+Enter Day in Date of Birth
+    [Arguments]                      ${credentials}
+    Select From List By Label        xpath=//*[@id='days']             ${credentials}
 
-Enter a Month in the Date of Birth
-    [Arguments]                      ${Credentials}
-    Select From List By Label        xpath=//*[@id='months']           ${Credentials}
+Enter Month in Date of Birth
+    [Arguments]                      ${credentials}
+    Select From List By Label        xpath=//*[@id='months']           ${credentials}
 
-Enter a Year in the Date of Birth
-    [Arguments]                      ${Credentials}
-    Select From List By Label        xpath=//*[@id='years']            ${Credentials}
+Enter Year in Date of Birth
+    [Arguments]                      ${credentials}
+    Select From List By Label        xpath=//*[@id='years']            ${credentials}
 
-Click Sign up for our newsletter! Checkbox
+Select Newsletter Checkbox
     Select Checkbox                  xpath=//*[@id='newsletter']
 
-Click Receive special offers from our partners! Checkbox
+Select Partners Offers Checkbox
     Select Checkbox                  xpath=//*[@id='optin']
 
-Enter a firstName
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='first_name']       ${Credentials}
+Enter First Name
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='first_name']       ${credentials}
 
-Enter a lastName
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='last_name']        ${Credentials}
+Enter Last Name
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='last_name']        ${credentials}
 
-Enter a Company Name
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='company']          ${Credentials}
+Enter Company Name
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='company']          ${credentials}
 
 Enter Address 1
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='address1']         ${Credentials}
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='address1']         ${credentials}
 
 Enter Address 2
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='address2']         ${Credentials}
+    [Arguments]                     ${credentials}
+    Input Text                       xpath=//*[@id='address2']         ${credentials}
 
-Enter a Country
-    [Arguments]                      ${Credentials}
-    Select From List By Label        xpath=//*[@id='country']          ${Credentials}
+Enter Country
+    [Arguments]                      ${credentials}
+    Select From List By Label        xpath=//*[@id='country']          ${credentials}
 
-Enter a State
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='state']            ${Credentials}
+Enter State
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='state']            ${credentials}
 
-Enter a City
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='city']             ${Credentials}
+Enter City
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='city']             ${credentials}
 
-Enter a Zipcode
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='zipcode']          ${Credentials}
+Enter Zipcode
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='zipcode']          ${credentials}
 
 Enter Mobile Number
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@id='mobile_number']    ${Credentials}
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@id='mobile_number']    ${credentials}
 
 Click Create Account Button
     Click Element                    xpath=//*[contains(normalize-space() , 'Create Account')]
 
-Verify Account is Created
+Verify Account Created
     Wait Until Page Contains         Account Created!
 
-Click Continue Button
+Click Continue Button After Account Creation
     Click Element                    xpath=//*[contains(normalize-space() , 'Continue')]
 
 Enter Email to Login
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@data-qa='login-email' and @name='email']     ${Credentials}
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@data-qa='login-email' and @name='email']     ${credentials}
 
 Enter Password to Login
-    [Arguments]                      ${Credentials}
-    Input Text                       xpath=//*[@data-qa='login-password' and @name='password']    ${Credentials}
+    [Arguments]                      ${credentials}
+    Input Text                       xpath=//*[@data-qa='login-password' and @name='password']    ${credentials}
 
-Click on Login Button
+Click Login Button
     Click Element                    xpath=//*[contains(normalize-space() , 'Login')]
 
 Invalid Credentials
     Wait Until Page Contains                            Your email or password is incorrect!
 
-
-Error
+Invalid Login Error
     [Documentation]         Checks that empty fields have 'required' attribute
-    [Arguments]                                   ${User}            ${Url}
-    IF    $User.Email == ""
-         ${Required}     Get Element Attribute    xpath=//*[@name='email']       required
-         Should Not Be Empty                      ${Required}
-         Location Should Be                       ${Url}
-    ELSE IF    $User.Password == ""
-         ${Required}     Get Element Attribute    xpath=//*[@name='password']    required
-         Should Not Be Empty                      ${Required}
-         Location Should Be                       ${Url}
+    [Arguments]                                   ${user}            ${url}
+    IF    $user.email == ""
+         ${required}     Get Element Attribute    xpath=//*[@name='email']       required
+         Should Not Be Empty                      ${required}
+         Location Should Be                       ${url}
+    ELSE IF    $user.password == ""
+         ${required}     Get Element Attribute    xpath=//*[@name='password']    required
+         Should Not Be Empty                      ${required}
+         Location Should Be                       ${url}
     ELSE
          Invalid Credentials
-         Location Should Be                       ${Url}
+         Location Should Be                       ${url}
     END
 
 

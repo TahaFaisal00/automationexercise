@@ -1,32 +1,31 @@
 *** Settings ***
 Library         SeleniumLibrary
 
-
-
 *** Keywords ***
-Verify Payment page is Loaded
-    Wait Until Page Contains    Payment
-
 Enter Name on Card
-    [Arguments]                       ${NAME}
-    Input Text            xpath=//*[@data-qa='name-on-card']    ${NAME}
+    [Arguments]                       ${name}
+    Input Text            xpath=//*[@data-qa='name-on-card']    ${name}
+
 Enter Card Number
-    [Arguments]                       ${NUMBER}
-    Input Text            xpath=//*[@data-qa='card-number']    ${NUMBER}
+    [Arguments]                       ${number}
+    Input Text            xpath=//*[@data-qa='card-number']    ${number}
+
 Enter CVC
-    [Arguments]                       ${CVC}
-    Input Text            xpath=//*[@data-qa='cvc']           ${CVC}
+    [Arguments]                       ${cvc}
+    Input Text            xpath=//*[@data-qa='cvc']           ${cvc}
+
 Enter Expiration Month
-    [Arguments]                       ${MONTH}
-    Input Text            xpath=//*[@data-qa='expiry-month']    ${MONTH}
+    [Arguments]                       ${month}
+    Input Text            xpath=//*[@data-qa='expiry-month']    ${month}
+
 Enter Expiration Year
-    [Arguments]                       ${YEAR}
-    Input Text            xpath=//*[@data-qa='expiry-year']    ${YEAR}
+    [Arguments]                       ${year}
+    Input Text            xpath=//*[@data-qa='expiry-year']    ${year}
 
 Click Pay and Confirm Order Button
     Click Element    xpath=//*[contains(normalize-space() , 'Pay and Confirm Order')]
 
-Verify that Order was Submitted
+Verify Order Submitted
     Wait Until Page Contains    Your order has been placed successfully!
 
 
