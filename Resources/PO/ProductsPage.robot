@@ -1,69 +1,74 @@
 *** Settings ***
 Library         SeleniumLibrary
-Resource        ../automationexerciseRes.robot
+Library         String
 
+*** Variables ***
+${PRODUCT_NAME}             xpath=//p[normalize-space()='{}']
+${QUANTITY_FIELD}           id=quantity
 
+${NAME_FIELD_REVIEW}        id=name
+${EMAIL_FIELD_REVIEW}       id=email
+${REVIEW_FIELD}             id=review
+${SUBMIT_REVIEW_BUTTON}     id=button-review
+
+${ADD_TO_CART_FROM_PRODUCT_DETAILS}                 xpath=//button[normalize-space()='Add to cart']
+
+${SEARCH_FIELD}               id=search_product
+${SUBMIT_SEARCH_BUTTON}         id=submit_search
 *** Keywords ***
-
-
-Editing Quantity
+Set Quantity
     [Arguments]                       ${quantity}
-    Click Element                     xpath=//*[@id='quantity']
-    Press Keys                        xpath=//*[@id='quantity']           CTRL+a+DELETE
-    Input Text                        xpath=//*[@id='quantity']           ${quantity}
+    Input Text                        ${QUANTITY_FIELD}           ${quantity}
 
 Write Review
-    [Arguments]     ${user}             ${review}
-    Input Text    xpath=//*[@id='name']      ${user}
-    Input Text    xpath=//*[@id='email']     ${user}
-    Input Text    xpath=//*[@id='review']    ${review}
-    Click Element    xpath=//*[@type='submit']
+    [Arguments]      ${username}      ${email}       ${review}
+    Input Text       ${NAME_FIELD_REVIEW}         ${username}
+    Input Text       ${EMAIL_FIELD_REVIEW}        ${email}
+    Input Text       ${REVIEW_FIELD}              ${review}
+    Click Element    ${SUBMIT_REVIEW_BUTTON}
 
 Verify Review Submitted
     Wait Until Page Contains    Thank you for your review.
 
-Click Add to cart Button from Product Details Page
-    Click Element    xpath=//*[@class='btn btn-default cart']
+Click Add To Cart Button From Product Details Page
+    Click Element    ${ADD_TO_CART_FROM_PRODUCT_DETAILS}
 
-Click Continue Shopping Button After Adding Item
-    Click Element               xpath=//*[contains (normalize-space(),'Continue Shopping')]
-
-Click View Cart Button after Adding Item
-    Click Link                   xpath=//*[@id='cartModal']//a[@href='/view_cart']
-    Wait Until Page Contains      Shopping Cart
 
 Verify All Products Visible
-    [Arguments]              ${product1}            ${product2}     ${product3}         ${product4}
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product1}')]
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product2}')]
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product3}')]
-    Element Should Be Visible               xpath=//*[contains(normalize-space() , '${product4}')]
+    [Arguments]         @{products}
+    FOR    ${product}    IN    @{products}
+        ${product_location}=     Format String    ${PRODUCT_NAME}        ${product}
+        Element Should Be Visible    ${product_location}
+    END
 
 Use Search Bar
     [Arguments]                    ${search}
-    Input Text              xpath=//*[@id='search_product']            ${search}
-    Click Element           xpath=//*[@id='submit_search']
+    Input Text              ${SEARCH_FIELD}           ${search}
+    Click Element           ${SUBMIT_SEARCH_BUTTON}
 
-Choose Category from Category Menu
+Choose Category From Category Menu
     [Arguments]                    ${category_menu}      ${category}
     Click Element                 ${category_menu}
     Click Link                   ${category}
     Wait Until Page Contains     ${category}
 
-Click on Brand
+Click On Brand
     [Arguments]                 ${brand}     ${brand_page}
     Click Link                  ${brand}
     Wait Until Page Contains    ${brand_page}
 
 Search Result Should Contain
-    [Arguments]                 ${product}
-    Element Should Be Visible    xpath=//*[contains(normalize-space() , '${product}')]
+    [Arguments]                  ${product}
+    ${product_location}=         Format String    ${PRODUCT_NAME}        ${product}
+    Element Should Be Visible    ${product_location}
 
-Search Result Should not Contain
-    [Arguments]                  ${invalid_product1}         ${invalid_product2}         ${invalid_product3}
-    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${invalid_product1}')]
-    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${invalid_product2}')]
-    Element Should Not Be Visible      xpath=//*[contains(normalize-space() , '${invalid_product3}')]
+Search Result Should Not Contain
+    [Arguments]         @{products}
+    FOR    ${product}    IN    @{products}
+        ${product_location}=     Format String    ${PRODUCT_NAME}    ${product}
+        Page Should Not Contain Element    ${product_location}
+    END
+
 
 
 

@@ -1,29 +1,36 @@
 *** Settings ***
 Library         SeleniumLibrary
 
+*** Variables ***
+${NAME_ON_CARD_FIELD}       css=[data-qa='name-on-card']
+${CARD_NUMBER_FIELD}        css=[data-qa='card-number']
+${CVC_FIELD}                css=[data-qa='cvc']
+${EXPIRY_MONTH_FIELD}       css=[data-qa='expiry-month']
+${EXPIRY_YEAR_FIELD}        css=[data-qa='expiry-year']
+${CONFIRM_ORDER_BUTTON}     css=[data-qa='pay-button']
 *** Keywords ***
-Enter Name on Card
+Enter Name On Card
     [Arguments]                       ${name}
-    Input Text            xpath=//*[@data-qa='name-on-card']    ${name}
+    Input Text            ${NAME_ON_CARD_FIELD}     ${name}
 
 Enter Card Number
     [Arguments]                       ${number}
-    Input Text            xpath=//*[@data-qa='card-number']    ${number}
+    Input Text            ${CARD_NUMBER_FIELD}    ${number}
 
 Enter CVC
     [Arguments]                       ${cvc}
-    Input Text            xpath=//*[@data-qa='cvc']           ${cvc}
+    Input Text            ${CVC_FIELD}           ${cvc}
 
-Enter Expiration Month
+Enter Expiry Month
     [Arguments]                       ${month}
-    Input Text            xpath=//*[@data-qa='expiry-month']    ${month}
+    Input Text            ${EXPIRY_MONTH_FIELD}     ${month}
 
-Enter Expiration Year
+Enter Expiry Year
     [Arguments]                       ${year}
-    Input Text            xpath=//*[@data-qa='expiry-year']    ${year}
+    Input Text            ${EXPIRY_YEAR_FIELD}    ${year}
 
-Click Pay and Confirm Order Button
-    Click Element    xpath=//*[contains(normalize-space() , 'Pay and Confirm Order')]
+Click Pay And Confirm Order Button
+    Click Element          ${CONFIRM_ORDER_BUTTON}
 
 Verify Order Submitted
     Wait Until Page Contains    Your order has been placed successfully!

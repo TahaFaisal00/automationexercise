@@ -1,124 +1,149 @@
 *** Settings ***
 Library         SeleniumLibrary
 
+*** Variables ***
+${NAME_SIGNUP_FIELD}            css=[data-qa='signup-name']
+${EMAIL_SIGNUP_FIELD}           css=[data-qa='signup-email']
+${SIGNUP_BUTTON}                css=[data-qa='signup-button']
 
+${PASSWORD_SIGNUP_FIELD}        id=password
+${DAY_DOB_SIGNUP_FIELD}         id=days
+${MONTH_DOB_SIGNUP_FIELD}       id=months
+${YEAR_DOB_SIGNUP_FIELD}        id=years
+${NEWSLETTER_SIGNUP_CHECKBOX}        id=newsletter
+${PARTNER_OFFERS_SIGNUP_CHECKBOX}       id=optin
+${FIRST_NAME_SIGNUP_FIELD}      id=first_name
+${LAST_NAME_SIGNUP_FIELD}       id=last_name
+${COMPANY_SIGNUP_FIELD}         id=company
+${ADDRESS_1_SIGNUP_FIELD}       id=address1
+${ADDRESS_2_SIGNUP_FIELD}       id=address2
+${COUNTRY_SIGNUP_FIELD}         id=country
+${STATE_SIGNUP_FIELD}           id=state
+${CITY_SIGNUP_FIELD}            id=city
+${ZIPCODE_SIGNUP_FIELD}         id=zipcode
+${MOBILE_NUMBER_SIGNUP_FIELD}       id=mobile_number
+${CREATE_ACCOUNT_BUTTON}           css=[data-qa='create-account']
+${CONTINUE_BUTTON_AFTER_ACCOUNT_CREATION}          css=[data-qa='continue-button']
+
+${EMAIL_LOGIN_FIELD}        css=[data-qa='login-email']
+${PASSWORD_LOGIN_FIELD}     css=[data-qa='login-password']
+${LOGIN_BUTTON}             css=[data-qa='login-button']
 
 *** Keywords ***
+Enter Name To Signup New User
+    [Arguments]                      ${user_name}
+    Input Text                       ${NAME_SIGNUP_FIELD}     ${user_name}
 
-Enter Name to Signup New User
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@data-qa='signup-name' and @name='name']     ${credentials}
-
-Enter Email to Signup New User
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@data-qa='signup-email' and @name='email']    ${credentials}
+Enter Email To Signup New User
+    [Arguments]                      ${email}
+    Input Text                       ${EMAIL_SIGNUP_FIELD}    ${email}
 
 Click Signup Button
-    Click Element                    xpath=//*[@data-qa='signup-button' and contains(normalize-space() , 'Signup')]
+    Click Element                    ${SIGNUP_BUTTON}
     Wait Until Page Contains         Enter Account Information
 
 Choose Title
-    [Arguments]                      ${credentials}
-    Select Radio Button              title                             ${credentials}
+    [Arguments]                      ${title}
+    Select Radio Button              title                             ${title}
 
 Enter Password
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='password']         ${credentials}
+    [Arguments]                      ${password}
+    Input Text                       ${PASSWORD_SIGNUP_FIELD}         ${password}
 
-Enter Day in Date of Birth
-    [Arguments]                      ${credentials}
-    Select From List By Label        xpath=//*[@id='days']             ${credentials}
+Enter Day In Date Of Birth
+    [Arguments]                      ${day_dob}
+    Select From List By Label        ${DAY_DOB_SIGNUP_FIELD}             ${day_dob}
 
-Enter Month in Date of Birth
-    [Arguments]                      ${credentials}
-    Select From List By Label        xpath=//*[@id='months']           ${credentials}
+Enter Month In Date Of Birth
+    [Arguments]                      ${month_dob}
+    Select From List By Label        ${MONTH_DOB_SIGNUP_FIELD}          ${month_dob}
 
-Enter Year in Date of Birth
-    [Arguments]                      ${credentials}
-    Select From List By Label        xpath=//*[@id='years']            ${credentials}
+Enter Year In Date Of Birth
+    [Arguments]                      ${year_dob}
+    Select From List By Label        ${YEAR_DOB_SIGNUP_FIELD}            ${year_dob}
 
 Select Newsletter Checkbox
-    Select Checkbox                  xpath=//*[@id='newsletter']
+    Select Checkbox                  ${NEWSLETTER_SIGNUP_CHECKBOX}
 
 Select Partners Offers Checkbox
-    Select Checkbox                  xpath=//*[@id='optin']
+    Select Checkbox                  ${PARTNER_OFFERS_SIGNUP_CHECKBOX}
 
 Enter First Name
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='first_name']       ${credentials}
+    [Arguments]                      ${first_name}
+    Input Text                       ${FIRST_NAME_SIGNUP_FIELD}      ${first_name}
 
 Enter Last Name
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='last_name']        ${credentials}
+    [Arguments]                      ${last_name}
+    Input Text                       ${LAST_NAME_SIGNUP_FIELD}        ${last_name}
 
 Enter Company Name
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='company']          ${credentials}
+    [Arguments]                      ${company}
+    Input Text                       ${COMPANY_SIGNUP_FIELD}          ${company}
 
 Enter Address 1
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='address1']         ${credentials}
+    [Arguments]                      ${address_1}
+    Input Text                       ${ADDRESS_1_SIGNUP_FIELD}         ${address_1}
 
 Enter Address 2
-    [Arguments]                     ${credentials}
-    Input Text                       xpath=//*[@id='address2']         ${credentials}
+    [Arguments]                      ${address_2}
+    Input Text                       ${ADDRESS_2_SIGNUP_FIELD}         ${address_2}
 
 Enter Country
-    [Arguments]                      ${credentials}
-    Select From List By Label        xpath=//*[@id='country']          ${credentials}
+    [Arguments]                      ${country}
+    Select From List By Label        ${COUNTRY_SIGNUP_FIELD}          ${country}
 
 Enter State
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='state']            ${credentials}
+    [Arguments]                      ${state}
+    Input Text                       ${STATE_SIGNUP_FIELD}            ${state}
 
 Enter City
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='city']             ${credentials}
+    [Arguments]                      ${city}
+    Input Text                       ${CITY_SIGNUP_FIELD}             ${city}
 
 Enter Zipcode
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='zipcode']          ${credentials}
+    [Arguments]                      ${zipcode}
+    Input Text                       ${ZIPCODE_SIGNUP_FIELD}           ${zipcode}
 
 Enter Mobile Number
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@id='mobile_number']    ${credentials}
+    [Arguments]                      ${mobile_number}
+    Input Text                       ${MOBILE_NUMBER_SIGNUP_FIELD}    ${mobile_number}
 
 Click Create Account Button
-    Click Element                    xpath=//*[contains(normalize-space() , 'Create Account')]
+    Click Element                    ${CREATE_ACCOUNT_BUTTON}
 
 Verify Account Created
     Wait Until Page Contains         Account Created!
 
 Click Continue Button After Account Creation
-    Click Element                    xpath=//*[contains(normalize-space() , 'Continue')]
+    Click Element                    ${CONTINUE_BUTTON_AFTER_ACCOUNT_CREATION}
 
-Enter Email to Login
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@data-qa='login-email' and @name='email']     ${credentials}
+Enter Email To Login
+    [Arguments]                      ${email}
+    Input Text                       ${EMAIL_LOGIN_FIELD}     ${email}
 
-Enter Password to Login
-    [Arguments]                      ${credentials}
-    Input Text                       xpath=//*[@data-qa='login-password' and @name='password']    ${credentials}
+Enter Password To Login
+    [Arguments]                      ${password}
+    Input Text                       ${PASSWORD_LOGIN_FIELD}    ${password}
 
 Click Login Button
-    Click Element                    xpath=//*[contains(normalize-space() , 'Login')]
+    Click Element                    ${LOGIN_BUTTON}
 
-Invalid Credentials
+Verify Invalid Credentials Error
     Wait Until Page Contains                            Your email or password is incorrect!
 
 Invalid Login Error
-    [Documentation]         Checks that empty fields have 'required' attribute
-    [Arguments]                                   ${user}            ${url}
-    IF    $user.email == ""
-         ${required}     Get Element Attribute    xpath=//*[@name='email']       required
+    [Documentation]         Checks that empty fields have 'required' attribute and Error Message
+    [Arguments]                                   ${user_email}      ${user_password}         ${url}
+    IF    $user_email == ""
+         ${required}     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
          Should Not Be Empty                      ${required}
          Location Should Be                       ${url}
-    ELSE IF    $user.password == ""
-         ${required}     Get Element Attribute    xpath=//*[@name='password']    required
+    ELSE IF    $user_password == ""
+         ${required}     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
          Should Not Be Empty                      ${required}
          Location Should Be                       ${url}
     ELSE
-         Invalid Credentials
+         Verify Invalid Credentials Error
          Location Should Be                       ${url}
     END
 

@@ -1,25 +1,28 @@
 *** Settings ***
 Library         SeleniumLibrary
 
+*** Variables ***
+${COMMENT_FIELD}            name=message
+${PLACE_ORDER_BUTTON}       xpath=//a[@href='/payment']
 *** Keywords ***
-# TODO:send it to RES
-Verify Delivery and Billing Address Details
+# TODO:send it to RES then fix it - ignore for now
+Verify Delivery And Billing Address Details
     [Arguments]            ${details}
-    Page Should Contain    Address Details
-    Page Should Contain    Your delivery address
-    Page Should Contain    ${details.first_name}
-    Page Should Contain    ${details.Company}
-    Page Should Contain    ${details.address1}
-    Page Should Contain    ${details.address2}
-    Page Should Contain    ${details.state}
-    Page Should Contain    ${details.mobile_number}
+    Wait Until Page Contains    Address Details
+    Wait Until Page Contains    Your delivery address
+    Wait Until Page Contains    ${details.first_name}
+    Wait Until Page Contains    ${details.Company}
+    Wait Until Page Contains    ${details.address1}
+    Wait Until Page Contains    ${details.address2}
+    Wait Until Page Contains    ${details.state}
+    Wait Until Page Contains    ${details.mobile_number}
 
 Add Order Comment
     [Arguments]            ${comment}
-    Input Text    xpath=//*[@class='form-control' and @name='message']    ${comment}
+    Input Text    ${COMMENT_FIELD}    ${comment}
 
 Click Place Order Button
-    Click link    xpath=//*[contains(normalize-space() , 'Place Order')]
+    Click link    ${PLACE_ORDER_BUTTON}
     Wait Until Page Contains    Payment
 
 

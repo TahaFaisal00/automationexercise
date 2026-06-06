@@ -1,52 +1,69 @@
 *** Settings ***
 Library         SeleniumLibrary
+Library         String
 
+*** Variables ***
+#${PRODUCT_BASE} Not usable alone. always add [@class='...'] to it
+${PRODUCT_BASE}                    xpath=//p[normalize-space()='{}']/ancestor::div
+${PRODUCT_CARD}                    ${PRODUCT_BASE}[@class='single-products']
+${OVERLAY_ADD_TO_CART}             ${PRODUCT_BASE}[@class='overlay-content']//a[contains(@class,'add-to-cart')]
+${VIEW_DETAILS_LINK}               ${PRODUCT_BASE}[@class='product-image-wrapper']//a[contains(@href,'product_details')]
 
+${AUTOMATION_EXERCISE_LOGO}         xpath=//img[@alt='Website for automation practice']
+${SIGNUP_AND_LOGIN_PAGE}            xpath=//a[@href='/login']
+${PRODUCTS_PAGE}                    xpath=//a[@href='/products']
+${LOGOUT_BUTTON}                    xpath=//a[@href='/logout']
+${DELETE_ACCOUNT_BUTTON}            xpath=//a[@href='/delete_account']
+${CONTINUE_BUTTON_AFTER_DELETION}   css=[data-qa='continue-button']
+${VIEW_CART_BUTTON}                 xpath=//div[@id='cartModal']//a[@href='/view_cart']
 
 *** Keywords ***
 Verify Home Page Loaded
-    Wait Until Element Is Visible    xpath=//*[@alt='Website for automation practice']
+    Wait Until Element Is Visible    ${AUTOMATION_EXERCISE_LOGO}
     Wait Until Page Contains         Category
 
-Navigate to Signup and Login Page
-    Click link                       xpath=//*[@href='/login']
+Navigate To Signup And Login Page
+    Click Link                       ${SIGNUP_AND_LOGIN_PAGE}
     Wait Until Page Contains         New User Signup!
 
-Verify Account Signed in
+Verify Account Signed In
     [Arguments]             ${user}
     Wait Until Page Contains         Logged in as ${user}
 
 Click Logout
+    Click Link                       ${LOGOUT_BUTTON}
+
+Verify Account Signed Out
     [Arguments]             ${user}
-    Click Link                    xpath=//*[contains(normalize-space() , 'Logout')]
+    Wait Until Page Does Not Contain         Logged in as ${user}
 
-Verify Account Signed out
-    [Arguments]             ${user}
-    Page Should Not Contain         Logged in as ${user}
+Add Item To Cart From Products Page
+    [Arguments]                             ${product}
+    ${add_to_cart}=        Format String    ${OVERLAY_ADD_TO_CART}     ${product}
+    ${product_cart}=       Format String    ${PRODUCT_CARD}            ${product}
+    Mouse Over                              ${product_cart}
+    Wait Until Element Is Visible           ${add_to_cart}
+    Click Element                           ${add_to_cart}
 
-Add Item to Cart From Products Page
-    [Arguments]                 ${product}
-    Mouse Over                   xpath=//*[contains(normalize-space() , '${product}')]
-    Click Element                xpath=//*[contains(normalize-space() , '${product}')]/ancestor::div[@class='overlay-content']//*[@class='btn btn-default add-to-cart']
-
-Verify Product Added to Cart
-    Page Should Contain          Your product has been added to cart
+Verify Product Added To Cart
+    Wait Until Page Contains          Your product has been added to cart
 
 View Product Details
     [Arguments]         ${product}
-    Wait Until Element Is Visible    xpath=//*[contains(normalize-space() , '${product}')]
-    Click Link                       xpath=//*[contains(normalize-space() , '${product}')]/ancestor::div[@class='product-image-wrapper']//a[contains(@href,'product_details')]
+    ${view_details}=     Format String    ${VIEW_DETAILS_LINK}      ${product}
+    Wait Until Element Is Visible    ${view_details}
+    Click Link                       ${view_details}
 
-Navigate to Products
-    Click Link                  xpath=//*[@href='/products']
+Navigate To Products
+    Click Link                  ${PRODUCTS_PAGE}
     Wait Until Page Contains             All Products
 
-Navigate to Shopping Cart
-    Click Link                            xpath=//*[@id='cartModal']//a[@href='/view_cart']
-    Wait Until Page Contains      Shopping Cart
+Navigate To Shopping Cart
+    Click Link                            ${VIEW_CART_BUTTON}
+    Wait Until Page Contains             Shopping Cart
 
 Click Delete Account
-    Click Link                  xpath=//*[contains(normalize-space() , 'Delete Account')]
+    Click Link                  ${DELETE_ACCOUNT_BUTTON}
     Wait Until Page Contains    Account Deleted!
 
 Verify Account Deleted
@@ -56,7 +73,7 @@ Verify Account Deleted
     Verify Account Signed out        ${user}
 
 Click Continue After Account Deletion
-    Click Link        xpath=//*[@data-qa='continue-button']
+    Click Link        ${CONTINUE_BUTTON_AFTER_DELETION}
     Verify Home Page Loaded
 
 
