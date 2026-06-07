@@ -18,12 +18,22 @@ Verify Cart Page Loaded
     Location Should Be          ${CART_URL}
 
 Verify Product In Cart
-    [Arguments]                  ${product}
-    ${product_location}=     Format String    ${PRODUCT}     ${product}
-    Wait Until Element Is Visible    ${product_location}
+    [Arguments]                  @{products}
+    FOR    ${product}    IN    @{products}
+        ${product_location}=     Format String    ${PRODUCT}     ${product}
+        Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
+    END
 
-Verify Product Quantity
-    [Arguments]                  ${product}     ${expected_quantity}
+# TODO:send it to RES then fix it - ignore for now:
+Verify Product Quantities
+    [Arguments]                  ${products}     ${expected_quantities}
+    FOR    ${product}    ${expected_quantity}    IN ZIP    ${products}    ${expected_quantities}
+        ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
+        ${actual_quantity}=     Get Text    ${product_quantity_location}
+        Run Keyword And Continue On Failure        Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
+    END
+
+
     ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
     ${actual_quantity}=     Get Text    ${product_quantity_location}
     Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
