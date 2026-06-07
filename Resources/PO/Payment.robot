@@ -8,7 +8,14 @@ ${CVC_FIELD}                css=[data-qa='cvc']
 ${EXPIRY_MONTH_FIELD}       css=[data-qa='expiry-month']
 ${EXPIRY_YEAR_FIELD}        css=[data-qa='expiry-year']
 ${CONFIRM_ORDER_BUTTON}     css=[data-qa='pay-button']
+
+${PAYMENT_URL}          https://automationexercise.com/payment
 *** Keywords ***
+Verify Payment Page Loaded
+    Wait Until Page Contains    Payment
+    Location Should Be    ${PAYMENT_URL}
+
+
 Enter Name On Card
     [Arguments]                       ${name}
     Input Text            ${NAME_ON_CARD_FIELD}     ${name}

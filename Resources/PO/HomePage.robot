@@ -17,10 +17,11 @@ ${DELETE_ACCOUNT_BUTTON}            xpath=//a[@href='/delete_account']
 ${CONTINUE_BUTTON_AFTER_DELETION}   css=[data-qa='continue-button']
 ${VIEW_CART_BUTTON}                 xpath=//div[@id='cartModal']//a[@href='/view_cart']
 
+${HOME_URL}                         https://automationexercise.com/
 *** Keywords ***
 Verify Home Page Loaded
     Wait Until Element Is Visible    ${AUTOMATION_EXERCISE_LOGO}
-    Wait Until Page Contains         Category
+    Location Should Be               ${HOME_URL}
 
 Navigate To Signup And Login Page
     Click Link                       ${SIGNUP_AND_LOGIN_PAGE}

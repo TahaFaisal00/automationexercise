@@ -6,6 +6,9 @@ ${NAME_SIGNUP_FIELD}            css=[data-qa='signup-name']
 ${EMAIL_SIGNUP_FIELD}           css=[data-qa='signup-email']
 ${SIGNUP_BUTTON}                css=[data-qa='signup-button']
 
+${SIGNUP_NAME_SIGNUP_PAGE}                  css=[data-qa='name']
+${SIGNUP_EMAIL_SIGNUP_PAGE}                 css=[data-qa='email']
+
 ${PASSWORD_SIGNUP_FIELD}        id=password
 ${DAY_DOB_SIGNUP_FIELD}         id=days
 ${MONTH_DOB_SIGNUP_FIELD}       id=months
@@ -29,7 +32,14 @@ ${EMAIL_LOGIN_FIELD}        css=[data-qa='login-email']
 ${PASSWORD_LOGIN_FIELD}     css=[data-qa='login-password']
 ${LOGIN_BUTTON}             css=[data-qa='login-button']
 
+${SIGNUP_LOGIN_PAGE_URL}        https://automationexercise.com/login
+${SIGNUP_PAGE_URL}              https://automationexercise.com/signup
+${ACCOUNT_CREATED_URL}          https://automationexercise.com/account_created
 *** Keywords ***
+Verify Signup Login Page Loaded
+    Wait Until Page Contains    New User Signup!
+    Location Should Be          ${SIGNUP_LOGIN_PAGE_URL}
+
 Enter Name To Signup New User
     [Arguments]                      ${user_name}
     Input Text                       ${NAME_SIGNUP_FIELD}     ${user_name}
@@ -41,6 +51,16 @@ Enter Email To Signup New User
 Click Signup Button
     Click Element                    ${SIGNUP_BUTTON}
     Wait Until Page Contains         Enter Account Information
+
+Verify Singup Page Loaded
+    [Arguments]                 ${user_name}            ${email}
+    Wait Until Page Contains    Enter Account Information
+    Location Should Be          ${SIGNUP_PAGE_URL}
+    ${actual_signup_name}=      Get Text    ${SIGNUP_NAME_SIGNUP_PAGE}
+    Should Be Equal As Strings    ${actual_signup_name}    ${user_name}
+    ${actual_signup_email}=      Get Text    ${SIGNUP_EMAIL_SIGNUP_PAGE}
+    Should Be Equal As Strings    ${actual_signup_name}    ${email}
+
 
 Choose Title
     [Arguments]                      ${title}
@@ -113,6 +133,7 @@ Click Create Account Button
 
 Verify Account Created
     Wait Until Page Contains         Account Created!
+    Location Should Be               ${ACCOUNT_CREATED_URL}
 
 Click Continue Button After Account Creation
     Click Element                    ${CONTINUE_BUTTON_AFTER_ACCOUNT_CREATION}

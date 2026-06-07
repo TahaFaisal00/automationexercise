@@ -11,11 +11,16 @@ ${PRODUCT_DELETE_BUTTON}            ${PRODUCT_BASE}[@class='cart_delete']//a[@cl
 ${PRODUCT}                          xpath=//a[normalize-space()='{}']
 ${PROCEED_TO_CHECKOUT_BUTTON}       xpath=//a[normalize-space()='Proceed To Checkout']
 
+${CART_URL}                         https://automationexercise.com/view_cart
 *** Keywords ***
+Verify Cart Page Loaded
+    Wait Until Page Contains    Shopping Cart
+    Location Should Be          ${CART_URL}
+
 Verify Product In Cart
     [Arguments]                  ${product}
     ${product_location}=     Format String    ${PRODUCT}     ${product}
-    Element Should Be Visible    ${product_location}
+    Wait Until Element Is Visible    ${product_location}
 
 Verify Product Quantity
     [Arguments]                  ${product}     ${expected_quantity}

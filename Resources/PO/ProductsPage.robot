@@ -15,10 +15,24 @@ ${ADD_TO_CART_FROM_PRODUCT_DETAILS}                 xpath=//button[normalize-spa
 
 ${SEARCH_FIELD}               id=search_product
 ${SUBMIT_SEARCH_BUTTON}         id=submit_search
+
+${PRODUCT_NAME_HEADING}          xpath=//div[@class='product-information']//h2
 *** Keywords ***
+Verify Product Details Page Loaded
+    [Documentation]     Asserts the product details page shows the expected product name
+    [Arguments]             ${product_name}
+    Wait Until Element Is Visible    ${PRODUCT_NAME_HEADING}
+    ${actual_product_name}=     Get Text    ${PRODUCT_NAME_HEADING}
+    Should Be Equal As Strings    ${actual_product_name}    ${product_name}
+
 Set Quantity
     [Arguments]                       ${quantity}
     Input Text                        ${QUANTITY_FIELD}           ${quantity}
+
+Verify Quantity Value
+    [Arguments]                       ${expected_quantity}
+    ${actual_quantity}=            Get Value                 ${QUANTITY_FIELD}
+    Should Be Equal As Strings    ${actual_quantity}    $${expected_quantity}
 
 Write Review
     [Arguments]      ${username}      ${email}       ${review}
@@ -33,12 +47,11 @@ Verify Review Submitted
 Click Add To Cart Button From Product Details Page
     Click Element    ${ADD_TO_CART_FROM_PRODUCT_DETAILS}
 
-
 Verify All Products Visible
     [Arguments]         @{products}
     FOR    ${product}    IN    @{products}
         ${product_location}=     Format String    ${PRODUCT_NAME}        ${product}
-        Element Should Be Visible    ${product_location}
+        Wait Until Page Contains Element    ${product_location}
     END
 
 Use Search Bar
@@ -60,13 +73,13 @@ Click On Brand
 Search Result Should Contain
     [Arguments]                  ${product}
     ${product_location}=         Format String    ${PRODUCT_NAME}        ${product}
-    Element Should Be Visible    ${product_location}
+    Wait Until Page Contains Element    ${product_location}
 
 Search Result Should Not Contain
     [Arguments]         @{products}
     FOR    ${product}    IN    @{products}
         ${product_location}=     Format String    ${PRODUCT_NAME}    ${product}
-        Page Should Not Contain Element    ${product_location}
+        Wait Until Page Does Not Contain Element    ${product_location}
     END
 
 
