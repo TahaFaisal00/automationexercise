@@ -9,12 +9,17 @@ ${EXPIRY_MONTH_FIELD}       css=[data-qa='expiry-month']
 ${EXPIRY_YEAR_FIELD}        css=[data-qa='expiry-year']
 ${CONFIRM_ORDER_BUTTON}     css=[data-qa='pay-button']
 
-${PAYMENT_URL}          https://automationexercise.com/payment
+${PAYMENT_URL}               https://automationexercise.com/payment
+
+${ORDER_PLACED_HEADER}          css=[data-qa='order-placed']
+
+${CONTINUE_BUTTON_ORDER_PLACED}        css=[data-qa='continue-button']
+${DOWNLOAD_INVOICE_BUTTON}          xpath=//a[contain(@href,'/download_invoice/400')]
+
 *** Keywords ***
 Verify Payment Page Loaded
     Wait Until Page Contains    Payment
     Location Should Be    ${PAYMENT_URL}
-
 
 Enter Name On Card
     [Arguments]                       ${name}
@@ -38,10 +43,20 @@ Enter Expiry Year
 
 Click Pay And Confirm Order Button
     Click Element          ${CONFIRM_ORDER_BUTTON}
-
-Verify Order Submitted
     Wait Until Page Contains    Your order has been placed successfully!
 
+Verify Order Submitted
+    Wait Until Element Is Visible    ${ORDER_PLACED_HEADER}
+    ${actual_header}=        Get Text    ${ORDER_PLACED_HEADER}
+    Should Be Equal As Strings    ${actual_header}    Order Placed!
+
+Click Continue After Order Placement
+    Wait Until Element Is Visible    ${CONTINUE_BUTTON_ORDER_PLACED}
+    Click Element                    ${CONTINUE_BUTTON_ORDER_PLACED}
+
+Click Download Invoice Button
+    Wait Until Element Is Visible    ${DOWNLOAD_INVOICE_BUTTON}
+    Click Element                    ${DOWNLOAD_INVOICE_BUTTON}
 
 
 

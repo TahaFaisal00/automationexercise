@@ -33,11 +33,6 @@ Verify Product Quantities
         Run Keyword And Continue On Failure        Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
     END
 
-
-    ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
-    ${actual_quantity}=     Get Text    ${product_quantity_location}
-    Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
-
 Verify Quantity In Cart Editable
     [Documentation]     BUG:cart quantity should be editable but the button have the class 'disabled'. asserts the field is editable expected to fail until the defect is fixed
     [Arguments]         ${product}
