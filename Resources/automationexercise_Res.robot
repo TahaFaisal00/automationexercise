@@ -67,10 +67,13 @@ Register a New Account
     Entering the Other Details                      ${Details}
     Complete Account Creation                       ${User}
 
-Enter Name and Email to Signup a New User
-    [Arguments]              ${User}
-    Signup&LoginPage.Enter Name to Signup a New User         ${User.Username}
-    Signup&LoginPage.Enter Email to Signup a New User        ${User.Email}
+Submit Initial Signup
+    [Documentation]     Submits the initial signup (name + email), opening the account details form.
+    [Arguments]              ${account}
+    Signup_LoginPage.Enter Name To Signup New User         ${account.user_name}
+    Signup_LoginPage.Enter Email To Signup New User        ${account.email}
+    Signup_LoginPage.Click Signup Button
+
 
 Enter the Date of Birth
     [Arguments]             ${Date}
