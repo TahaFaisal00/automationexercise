@@ -17,7 +17,9 @@ Setup Account Test
     API_RES.Create Account Via API
 
 Log In And Verify
-    [Documentation]     Navigates to the Login page, logs in with the given credentials, and verifies the user is signed in.
+    [Documentation]     Logs a user in and confirms they're signed in.
+    ...                 Use for positive login or as an authenticated-session
+    ...                 precondition; for negative cases use Log In With Credentials.
     [Arguments]                               ${email}      ${password}     ${user_name}
     Navigate To Signup And Login Page
     Log In With Credentials                          ${email}       ${password}
