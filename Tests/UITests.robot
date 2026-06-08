@@ -10,10 +10,11 @@ Test Setup                                                                      
 
 *** Test Cases ***
 Login And Logout
-    [Documentation]       Guest logging in with already created account credentials Then log out. Verify Login and logout features functionality
+    [Documentation]       Logs in with the existing fixture account, then logs out —
+    ...                   verifies the login and logout features work.
     [Tags]                functionality      ui          positive
-    automationexerciseRes.Login                                                                           ${MAIN USER}
-    automationexerciseRes.Logout                                                                          ${MAIN USER}
+    automationexerciseRes.Log In And Verify                                                               ${MAIN_USER.email}   ${MAIN_USER.password}     ${MAIN_USER.user_name}
+    automationexerciseRes.Log Out And Verify                                                              ${MAIN_USER.user_name}
 
 Delete Account
     [Documentation]       Guest creates a new account and delete it then try to log into it. Verify Signin and deletion Features functionality
