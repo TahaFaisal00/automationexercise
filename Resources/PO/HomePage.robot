@@ -63,7 +63,7 @@ Click Shopping Cart Page Link
     Click Link                            ${VIEW_CART_BUTTON}
     Wait Until Page Contains             Shopping Cart
 
-Click Delete Account
+Click Delete Account Link
     Click Link                  ${DELETE_ACCOUNT_BUTTON}
     Wait Until Page Contains    Account Deleted!
 
