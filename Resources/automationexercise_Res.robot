@@ -2,6 +2,7 @@
 Library         SeleniumLibrary
 Resource        Common.robot
 Resource        TestData.robot
+Resource        API_RES.robot
 Resource        PO/HomePage.robot
 Resource        PO/Signup&LoginPage.robot
 Resource        PO/ProductsPage.robot
@@ -9,8 +10,21 @@ Resource        PO/CartPage.robot
 Resource        PO/CheckoutPage.robot
 Resource        PO/Payment.robot
 
-
 *** Keywords ***
+Setup Account Test
+    [Documentation]     Clean client state, then create a fresh account by API
+    Common.Test Isolation Setup
+    API_RES.Create Account Via API
+
+
+
+
+
+
+
+
+
+
 
 Navigate to Products Use Search and Assert Results
     [Arguments]                         ${Product}      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
