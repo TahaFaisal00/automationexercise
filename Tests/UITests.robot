@@ -5,7 +5,7 @@ Resource                                                                        
 Resource                                                                                                  ../Resources/TestData.robot
 Resource                                                                                                  ../Resources/automationexerciseRes.robot
 Suite Setup                                                                                               Common.Launch Browser
-Suite Teardown                                                                                            Common.Close Browser
+Suite Teardown                                                                                            Common.Shutdown Browser
 Test Setup                                                                                                Common.Test Isolation Setup
 
 *** Test Cases ***

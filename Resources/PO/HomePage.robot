@@ -23,7 +23,7 @@ Verify Home Page Loaded
     Wait Until Element Is Visible    ${AUTOMATION_EXERCISE_LOGO}
     Location Should Be               ${HOME_URL}
 
-Navigate To Signup And Login Page
+Click Signup And Login Page Link
     Click Link                       ${SIGNUP_AND_LOGIN_PAGE}
     Wait Until Page Contains         New User Signup!
 
@@ -55,11 +55,11 @@ View Product Details
     Wait Until Element Is Visible    ${view_details}
     Click Link                       ${view_details}
 
-Navigate To Products
+Click Products Page Link
     Click Link                  ${PRODUCTS_PAGE}
     Wait Until Page Contains             All Products
 
-Navigate To Shopping Cart
+Click Shopping Cart Page Link
     Click Link                            ${VIEW_CART_BUTTON}
     Wait Until Page Contains             Shopping Cart
 
