@@ -74,12 +74,12 @@ Submit Initial Signup
     Signup_LoginPage.Enter Email To Signup New User        ${account.email}
     Signup_LoginPage.Click Signup Button
 
-
-Enter the Date of Birth
-    [Arguments]             ${Date}
-    Signup&LoginPage.Enter a Day in the Date of Birth            ${Date.Day}
-    Signup&LoginPage.Enter a Month in the Date of Birth          ${Date.Month}
-    Signup&LoginPage.Enter a Year in the Date of Birth           ${Date.Year}
+Enter Date Of Birth
+    [Documentation]     Selects the date of birth on the account details form.
+    [Arguments]             ${dob}
+    Signup_LoginPage.Select Day In Date Of Birth            ${dob.day}
+    Signup_LoginPage.Select Month In Date Of Birth          ${dob.month}
+    Signup_LoginPage.Select Year In Date Of Birth           ${dob.year}
 
 Enter firstName, secondName and Password
     [Arguments]             ${User}
