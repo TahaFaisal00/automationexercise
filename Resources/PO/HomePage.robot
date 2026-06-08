@@ -31,7 +31,7 @@ Verify Account Signed In
     [Arguments]             ${user}
     Wait Until Page Contains         Logged in as ${user}
 
-Click Logout
+Click Logout Link
     Click Link                       ${LOGOUT_BUTTON}
 
 Verify Account Signed Out
