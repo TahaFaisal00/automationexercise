@@ -81,10 +81,10 @@ Submit Initial Signup
 
 Enter Date Of Birth
     [Documentation]     Selects the date of birth on the account details form.
-    [Arguments]             ${dob}
-    Signup_LoginPage.Select Day In Date Of Birth            ${dob.day}
-    Signup_LoginPage.Select Month In Date Of Birth          ${dob.month}
-    Signup_LoginPage.Select Year In Date Of Birth           ${dob.year}
+    [Arguments]             ${account}
+    Signup_LoginPage.Select Day In Date Of Birth            ${account.day}
+    Signup_LoginPage.Select Month In Date Of Birth          ${account.month}
+    Signup_LoginPage.Select Year In Date Of Birth           ${account.year}
 
 Enter Account Information
     [Documentation]     Enters the account information fields on the signup form.
