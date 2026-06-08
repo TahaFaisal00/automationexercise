@@ -1,7 +1,7 @@
 *** Settings ***
 Library         SeleniumLibrary
 Library         String
-
+Resource        ../Common.robot
 *** Variables ***
 #${PRODUCT_BASE} Not usable alone. always add [@class='...'] to it
 ${PRODUCT_BASE}                    xpath=//p[normalize-space()='{}']/ancestor::div
@@ -21,7 +21,7 @@ ${HOME_URL}                         https://automationexercise.com/
 *** Keywords ***
 Verify Home Page Loaded
     Wait Until Element Is Visible    ${AUTOMATION_EXERCISE_LOGO}
-    Location Should Be               ${HOME_URL}
+    Location Should Be               ${URL}
 
 Click Signup And Login Page Link
     Click Link                       ${SIGNUP_AND_LOGIN_PAGE}
