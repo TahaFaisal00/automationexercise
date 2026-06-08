@@ -55,7 +55,7 @@ Generate New Account Data
     VAR     &{TEST_ACCOUNT}        user_name=${fake_register_user_name}        email=${fake_register_email}        password=${fake_register_password}
     ...     first_name=${SIGNUP_DETAILS.first_name}      second_name=${SIGNUP_DETAILS.second_name}      title=${SIGNUP_DETAILS.title}
     ...     company=${SIGNUP_DETAILS.company}    address1=${SIGNUP_DETAILS.address1}    address2=${SIGNUP_DETAILS.address2}    country=${SIGNUP_DETAILS.country}
-    ...     state=${SIGNUP_DETAILS.state}    city=${SIGNUP_DETAILS.city}    zipcode=${SIGNUP_DETAILS.zipcode}    mobil_number=${SIGNUP_DETAILS.mobile_number}      scope=TEST
+    ...     state=${SIGNUP_DETAILS.state}    city=${SIGNUP_DETAILS.city}    zipcode=${SIGNUP_DETAILS.zipcode}    mobile_number=${SIGNUP_DETAILS.mobile_number}      scope=TEST
 
 
 Register a New Account
@@ -85,24 +85,25 @@ Enter Date Of Birth
     Signup_LoginPage.Select Month In Date Of Birth          ${dob.month}
     Signup_LoginPage.Select Year In Date Of Birth           ${dob.year}
 
-Enter Password And Name
-    [Documentation]     Enters the account password and name on the details form.
+Enter Account Information
+    [Documentation]     Enters the account information fields on the signup form.
     [Arguments]             ${account}
     Signup_LoginPage.Enter Password        ${account.password}
+    Signup_LoginPage.Choose Title            ${account.title}
+
+Enter Address Information
+    [Documentation]     Enters the address information section of the signup form.
+    [Arguments]               ${account}
     Signup_LoginPage.Enter First Name       ${account.first_name}
     Signup_LoginPage.Enter Last Name        ${account.second_name}
-
-Entering the Other Details
-    [Arguments]               ${Details}
-    Signup&LoginPage.Choose a Title            ${Details.Title}
-    Signup&LoginPage.Enter a Company Name      ${Details.Company}
-    Signup&LoginPage.Enter Address 1           ${Details.Address1}
-    Signup&LoginPage.Enter Address 2           ${Details.Address2}
-    Signup&LoginPage.Enter a Country           ${Details.Country}
-    Signup&LoginPage.Enter a State             ${Details.State}
-    Signup&LoginPage.Enter a City              ${Details.City}
-    Signup&LoginPage.Enter a Zipcode           ${Details.Zipcode}
-    Signup&LoginPage.Enter Mobile Number       ${Details.MobileNumber}
+    Signup_LoginPage.Enter Company Name      ${account.company}
+    Signup_LoginPage.Enter Address 1           ${account.address1}
+    Signup_LoginPage.Enter Address 2           ${account.address2}
+    Signup_LoginPage.Select Country           ${account.country}
+    Signup_LoginPage.Enter State             ${account.state}
+    Signup_LoginPage.Enter City              ${account.city}
+    Signup_LoginPage.Enter Zipcode           ${account.zipcode}
+    Signup_LoginPage.Enter Mobile Number       ${account.mobile_number}
 
 
 Complete Account Creation
