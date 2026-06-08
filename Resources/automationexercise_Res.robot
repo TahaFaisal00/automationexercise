@@ -57,7 +57,6 @@ Generate New Account Data
     ...     company=${SIGNUP_DETAILS.company}    address1=${SIGNUP_DETAILS.address1}    address2=${SIGNUP_DETAILS.address2}    country=${SIGNUP_DETAILS.country}
     ...     state=${SIGNUP_DETAILS.state}    city=${SIGNUP_DETAILS.city}    zipcode=${SIGNUP_DETAILS.zipcode}    mobile_number=${SIGNUP_DETAILS.mobile_number}      scope=TEST
 
-
 Register a New Account
     [Arguments]                                     ${User}          ${Date}        ${Details}
     Navigate to Signup and Login Page
@@ -99,22 +98,21 @@ Enter Address Information
     Signup_LoginPage.Enter Company Name      ${account.company}
     Signup_LoginPage.Enter Address 1           ${account.address1}
     Signup_LoginPage.Enter Address 2           ${account.address2}
-    Signup_LoginPage.Select Country           ${account.country}
-    Signup_LoginPage.Enter State             ${account.state}
-    Signup_LoginPage.Enter City              ${account.city}
-    Signup_LoginPage.Enter Zipcode           ${account.zipcode}
+    Signup_LoginPage.Select Country            ${account.country}
+    Signup_LoginPage.Enter State               ${account.state}
+    Signup_LoginPage.Enter City                ${account.city}
+    Signup_LoginPage.Enter Zipcode             ${account.zipcode}
     Signup_LoginPage.Enter Mobile Number       ${account.mobile_number}
 
-
 Complete Account Creation
-    [Arguments]                   ${User}
-    Signup&LoginPage.Click Create Account Button
-    Signup&LoginPage.Verify Account is Created
-    Signup&LoginPage.Click Continue Button
-    HomePage.Verify Home Page is Loaded
-    HomePage.Verify Account Signed in Successfully           ${User.Username}
-
-
+    [Documentation]     Submits the completed signup form and confirms the new
+    ...                 account is created and signed in on the home page.
+    [Arguments]                   ${account}
+    Signup_LoginPage.Click Create Account Button
+    Signup_LoginPage.Verify Account Created
+    Signup_LoginPage.Click Continue Button After Account Creation
+    HomePage.Verify Home Page Loaded
+    HomePage.Verify Account Signed In           ${account.user_name}
 
 Delete Account
     [Documentation]     Deletes the logged-in account through the UI and confirms it's gone.
