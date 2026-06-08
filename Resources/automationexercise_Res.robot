@@ -29,11 +29,12 @@ Navigate To Signup And Login Page
     HomePage.Click Signup And Login Page Link
     Signup_LoginPage.Verify Signup Login Page Loaded
 
-Enter Login Credentials
-    [Arguments]         ${Credentials}
-    Signup&LoginPage.Enter Email to Login            ${Credentials.Email}
-    Signup&LoginPage.Enter Password to Login         ${Credentials.Password}
-    Signup&LoginPage.Click on Login Button
+Log In With Credentials
+    [Documentation]     Logs in with the given credentials on the Login page.
+    [Arguments]         ${email}        ${password}
+    Signup_LoginPage.Enter Email To Login            ${email}
+    Signup_LoginPage.Enter Password To Login         ${password}
+    Signup_LoginPage.Click Login Button
 
 
 
