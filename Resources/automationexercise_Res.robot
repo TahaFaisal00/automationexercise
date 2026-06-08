@@ -46,6 +46,71 @@ Log Out And Verify
 
 
 
+Register a New Account
+    [Arguments]                                     ${User}          ${Date}        ${Details}
+    Navigate to Signup and Login Page
+    Enter Name and Email to Signup a New User       ${User}
+    Signup&LoginPage.Click Signup Button to Continue The Signing Up
+    Signup&LoginPage.Verify Signup Page is Loaded
+    Enter firstName, secondName and Password        ${User}
+    Enter the Date of Birth                         ${Date}
+    Signup&LoginPage.Click Sign up for our newsletter! Checkbox
+    Signup&LoginPage.Click Receive special offers from our partners! Checkbox
+    Entering the Other Details                      ${Details}
+    Complete Account Creation                       ${User}
+
+Enter Name and Email to Signup a New User
+    [Arguments]              ${User}
+    Signup&LoginPage.Enter Name to Signup a New User         ${User.Username}
+    Signup&LoginPage.Enter Email to Signup a New User        ${User.Email}
+
+Enter the Date of Birth
+    [Arguments]             ${Date}
+    Signup&LoginPage.Enter a Day in the Date of Birth            ${Date.Day}
+    Signup&LoginPage.Enter a Month in the Date of Birth          ${Date.Month}
+    Signup&LoginPage.Enter a Year in the Date of Birth           ${Date.Year}
+
+Enter firstName, secondName and Password
+    [Arguments]             ${User}
+    Signup&LoginPage.Enter a Password        ${User.Password}
+    Signup&LoginPage.Enter a firstName       ${User.firstName}
+    Signup&LoginPage.Enter a lastName        ${User.secondName}
+
+Entering the Other Details
+    [Arguments]               ${Details}
+    Signup&LoginPage.Choose a Title            ${Details.Title}
+    Signup&LoginPage.Enter a Company Name      ${Details.Company}
+    Signup&LoginPage.Enter Address 1           ${Details.Address1}
+    Signup&LoginPage.Enter Address 2           ${Details.Address2}
+    Signup&LoginPage.Enter a Country           ${Details.Country}
+    Signup&LoginPage.Enter a State             ${Details.State}
+    Signup&LoginPage.Enter a City              ${Details.City}
+    Signup&LoginPage.Enter a Zipcode           ${Details.Zipcode}
+    Signup&LoginPage.Enter Mobile Number       ${Details.MobileNumber}
+
+
+Complete Account Creation
+    [Arguments]                   ${User}
+    Signup&LoginPage.Click Create Account Button
+    Signup&LoginPage.Verify Account is Created
+    Signup&LoginPage.Click Continue Button
+    HomePage.Verify Home Page is Loaded
+    HomePage.Verify Account Signed in Successfully           ${User.Username}
+
+
+
+Delete Account
+    [Documentation]     Deletes the logged-in account through the UI and confirms it's gone.
+    ...                 For test cleanup use Delete Account Via API instead.
+    [Arguments]             ${user_name}
+    Go To    ${URL}
+    HomePage.Verify Home Page Loaded
+    HomePage.Click Delete Account Link
+    HomePage.Verify Account Deleted         ${user_name}
+    HomePage.Click Continue After Account Deletion
+
+
+
 
 
 
@@ -60,15 +125,6 @@ Invalid Credentials
 
 
 
-
-
-Delete Account
-    [Arguments]             ${User}
-    Click Delete Account
-    Verify Account Deleted
-    Signup&LoginPage.Click Continue Button
-    HomePage.Verify Home Page is Loaded
-    HomePage.Verify Account Signed Out Successfully      ${User}
 
 Navigate to Products Use Search and Assert Results
     [Arguments]                         ${Product}      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
@@ -127,56 +183,6 @@ Search Results
 
 
 
-Register a New Account
-    [Arguments]                                     ${User}          ${Date}        ${Details}
-    Navigate to Signup and Login Page
-    Enter Name and Email to Signup a New User       ${User}
-    Signup&LoginPage.Click Signup Button to Continue The Signing Up
-    Signup&LoginPage.Verify Signup Page is Loaded
-    Enter firstName, secondName and Password        ${User}
-    Enter the Date of Birth                         ${Date}
-    Signup&LoginPage.Click Sign up for our newsletter! Checkbox
-    Signup&LoginPage.Click Receive special offers from our partners! Checkbox
-    Entering the Other Details                      ${Details}
-    Complete Account Creation                       ${User}
-
-Enter Name and Email to Signup a New User
-    [Arguments]              ${User}
-    Signup&LoginPage.Enter Name to Signup a New User         ${User.Username}
-    Signup&LoginPage.Enter Email to Signup a New User        ${User.Email}
-
-Enter the Date of Birth
-    [Arguments]             ${Date}
-    Signup&LoginPage.Enter a Day in the Date of Birth            ${Date.Day}
-    Signup&LoginPage.Enter a Month in the Date of Birth          ${Date.Month}
-    Signup&LoginPage.Enter a Year in the Date of Birth           ${Date.Year}
-
-Enter firstName, secondName and Password
-    [Arguments]             ${User}
-    Signup&LoginPage.Enter a Password        ${User.Password}
-    Signup&LoginPage.Enter a firstName       ${User.firstName}
-    Signup&LoginPage.Enter a lastName        ${User.secondName}
-
-Entering the Other Details
-    [Arguments]               ${Details}
-    Signup&LoginPage.Choose a Title            ${Details.Title}
-    Signup&LoginPage.Enter a Company Name      ${Details.Company}
-    Signup&LoginPage.Enter Address 1           ${Details.Address1}
-    Signup&LoginPage.Enter Address 2           ${Details.Address2}
-    Signup&LoginPage.Enter a Country           ${Details.Country}
-    Signup&LoginPage.Enter a State             ${Details.State}
-    Signup&LoginPage.Enter a City              ${Details.City}
-    Signup&LoginPage.Enter a Zipcode           ${Details.Zipcode}
-    Signup&LoginPage.Enter Mobile Number       ${Details.MobileNumber}
-
-
-Complete Account Creation
-    [Arguments]                   ${User}
-    Signup&LoginPage.Click Create Account Button
-    Signup&LoginPage.Verify Account is Created
-    Signup&LoginPage.Click Continue Button
-    HomePage.Verify Home Page is Loaded
-    HomePage.Verify Account Signed in Successfully           ${User.Username}
 
 
 
