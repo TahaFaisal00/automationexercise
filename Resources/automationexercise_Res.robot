@@ -81,11 +81,12 @@ Enter Date Of Birth
     Signup_LoginPage.Select Month In Date Of Birth          ${dob.month}
     Signup_LoginPage.Select Year In Date Of Birth           ${dob.year}
 
-Enter firstName, secondName and Password
-    [Arguments]             ${User}
-    Signup&LoginPage.Enter a Password        ${User.Password}
-    Signup&LoginPage.Enter a firstName       ${User.firstName}
-    Signup&LoginPage.Enter a lastName        ${User.secondName}
+Enter Password And Name
+    [Documentation]     Enters the account password and name on the details form.
+    [Arguments]             ${account}
+    Signup_LoginPage.Enter Password        ${account.password}
+    Signup_LoginPage.Enter First Name       ${account.first_name}
+    Signup_LoginPage.Enter Last Name        ${account.second_name}
 
 Entering the Other Details
     [Arguments]               ${Details}
