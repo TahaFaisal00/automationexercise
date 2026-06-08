@@ -55,20 +55,22 @@ Generate New Account Data
     VAR     &{TEST_ACCOUNT}        user_name=${fake_register_user_name}        email=${fake_register_email}        password=${fake_register_password}
     ...     first_name=${SIGNUP_DETAILS.first_name}      second_name=${SIGNUP_DETAILS.second_name}      title=${SIGNUP_DETAILS.title}
     ...     company=${SIGNUP_DETAILS.company}    address1=${SIGNUP_DETAILS.address1}    address2=${SIGNUP_DETAILS.address2}    country=${SIGNUP_DETAILS.country}
-    ...     state=${SIGNUP_DETAILS.state}    city=${SIGNUP_DETAILS.city}    zipcode=${SIGNUP_DETAILS.zipcode}    mobile_number=${SIGNUP_DETAILS.mobile_number}      scope=TEST
+    ...     state=${SIGNUP_DETAILS.state}    city=${SIGNUP_DETAILS.city}    zipcode=${SIGNUP_DETAILS.zipcode}    mobile_number=${SIGNUP_DETAILS.mobile_number}
+    ...     day=${DATE_OF_BIRTH.day}        month=${DATE_OF_BIRTH.month}         year=${DATE_OF_BIRTH.year}             scope=TEST
 
-Register a New Account
-    [Arguments]                                     ${User}          ${Date}        ${Details}
-    Navigate to Signup and Login Page
-    Enter Name and Email to Signup a New User       ${User}
-    Signup&LoginPage.Click Signup Button to Continue The Signing Up
-    Signup&LoginPage.Verify Signup Page is Loaded
-    Enter firstName, secondName and Password        ${User}
-    Enter the Date of Birth                         ${Date}
-    Signup&LoginPage.Click Sign up for our newsletter! Checkbox
-    Signup&LoginPage.Click Receive special offers from our partners! Checkbox
-    Entering the Other Details                      ${Details}
-    Complete Account Creation                       ${User}
+Register New Account
+    [Documentation]         Registers a new account end to end — from the signup page
+    ...                     through to a signed-in home page. The reusable full flow.
+    [Arguments]                                     ${account}
+    Navigate To Signup And Login Page
+    Submit Initial Signup                           ${account}
+    Signup_LoginPage.Verify Signup Page Loaded     ${account.user_name}        ${account.email}
+    Enter Account Information                       ${account}
+    Enter Date Of Birth                             ${account}
+    Signup_LoginPage.Select Newsletter Checkbox
+    Signup_LoginPage.Select Partners Offers Checkbox
+    Enter Address Information                       ${account}
+    Complete Account Creation                       ${account}
 
 Submit Initial Signup
     [Documentation]     Submits the initial signup (name + email), opening the account details form.
