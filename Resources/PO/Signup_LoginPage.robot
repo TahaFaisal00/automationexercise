@@ -52,7 +52,7 @@ Click Signup Button
     Click Element                    ${SIGNUP_BUTTON}
     Wait Until Page Contains         Enter Account Information
 
-Verify Singup Page Loaded
+Verify Signup Page Loaded
     [Arguments]                 ${user_name}            ${email}
     Wait Until Page Contains    Enter Account Information
     Location Should Be          ${SIGNUP_PAGE_URL}
