@@ -1,5 +1,6 @@
 *** Settings ***
 Library         SeleniumLibrary
+Library         FakerLibrary
 Resource        Common.robot
 Resource        TestData.robot
 Resource        API_RES.robot
@@ -44,6 +45,13 @@ Log Out And Verify
     HomePage.Click Logout Link
     HomePage.Verify Account Signed Out      ${user_name}
 
+Generate New Account Data
+    [Documentation]     Builds a unique account via Faker; publishes it for the
+    ...                 rest of the test (register, verify, delete).
+    ${fake_register_user_name}=     FakerLibrary.Name
+    ${fake_register_email}=         FakerLibrary.Email
+    ${fake_register_password}=      FakerLibrary.Password
+    VAR     &{FAKER_ACCOUNT}        user_name=${fake_register_user_name}        email=${fake_register_email}        password=${fake_register_password}      scope=TEST
 
 
 Register a New Account
