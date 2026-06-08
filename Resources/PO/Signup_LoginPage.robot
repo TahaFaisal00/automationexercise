@@ -61,7 +61,6 @@ Verify Singup Page Loaded
     ${actual_signup_email}=      Get Text    ${SIGNUP_EMAIL_SIGNUP_PAGE}
     Should Be Equal As Strings    ${actual_signup_name}    ${email}
 
-
 Choose Title
     [Arguments]                      ${title}
     Select Radio Button              title                             ${title}
@@ -70,15 +69,15 @@ Enter Password
     [Arguments]                      ${password}
     Input Text                       ${PASSWORD_SIGNUP_FIELD}         ${password}
 
-Enter Day In Date Of Birth
+Select Day In Date Of Birth
     [Arguments]                      ${day_dob}
     Select From List By Label        ${DAY_DOB_SIGNUP_FIELD}             ${day_dob}
 
-Enter Month In Date Of Birth
+Select Month In Date Of Birth
     [Arguments]                      ${month_dob}
     Select From List By Label        ${MONTH_DOB_SIGNUP_FIELD}          ${month_dob}
 
-Enter Year In Date Of Birth
+Select Year In Date Of Birth
     [Arguments]                      ${year_dob}
     Select From List By Label        ${YEAR_DOB_SIGNUP_FIELD}            ${year_dob}
 
@@ -108,7 +107,7 @@ Enter Address 2
     [Arguments]                      ${address_2}
     Input Text                       ${ADDRESS_2_SIGNUP_FIELD}         ${address_2}
 
-Enter Country
+Select Country
     [Arguments]                      ${country}
     Select From List By Label        ${COUNTRY_SIGNUP_FIELD}          ${country}
 
