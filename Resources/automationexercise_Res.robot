@@ -38,14 +38,14 @@ Log In With Credentials
     Signup_LoginPage.Enter Password To Login         ${password}
     Signup_LoginPage.Click Login Button
 
+Log Out And Verify
+    [Documentation]     Logs the user out and confirms they're signed out.
+    [Arguments]         ${user_name}
+    HomePage.Click Logout Link
+    HomePage.Verify Account Signed Out      ${user_name}
 
 
 
-
-Logout
-    [Arguments]         ${User}
-    HomePage.Click on Logout
-    HomePage.Verify Account Signed Out Successfully      ${User}
 
 
 
