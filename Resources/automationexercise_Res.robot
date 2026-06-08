@@ -16,12 +16,12 @@ Setup Account Test
     Common.Test Isolation Setup
     API_RES.Create Account Via API
 
-Login
-    [Arguments]                                   ${user}
-    Navigate to Signup and Login Page
-    Enter Login Credentials                           ${user}
-    HomePage.Verify Account Signed in Successfully           ${user.Username}
-    Handle Ad
+Log In And Verify
+    [Documentation]     Navigates to the Login page, logs in with the given credentials, and verifies the user is signed in.
+    [Arguments]                               ${email}      ${password}     ${user_name}
+    Navigate To Signup And Login Page
+    Log In With Credentials                          ${email}       ${password}
+    HomePage.Verify Account Signed In           ${user_name}
 
 Navigate To Signup And Login Page
     [Documentation]     Goes from the home page to Signup/Login page and asserting both pages loaded
