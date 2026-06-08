@@ -4,7 +4,7 @@ Resource        Common.robot
 Resource        TestData.robot
 Resource        API_RES.robot
 Resource        PO/HomePage.robot
-Resource        PO/Signup&LoginPage.robot
+Resource        PO/Signup_LoginPage.robot
 Resource        PO/ProductsPage.robot
 Resource        PO/CartPage.robot
 Resource        PO/CheckoutPage.robot
@@ -16,6 +16,42 @@ Setup Account Test
     Common.Test Isolation Setup
     API_RES.Create Account Via API
 
+Login
+    [Arguments]                                   ${user}
+    Navigate to Signup and Login Page
+    Enter Login Credentials                           ${user}
+    HomePage.Verify Account Signed in Successfully           ${user.Username}
+    Handle Ad
+
+Navigate To Signup And Login Page
+    [Documentation]     Goes from the home page to Signup/Login page and asserting both pages loaded
+    HomePage.Verify Home Page Loaded
+    HomePage.Click Signup And Login Page Link
+    Signup_LoginPage.Verify Signup Login Page Loaded
+
+Enter Login Credentials
+    [Arguments]         ${Credentials}
+    Signup&LoginPage.Enter Email to Login            ${Credentials.Email}
+    Signup&LoginPage.Enter Password to Login         ${Credentials.Password}
+    Signup&LoginPage.Click on Login Button
+
+
+
+
+
+Logout
+    [Arguments]         ${User}
+    HomePage.Click on Logout
+    HomePage.Verify Account Signed Out Successfully      ${User}
+
+
+
+Invalid Credentials
+    [Arguments]                                       ${User}
+    Go To                                             ${LOGIN URL}
+    Signup&LoginPage.Verify Signup and Login Page is Loaded
+    Enter Login Credentials                           ${User}
+    Signup&LoginPage.Error                            ${User}       ${LOGIN URL}
 
 
 
@@ -23,8 +59,13 @@ Setup Account Test
 
 
 
-
-
+Delete Account
+    [Arguments]             ${User}
+    Click Delete Account
+    Verify Account Deleted
+    Signup&LoginPage.Click Continue Button
+    HomePage.Verify Home Page is Loaded
+    HomePage.Verify Account Signed Out Successfully      ${User}
 
 Navigate to Products Use Search and Assert Results
     [Arguments]                         ${Product}      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
@@ -80,12 +121,7 @@ Search Results
     ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
 
 
-Invalid Credentials
-    [Arguments]                                       ${User}
-    Go To                                             ${LOGIN URL}
-    Signup&LoginPage.Verify Signup and Login Page is Loaded
-    Enter Login Credentials                           ${User}
-    Signup&LoginPage.Error                            ${User}       ${LOGIN URL}
+
 
 
 Register a New Account
@@ -130,10 +166,6 @@ Entering the Other Details
     Signup&LoginPage.Enter a Zipcode           ${Details.Zipcode}
     Signup&LoginPage.Enter Mobile Number       ${Details.MobileNumber}
 
-Navigate to Signup and Login Page
-    HomePage.Verify Home Page is Loaded
-    HomePage.Click on Signup and Login
-    Signup&LoginPage.Verify Signup and Login Page is Loaded
 
 Complete Account Creation
     [Arguments]                   ${User}
@@ -143,31 +175,6 @@ Complete Account Creation
     HomePage.Verify Home Page is Loaded
     HomePage.Verify Account Signed in Successfully           ${User.Username}
 
-Login
-    [Arguments]                                   ${user}
-    Navigate to Signup and Login Page
-    Enter Login Credentials                           ${user}
-    HomePage.Verify Account Signed in Successfully           ${user.Username}
-    Handle Ad
-
-Enter Login Credentials
-    [Arguments]         ${Credentials}
-    Signup&LoginPage.Enter Email to Login            ${Credentials.Email}
-    Signup&LoginPage.Enter Password to Login         ${Credentials.Password}
-    Signup&LoginPage.Click on Login Button
-
-Logout
-    [Arguments]         ${User}
-    HomePage.Click on Logout
-    HomePage.Verify Account Signed Out Successfully      ${User}
-
-Delete Account
-    [Arguments]             ${User}
-    Click Delete Account
-    Verify Account Deleted
-    Signup&LoginPage.Click Continue Button
-    HomePage.Verify Home Page is Loaded
-    HomePage.Verify Account Signed Out Successfully      ${User}
 
 
 Editing the Quantity of an Item in the Cart
