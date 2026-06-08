@@ -2,34 +2,39 @@
 Library                 SeleniumLibrary
 
 *** Variables ***
-${BROWSER}              chrome
-${URL}                  https://automationexercise.com/
-${WINDOWSWIDTH}         1280
-${WINDOWSHEIGHT}        1024
-${IMPLICITWAIT}         10s
-${SELENUIMSPEED}        0
-
+${BROWSER}               chrome
+${URL}                   https://automationexercise.com/
+${WINDOWS_WIDTH}         1280
+${WINDOWS_HEIGHT}        1024
+${IMPLICIT_WAIT}         10s
+${SELENIUM_SPEED}        0
+${HEADLESS}              ${FALSE}
 *** Keywords ***
 Launch Browser
-    Open Browser           ${URL}      ${BROWSER}
+    [Documentation]    Opens Chrome with configured options.
+    ...                Headed by default for local debugging.
+    ...                Override in CI with: --variable HEADLESS:True.
+    ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    modules=selenium.webdriver
+    IF    ${HEADLESS}
+        Call Method    ${options}    add_argument    --headless=new
+    END
+    Call Method    ${options}    add_argument    --no-sandbox
+    Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Open Browser    ${URL}    ${BROWSER}    options=${options}
+
     Set Window Size       ${WINDOWSWIDTH}    ${WINDOWSHEIGHT}
     Set Selenium Implicit Wait    ${IMPLICITWAIT}
-
-    Set Selenium Speed     ${SELENUIMSPEED}
-    Enable Logging
-
+    Set Selenium Speed     ${SELENIUMSPEED}
 Test Isolation Setup
-    Go To    ${URL}
+    [Documentation]     Resets client state before each test so tests are independent of execusion order.
     Delete All Cookies
-    Reload Page
+    Execute Javascript          window.localStorage.clear()
+    Execute Javascript          window.sessionStorage.clear()
+    Go To                       ${URL}
 
-Close Browser
+Shutdown Browser
+    [Documentation]     Closes all browser sessions. Use as Suite Teardown
     Close All Browsers
-    Disable Logging
 
-Enable Logging
-    Set Log Level    DEBUG
 
-Disable Logging
-    Set Log Level    INFO
 
