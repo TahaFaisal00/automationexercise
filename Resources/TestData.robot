@@ -6,7 +6,7 @@ ${LOGIN_URL}                 https://automationexercise.com/login
 &{MAIN_USER}                 user_name=Taha           email=taha111@gmail.com      password=taha2021       first_name=Taha      second_name=Moe
 &{DELETED_USER}              user_name=Delete           email=Delete111@gmail.com
 &{DATE_OF_BIRTH}             day=20            month=August          year=2000
-&{SIGNUP_DETAILS}            password=Delete2021       first_name=Delete      second_name=Me      title=Mr    company=Robo    address1=1    address2=2    country=United States    state=NY    city=NY    zipcode=10001    mobil_number=71264241
+&{SIGNUP_DETAILS}            password=Delete2021       first_name=Delete      second_name=Me      title=Mr    company=Robo    address1=1    address2=2    country=United States    state=NY    city=NY    zipcode=10001    mobile_number=71264241
 
 &{USER_EMPTY_EMAIL}                  email=${EMPTY}              password=mmmm21
 &{USER_EMPTY_PASSWORD}               email=mmmm@gmail.com        password=${EMPTY}
