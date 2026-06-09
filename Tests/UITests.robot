@@ -37,9 +37,9 @@ Login With Invalid Credential
 Cart Quantity Field Is Not Editable
     [Documentation]       Quantity in cart should be editable but is read-only
     [Tags]                bug               ui          negative
-    automationexercise_Res.Adding Product To Cart And Enter Cart                  ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    automationexercise_Res.Add Product To Cart And Open Cart                  ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Verify Products In Cart                                ${MEN_TSHIRT}
-    automationexercise_Res.Verify Products Quantities                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
+    automationexercise_Res.Verify Product Quantities In Cart                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
     automationexercise_Res.Editing Quantity Of Product In Cart                    ${MEN_TSHIRT}
 
 Quantity Should Not Accept Negative Values
