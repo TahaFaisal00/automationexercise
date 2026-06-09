@@ -37,9 +37,10 @@ Login With Invalid Credential
 Quantity Should Be Editable From Shopping Cart
     [Documentation]       User add product to cart and edit its quantity from cart. Verify item quantity isn't editable from cart.
     [Tags]                bug               ui          negative
-    automationexerciseRes.Login                                                                           ${MAIN USER}
-    automationexerciseRes.Adding a Product to the Cart from Products Page and Enter Cart                  ${MEN TSHIRT}
-    automationexerciseRes.Editing the Quantity of an Item in the Cart                                     ${MEN TSHIRT}       ${PRODUCT.BaseQuantity}       ${PRODUCT.EditedQuantity}
+    automationexercise_Res.Adding Product To Cart And Enter Cart                  ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    automationexercise_Res.Verify Products In Cart                                ${MEN_TSHIRT}
+    automationexercise_Res.Verify Products Quantities                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
+    automationexercise_Res.Editing Quantity Of Product In Cart                    ${MEN_TSHIRT}
 
 Quantity Should Not Accept Negative Values
     [Documentation]       User add item to cart with a negative quantity then check quantity in cart. Verify cart accept negative quantity.
