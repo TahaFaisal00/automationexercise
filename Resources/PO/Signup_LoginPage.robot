@@ -162,18 +162,5 @@ Verify Invalid Credentials Error
     Wait Until Page Contains                            Your email or password is incorrect!
 
 
-Verify Login Error
-    [Documentation]         erifies the expected login validation (required fields or
-    ...                invalid-credentials error) and that the user stays on the login page.
-    [Arguments]                                   ${user_email}      ${user_password}         ${url}
-    IF    $user_email == ""
-         Verify Email Field Is Required
-    ELSE IF    $user_password == ""
-         Verify Password Field Is Required
-    ELSE
-         Verify Invalid Credentials Error
-    END
-    Location Should Be                       ${url}
-
 
 
