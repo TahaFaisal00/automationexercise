@@ -145,7 +145,7 @@ Verify Login Error
     ELSE
          Signup_LoginPage.Verify Invalid Credentials Error
     END
-    Verify Signup Login Page Loaded
+    Signup_LoginPage.Verify Signup Login Page Loaded
 
 
 
