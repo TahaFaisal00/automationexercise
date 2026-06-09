@@ -146,11 +146,14 @@ Verify Login Error
     END
     Signup_LoginPage.Verify Signup Login Page Loaded
 
-Navigate to Products Use Search and Assert Results
-    [Arguments]                         ${Product}      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    Navigate to Products and verify Products
-    Search for a Product                ${Product}
-    Search Results                      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+Search Products And Verify Results
+    [Documentation]     Searches the products page and verifies the expected
+    ...                 products appear while the others don't.
+    [Arguments]       ${all_products}      ${expected_product}     @{unexpected_products}
+    Navigate To Products Page
+    Verify All Products Visible     ${all_products}
+    ProductsPage.Use Search Bar     @{expected_product}
+    Verify Search Results           ${expected_product}         @{unexpected_products}
 
 Navigate to Products Use Category Filtering and Assert Results
     [Arguments]                         ${CategoryMenu}         ${Category}          ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
