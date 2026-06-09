@@ -57,10 +57,10 @@ Price Should Not Be Negative When Quantity Invalid
     automationexerciseRes.Verify The Total Price Valditiy in Cart                                         ${MEN TSHIRT}
 
 Give Product Review
-    [Documentation]      User give review for item. Verify review feature functionality.
+    [Documentation]      Submits a review for a product and verifies the review feature works.
     [Tags]               functionality      ui          positive
-    automationexerciseRes.Login                                                                           ${MAIN USER}
-    automationexerciseRes.Navigate to a Product Page and Write a Review                                   ${MEN TSHIRT}       ${MAIN USER}       ${PRODUCT.Review}
+    automationexercise_Res.Navigate To Product Details Page                                               ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    automationexercise_Res.Submit Product Review                                                          ${MAIN_USER}        ${PRODUCT}
 
 Give Comment On Order
     [Documentation]       User add item to cart and submit his order then Comment on it. Verify order comment feature functionality.
