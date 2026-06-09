@@ -132,7 +132,7 @@ Verify Login Fails
     [Arguments]                                       ${account}
     Navigate To Signup And Login Page
     Log In With Credentials                           ${account.email}      ${account.password}
-    Invalid Login Error              ${account.email}      ${account.password}        ${LOGIN URL}
+    Verify Login Error              ${account.email}      ${account.password}
 
 Verify Login Error
     [Documentation]         erifies the expected login validation (required fields or
