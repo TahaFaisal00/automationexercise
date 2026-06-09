@@ -8,7 +8,7 @@ ${PRODUCT_QUANTITY}                 ${PRODUCT_BASE}[@class='cart_quantity']//but
 ${PRODUCT_TOTAL_PRICE}              ${PRODUCT_BASE}[@class='cart_total']//p[@class='cart_total_price']
 ${PRODUCT_DELETE_BUTTON}            ${PRODUCT_BASE}[@class='cart_delete']//a[@class='cart_quantity_delete']
 
-${PRODUCT}                          xpath=//a[normalize-space()='{}']
+${CART_PRODUCT_LOCATOR}                          xpath=//a[normalize-space()='{}']
 ${PROCEED_TO_CHECKOUT_BUTTON}       xpath=//a[normalize-space()='Proceed To Checkout']
 
 ${CART_URL}                         https://automationexercise.com/view_cart
