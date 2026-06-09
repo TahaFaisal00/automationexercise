@@ -225,8 +225,8 @@ Verify Products Quantities
 Editing Quantity Of Product In Cart
     [Documentation]      Check if the quantity of product in cart is editable then proceed to click it
     [Arguments]                             ${product}
-    Verify Quantity In Cart Editable        ${product}
-    Click On Quantity Of Item               ${product}
+    CartPage.Verify Quantity Not Editable In Cart        ${product}
+
 
 Editing the Quantity of an Item to a minus Number and Navigate to Cart
     [Arguments]                      ${ProductPath}            ${MinusQuantity}
