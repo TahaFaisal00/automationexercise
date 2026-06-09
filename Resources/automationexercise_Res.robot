@@ -137,19 +137,15 @@ Verify Login Fails
 Verify Login Error
     [Documentation]         erifies the expected login validation (required fields or
     ...                invalid-credentials error) and that the user stays on the login page.
-    [Arguments]                                   ${user_email}      ${user_password}
-    IF    $user_email == ""
+    [Arguments]                                   ${$email}      ${$password}
+    IF    $email == ""
          Signup_LoginPage.Verify Email Field Is Required
-    ELSE IF    $user_password == ""
+    ELSE IF    $password == ""
          Signup_LoginPage.Verify Password Field Is Required
     ELSE
          Signup_LoginPage.Verify Invalid Credentials Error
     END
     Signup_LoginPage.Verify Signup Login Page Loaded
-
-
-
-
 
 Navigate to Products Use Search and Assert Results
     [Arguments]                         ${Product}      ${ValidSearchResult}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
