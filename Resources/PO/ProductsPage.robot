@@ -19,6 +19,11 @@ ${SUBMIT_SEARCH_BUTTON}         id=submit_search
 ${PRODUCT_NAME_HEADING}          xpath=//div[@class='product-information']//h2
 ${PRODUCT_PAGE_URL}             https://automationexercise.com/products
 *** Keywords ***
+Verify Products Page Loaded
+    Wait Until Page Contains    All Products
+    Location Should Be         ${PRODUCT_PAGE_URL}
+
+
 Verify Product Details Page Loaded
     [Documentation]     Asserts the product details page shows the expected product name
     [Arguments]             ${product_name}
