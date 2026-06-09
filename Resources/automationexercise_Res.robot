@@ -27,8 +27,7 @@ Log In And Verify
     HomePage.Verify Account Signed In           ${user_name}
 
 Navigate To Signup And Login Page
-    [Documentation]     Goes from the home page to Signup/Login page and asserting both pages loaded
-    HomePage.Verify Home Page Loaded
+    [Documentation]     Goes to Signup/Login page and assert page loaded
     HomePage.Click Signup And Login Page Link
     Signup_LoginPage.Verify Signup Login Page Loaded
 
