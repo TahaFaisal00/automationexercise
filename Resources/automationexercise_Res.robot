@@ -287,14 +287,6 @@ Adding A product to The Cart and Comment on the Order from the Checkout Page
 
 
 
-
-Verify Cart Item And Quantity
-    [Arguments]                  ${ProductPath}        ${ExpectedQuantity}
-    CartPage.Verify Product In Cart      ${ProductPath}
-    CartPage.Verify Product Quantity        ${ProductPath}            ${ExpectedQuantity}
-
-
-
 Verify The Total Price Valditiy in Cart
     [Arguments]                       ${Productpath}
     CartPage.Total Price Shouldn't be Negative          ${Productpath}
