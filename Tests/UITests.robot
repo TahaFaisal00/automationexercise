@@ -92,8 +92,7 @@ Filter By Brand
 Search Invalid Input
     [Documentation]       user use search feature for invalid or non existing item. verify Searching feature functionality.
     [Tags]                functionality     ui          negative
-    automationexerciseRes.Login                                                                                                 ${MAIN USER}
-    automationexerciseRes.Navigate to Products Use Search with Invalid Input and Assert Results           ${INVALIDSEARCHINPUT}         ${MEN TSHIRT}                ${LACE TOP FOR WOMEN}           ${FROZEN TOPS FOR KIDS}
+    automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}         ${INVALID_SEARCH_INPUT}         ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
 
 
 
