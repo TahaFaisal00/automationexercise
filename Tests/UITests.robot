@@ -3,7 +3,7 @@ Documentation             Using Store Tests in automationexercise.com - covers a
 Library                                                                                                   SeleniumLibrary
 Resource                                                                                                  ../Resources/Common.robot
 Resource                                                                                                  ../Resources/TestData.robot
-Resource                                                                                                  ../Resources/automationexerciseRes.robot
+Resource                                                                                                  ../Resources/automationexercise_Res.robot
 Suite Setup                                                                                               Common.Launch Browser
 Suite Teardown                                                                                            Common.Shutdown Browser
 Test Setup                                                                                                Common.Test Isolation Setup
@@ -13,23 +13,23 @@ Login And Logout
     [Documentation]       Logs in with the existing fixture account, then logs out —
     ...                   verifies the login and logout features work.
     [Tags]                functionality      ui          positive
-    automationexerciseRes.Log In And Verify                                                               ${MAIN_USER.email}   ${MAIN_USER.password}     ${MAIN_USER.user_name}
-    automationexerciseRes.Log Out And Verify                                                              ${MAIN_USER.user_name}
+    automationexercise_Res.Log In And Verify                                                               ${MAIN_USER.email}   ${MAIN_USER.password}     ${MAIN_USER.user_name}
+    automationexercise_Res.Log Out And Verify                                                              ${MAIN_USER.user_name}
 
 Register And Delete Account
     [Documentation]       Registers a new account, deletes it, then confirms the
     ...                   deleted account can no longer log in.
     [Tags]                functionality      ui          negative
-    automationexerciseRes.Generate New Account Data
-    automationexerciseRes.Register New Account                                                            ${TEST_ACCOUNT}
-    automationexerciseRes.Delete Account                                                                  ${TEST_ACCOUNT.user_name}
-    automationexerciseRes.Verify Login Fails                                                              ${TEST_ACCOUNT}
+    automationexercise_Res.Generate New Account Data
+    automationexercise_Res.Register New Account                                                            ${TEST_ACCOUNT}
+    automationexercise_Res.Delete Account                                                                  ${TEST_ACCOUNT.user_name}
+    automationexercise_Res.Verify Login Fails                                                              ${TEST_ACCOUNT}
     [Teardown]    API_RES.Delete Account Via API                                                          ${TEST_ACCOUNT}
 
 Login With Invalid Credential
     [Documentation]       Guest Logging in with multiple Invalid Scenarios including no email, no password and non existing user.Verify Login feature functionality
     [Tags]                functionality     ui          negative
-    [Template]                                                                                            automationexerciseRes.Verify Login Fails
+    [Template]                                                                                            automationexercise_Res.Verify Login Fails
     ${DELETED_USER}
     ${USER_EMPTY_EMAIL}
     ${USER_EMPTY_PASSWORD}
