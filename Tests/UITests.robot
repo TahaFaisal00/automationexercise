@@ -16,12 +16,15 @@ Login And Logout
     automationexerciseRes.Log In And Verify                                                               ${MAIN_USER.email}   ${MAIN_USER.password}     ${MAIN_USER.user_name}
     automationexerciseRes.Log Out And Verify                                                              ${MAIN_USER.user_name}
 
-Delete Account
-    [Documentation]       Guest creates a new account and delete it then try to log into it. Verify Signin and deletion Features functionality
-    [Tags]                functionality      ui          positive
-    automationexerciseRes.Register a New Account                                                          ${DELETED USER}    ${DATE OF BIRTH}    ${SIGNUP DETAILS}
-    automationexerciseRes.Delete Account                                                                  ${DELETED USER}
-    automationexerciseRes.Invalid Credentials                                                             ${DELETED_USER}
+Register And Delete Account
+    [Documentation]       Registers a new account, deletes it, then confirms the
+    ...                   deleted account can no longer log in.
+    [Tags]                functionality      ui          negative
+    automationexerciseRes.Generate New Account Data
+    automationexerciseRes.Register New Account                                                            ${TEST_ACCOUNT}
+    automationexerciseRes.Delete Account                                                                  ${TEST_ACCOUNT.user_name}
+    automationexerciseRes.Invalid Credentials                                                             ${TEST_ACCOUNT}
+    [Teardown]    API_RES.Delete Account Via API                                                          ${TEST_ACCOUNT}
 
 Login With Invalid Credential
     [Documentation]       Guest Logging in with multiple Invalid Scenarios including no email, no password and non existing user.Verify Login feature functionality
