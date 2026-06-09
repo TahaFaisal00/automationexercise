@@ -259,6 +259,15 @@ Submit Product Review
     ProductsPage.Click Submit Review
     ProductsPage.Verify Review Submitted
 
+Navigate To Checkout Page From Cart
+    [Documentation]     Proceeds from the cart to the checkout page and verifies it loaded.
+    ...                 Assumes the cart holds at least one product.
+    CartPage.Click Proceed To Checkout Button
+    CheckoutPage.Verify Checkout Page Loaded
+
+
+
+
 
 
 Add a Product to Cart from Product Details
@@ -294,12 +303,6 @@ Complete Placing Order
     Verify Cart Item And Quantity           ${ProductPath}        ${Numbers}
     CheckoutPage.Click Place Order Button
 
-Complete payment and Confirm Order
-    [Arguments]                             ${CARD}
-    Entering Credit Card Details            ${CARD}
-    Payment.Click Pay and Confirm Order Button
-    Payment.Verify that Order was Submitted
-
 Entering Credit Card Details
     [Arguments]                          ${CARD}
     Payment.Enter Name on Card                   ${CARD.Name}
@@ -307,6 +310,13 @@ Entering Credit Card Details
     Payment.Enter CVC                            ${CARD.CVC}
     Payment.Enter Expiration Month               ${CARD.ExpirationDatemonth}
     Payment.Enter Expiration Year                ${CARD.ExpirationDateYear}
+
+Complete payment and Confirm Order
+    [Arguments]                             ${CARD}
+    Entering Credit Card Details            ${CARD}
+    Payment.Click Pay and Confirm Order Button
+    Payment.Verify that Order was Submitted
+
 
 Handle Ad
     [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
