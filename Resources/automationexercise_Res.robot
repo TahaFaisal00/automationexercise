@@ -189,10 +189,6 @@ Navigate To Products Page
     HomePage.Click Products Page Link
     ProductsPage.Verify Products Page Loaded
 
-Search for a Product
-    [Arguments]             ${Product}
-    ProductsPage.Write into the Search Bar           ${Product}
-    ProductsPage.Click the Search Button
 
 Search Results
     [Arguments]         ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
