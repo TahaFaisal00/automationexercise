@@ -34,8 +34,8 @@ Login With Invalid Credential
     ${USER_EMPTY_EMAIL}
     ${USER_EMPTY_PASSWORD}
 
-Quantity Should Be Editable From Shopping Cart
-    [Documentation]       User add product to cart and edit its quantity from cart. Verify item quantity isn't editable from cart.
+Cart Quantity Field Is Not Editable
+    [Documentation]       Quantity in cart should be editable but is read-only
     [Tags]                bug               ui          negative
     automationexercise_Res.Adding Product To Cart And Enter Cart                  ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Verify Products In Cart                                ${MEN_TSHIRT}

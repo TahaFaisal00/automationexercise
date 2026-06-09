@@ -214,7 +214,7 @@ Verify Products In Cart
 
 Verify Products Quantities
     [Documentation]      Check the given products quantities in cart - in case of checking multiple products
-    ...     put products in list and quantities in list and pass the 2 variables into the test
+    ...     put products in list and quantities in list and pass the 2 variables into the test xxx send to test xxx
     [Arguments]                  ${products}     ${expected_quantities}
     FOR    ${product}    ${expected_quantity}    IN ZIP    ${products}    ${expected_quantities}
         ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
