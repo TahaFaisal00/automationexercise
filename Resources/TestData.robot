@@ -24,5 +24,3 @@ ${INVALID_SEARCH_INPUT}               xxxxxxxxx
 @{ALL_PRODUCTS}         ${MEN_TSHIRT}       ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}         ${BLUE_TOP}
 
 
-${ALLEN_SOLLY_JUNIOR_BRAND}           xpath=//*[@href='/brand_products/Allen Solly Junior']
-${ALLEN_SOLLY_JUNIOR_PAGE}            Brand - Allen Solly Junior Products

@@ -22,6 +22,8 @@ ${PRODUCT_PAGE_URL}             https://automationexercise.com/products
 ${WOMEN_MENU}                       xpath=//*[@href='#Women']
 ${TOPS_CATEGORY}                    xpath=//*[text()='Tops ']
 
+${ALLEN_SOLLY_JUNIOR_BRAND}           xpath=//*[@href='/brand_products/Allen Solly Junior']
+${ALLEN_SOLLY_JUNIOR_PAGE}            Brand - Allen Solly Junior Products
 *** Keywords ***
 Verify Products Page Loaded
     Wait Until Page Contains    All Products
