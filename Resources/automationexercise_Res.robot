@@ -163,7 +163,7 @@ Choose Category And Verify Results
     ProductsPage.Choose Category From Category Menu     ${menu}    ${category}
     Verify Search Results                   ${expected_product}         @{unexpected_products}
 
-Choose a Brand Filter And Verify Results
+Choose Brand Filter And Verify Results
     [Documentation]     Filters the products page with a brand and verifies the expected products appear while the others don't.
     [Arguments]     ${all_products}     ${brand}        ${brand_page}       ${expected_product}         @{unexpected_products}
     Navigate To Products Page
