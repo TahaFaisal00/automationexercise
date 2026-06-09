@@ -245,11 +245,12 @@ Delete Product From Shopping Cart
     CartPage.Verify Item Deleted                 ${product}
 
 
-
-Navigate to a Product Page and Write a Review
-    [Arguments]                             ${ProductPath}     ${User}             ${Review}
-    HomePage.View a Product Details         ${ProductPath}
-    Submit Product Review                   ${User}             ${Review}
+Navigate To Product Details Page
+    [Arguments]           ${products}       ${product}
+    HomePage.Verify Home Page Loaded
+    ProductsPage.Verify All Products Visible            @{products}
+    HomePage.View Product Details               ${product}
+    ProductsPage.Verify Product Details Page Loaded         ${product}
 
 Submit Product Review
     [Arguments]             ${User}             ${Review}
@@ -282,9 +283,6 @@ Adding A product to The Cart and Comment on the Order from the Checkout Page
     CartPage.Click Proceed to Checkout Button
     CheckoutPage.Verify Checkout Page Loaded
     CheckoutPage.Add a Comment About your Order             ${Comment}
-
-
-
 
 
 Verify The Total Price Valditiy in Cart
