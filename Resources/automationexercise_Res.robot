@@ -196,7 +196,7 @@ Add Product To Cart And Open Cart
     HomePage.Click Shopping Cart Page Link
     CartPage.Verify Cart Page Loaded
 
-Adding Product To Cart And Continue Shopping
+Add Product To Cart And Continue Shopping
     [Documentation]     Adds a specific product to shopping cart
     [Arguments]          ${products}       ${product}
     HomePage.Verify Home Page Loaded
