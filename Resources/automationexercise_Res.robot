@@ -266,6 +266,17 @@ Navigate To Checkout Page From Cart
     CheckoutPage.Verify Checkout Page Loaded
 
 
+Verify Delivery And Billing Address Details
+    [Documentation]
+    [Arguments]                 ${details}
+    Wait Until Page Contains    Address Details
+    Wait Until Page Contains    Your delivery address
+    Wait Until Page Contains    ${details.first_name}
+    Wait Until Page Contains    ${details.Company}
+    Wait Until Page Contains    ${details.address1}
+    Wait Until Page Contains    ${details.address2}
+    Wait Until Page Contains    ${details.state}
+    Wait Until Page Contains    ${details.mobile_number}
 
 
 
