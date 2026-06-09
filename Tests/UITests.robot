@@ -30,9 +30,9 @@ Login With Invalid Credential
     [Documentation]       Guest Logging in with multiple Invalid Scenarios including no email, no password and non existing user.Verify Login feature functionality
     [Tags]                functionality     ui          negative
     [Template]                                                                                            automationexerciseRes.Invalid Credentials
-    ${USER EMPTY EMAIL}
-    ${USER EMPTY PASSWORD}
-    ${DELETED USER}
+    ${DELETED_USER}
+    ${USER_EMPTY_EMAIL}
+    ${USER_EMPTY_PASSWORD}
 
 Quantity Should Be Editable From Shopping Cart
     [Documentation]       User add product to cart and edit its quantity from cart. Verify item quantity isn't editable from cart.
