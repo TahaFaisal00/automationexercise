@@ -212,10 +212,21 @@ Verify Products In Cart
         Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
     END
 
+Normalize To List
+    [Arguments]    ${value}
+    ${is_list}=    Evaluate    isinstance($value, list)
+    IF    not ${is_list}
+        ${value}=    Create List    ${value}
+    END
+    RETURN    ${value}
+
 Verify Product Quantities In Cart
-    [Documentation]      Check the given products quantities in cart - in case of checking multiple products
-    ...     put products in list and quantities in list and pass the 2 variables into the test xxx send to test xxx
+    [Documentation]      Verifies each product's displayed quantity in the cart matches the expected value.
+    ...                  Accepts a single product + single quantity, or parallel lists of products and quantities.
+    ...                  Lists must be equal length and in matching order.
     [Arguments]                  ${products}     ${expected_quantities}
+    ${products}=                     Normalize To List    ${products}
+    ${expected_quantities}=          Normalize To List    ${expected_quantities}
     FOR    ${product}    ${expected_quantity}    IN ZIP    ${products}    ${expected_quantities}
         ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
         ${actual_quantity}=     Get Text    ${product_quantity_location}
