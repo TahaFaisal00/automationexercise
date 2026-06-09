@@ -171,10 +171,6 @@ Choose Brand Filter And Verify Results
     Click On Brand          ${brand}        ${brand_page}
     Verify Search Results   ${expected_product}         @{unexpected_products}
 
-Results Should Be Empty
-    [Arguments]            ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-
 Navigate To Products Page
     [Documentation]     Goes to Products page and assert it loaded
     HomePage.Click Products Page Link
