@@ -32,7 +32,7 @@ Verify Products Page Loaded
 
 Verify Product Details Page Loaded
     [Documentation]     Asserts the product details page shows the expected product name
-    [Arguments]             ${product_name}
+    [Arguments]             ${product}
     Wait Until Element Is Visible    ${PRODUCT_NAME_HEADING}
     ${actual_product_name}=     Get Text    ${PRODUCT_NAME_HEADING}
     Should Be Equal As Strings    ${actual_product_name}    ${product_name}
