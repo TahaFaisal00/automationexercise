@@ -177,10 +177,6 @@ Results Should Be Empty
     [Arguments]            ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
     ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
 
-Choose a Brand
-    [Arguments]     ${Brand}            ${Category}
-    ProductsPage.Click on a Brand                ${Brand}
-    ProductsPage.Verify Filtering Result         ${Category}
 
 
 Navigate To Products Page
