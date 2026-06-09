@@ -80,10 +80,9 @@ Search By Product Name
     automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}       ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
 
 Filter By Category
-    [Documentation]       user filter products shown by category. Verifys filtering feature functionality.
+    [Documentation]       Filters products by category and verifies only the matching products appear.
     [Tags]                functionality     ui          positive
-    automationexerciseRes.Login                                                                                                 ${MAIN USER}
-    automationexerciseRes.Navigate to Products Use Category Filtering and Assert Results                  ${WOMENMENU}            ${TOPSCATEGORY}         ${BLUE TOP}       ${MEN TSHIRT}        ${FROZEN TOPS FOR KIDS}     ${EMPTY}
+    automationexercise_Res.Choose Category And Verify Results                                              ${ALL_PRODUCTS}       ${WOMEN_MENU}       ${TOPS_CATEGORY}        ${BLUE_TOP}       ${MEN_TSHIRT}          ${FROZEN_TOPS_FOR_KIDS}
 
 Filter By Brand
     [Documentation]       user filter products shown by brand. Verifys filtering feature functionality.
