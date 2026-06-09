@@ -246,6 +246,7 @@ Delete Product From Shopping Cart
 
 
 Navigate To Product Details Page
+    [Documentation]         Waits until products are loaded then enters the details page of the required product and and verifies it loading.
     [Arguments]           ${products}       ${product}
     HomePage.Verify Home Page Loaded
     ProductsPage.Verify All Products Visible            @{products}
