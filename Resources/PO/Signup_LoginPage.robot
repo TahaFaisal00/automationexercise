@@ -148,9 +148,6 @@ Enter Password To Login
 Click Login Button
     Click Element                    ${LOGIN_BUTTON}
 
-Verify Invalid Credentials Error
-    Wait Until Page Contains                            Your email or password is incorrect!
-
 
 
 Verify Email Field Is Required
@@ -161,6 +158,8 @@ Verify Password Field Is Required
     ${required}     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
     Should Not Be Empty                      ${required}
 
+Verify Invalid Credentials Error
+    Wait Until Page Contains                            Your email or password is incorrect!
 
 
 Verify Login Error
@@ -168,11 +167,9 @@ Verify Login Error
     ...                invalid-credentials error) and that the user stays on the login page.
     [Arguments]                                   ${user_email}      ${user_password}         ${url}
     IF    $user_email == ""
-         ${required}     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
-         Should Not Be Empty                      ${required}
+         Verify Email Field Is Required
     ELSE IF    $user_password == ""
-         ${required}     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
-         Should Not Be Empty                      ${required}
+         Verify Password Field Is Required
     ELSE
          Verify Invalid Credentials Error
     END
