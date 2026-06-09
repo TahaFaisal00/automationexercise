@@ -196,6 +196,15 @@ Adding Product To Cart And Enter Cart
     HomePage.Click Shopping Cart Page Link
     CartPage.Verify Cart Page Loaded
 
+Adding Product To Cart And Continue Shopping
+    [Documentation]     Adds a specific product to shopping cart
+    [Arguments]          ${products}       ${product}
+    HomePage.Verify Home Page Loaded
+    ProductsPage.Verify All Products Visible            @{products}
+    HomePage.Add Item To Cart From Products Page         ${product}
+    HomePage.Verify Product Added To Cart
+
+
 Editing the Quantity of an Item in the Cart
     [Arguments]         ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
     Quantity Should be Editable         ${Product}
