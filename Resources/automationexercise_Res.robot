@@ -204,14 +204,17 @@ Adding Product To Cart And Continue Shopping
     HomePage.Add Item To Cart From Products Page         ${product}
     HomePage.Verify Product Added To Cart
 
-Verify Product In Cart
-    [Arguments]                  @{products}
+Verify Products In Cart
+    [Documentation]     Check if the given products exist in cart after adding them
+    [Arguments]                    @{products}
     FOR    ${product}    IN    @{products}
         ${product_location}=     Format String    ${PRODUCT}     ${product}
         Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
     END
 
-Verify Product Quantities
+Verify Products Quantities
+    [Documentation]      Check the given products quantities in cart - in case of checking multiple products
+    ...     put products in list and quantities in list and pass the 2 variables into the test
     [Arguments]                  ${products}     ${expected_quantities}
     FOR    ${product}    ${expected_quantity}    IN ZIP    ${products}    ${expected_quantities}
         ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
