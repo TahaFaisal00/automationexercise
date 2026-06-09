@@ -286,10 +286,11 @@ Verify Cart Item And Quantity
     CartPage.Verify Product In Cart      ${ProductPath}
     CartPage.Verify Product Quantity        ${ProductPath}            ${ExpectedQuantity}
 
-Delete an Item from the Shopping Cart
-    [Arguments]                         ${ProductPath}
-    CartPage.Click Delete Item Button            ${ProductPath}
-    CartPage.Verify that Items is Deleted        ${ProductPath}
+Delete Product From Shopping Cart
+    [Documentation]     Deletes the product from the cart and verifies its removal.
+    [Arguments]                                  ${product}
+    CartPage.Click Delete Item Button            ${product}
+    CartPage.Verify Item Deleted                 ${product}
 
 Verify The Total Price Valditiy in Cart
     [Arguments]                       ${Productpath}
