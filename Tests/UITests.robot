@@ -74,10 +74,10 @@ Delete Item From Cart
     automationexerciseRes.Adding A product to The Cart and Delete it                                      ${MEN TSHIRT}
 
 Search By Product Name
-    [Documentation]       User use search feature for a specific item. verify Searching feature functionality.
+    [Documentation]       Searches for a specific product and verifies only the
+    ...                   matching product appears in the results.
     [Tags]                functionality     ui          positive
-    automationexerciseRes.Login                                                                                                 ${MAIN USER}
-    automationexerciseRes.Navigate to Products Use Search and Assert Results                              ${MEN TSHIRT}       ${MEN TSHIRT}         ${LACE TOP FOR WOMEN}       ${FROZEN TOPS FOR KIDS}     ${BLUE TOP}
+    automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}       ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
 
 Filter By Category
     [Documentation]       user filter products shown by category. Verifys filtering feature functionality.
