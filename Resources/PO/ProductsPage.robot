@@ -51,6 +51,8 @@ Write Review
     Input Text       ${NAME_FIELD_REVIEW}         ${username}
     Input Text       ${EMAIL_FIELD_REVIEW}        ${email}
     Input Text       ${REVIEW_FIELD}              ${review}
+
+Click Submit Review
     Click Element    ${SUBMIT_REVIEW_BUTTON}
 
 Verify Review Submitted
