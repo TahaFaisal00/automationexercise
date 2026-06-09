@@ -18,7 +18,7 @@ Verify Cart Page Loaded
     Location Should Be          ${CART_URL}
 
 
-Verify Quantity In Cart Editable
+Verify Quantity Not Editable In Cart
     [Documentation]     BUG:cart quantity should be editable but the button have the class 'disabled'. asserts the field is editable expected to fail until the defect is fixed
     [Arguments]         ${product}
     ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
