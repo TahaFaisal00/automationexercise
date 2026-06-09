@@ -208,7 +208,7 @@ Verify Products In Cart
     [Documentation]     Check if the given products exist in cart after adding them
     [Arguments]                    @{products}
     FOR    ${product}    IN    @{products}
-        ${product_location}=     Format String    ${PRODUCT}     ${product}
+        ${product_location}=     Format String    ${CART_PRODUCT_LOCATOR}     ${product}
         Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
     END
 
