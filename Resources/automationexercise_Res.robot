@@ -212,7 +212,7 @@ Verify Products In Cart
         Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
     END
 
-Verify Products Quantities
+Verify Product Quantities In Cart
     [Documentation]      Check the given products quantities in cart - in case of checking multiple products
     ...     put products in list and quantities in list and pass the 2 variables into the test xxx send to test xxx
     [Arguments]                  ${products}     ${expected_quantities}
