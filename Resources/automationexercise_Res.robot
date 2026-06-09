@@ -171,6 +171,18 @@ Choose Brand Filter And Verify Results
     Click On Brand          ${brand}        ${brand_page}
     Verify Search Results   ${expected_product}         @{unexpected_products}
 
+Enter Products Page And Checks Products
+    [Documentation]     Goes to products page and check if all the products are loaded
+    [Arguments]     ${all_products}
+    Navigate To Products Page
+    Verify All Products Visible           @{all_products}
+
+
+
+
+
+
+
 Navigate To Products Page
     [Documentation]     Goes to Products page and assert it loaded
     HomePage.Click Products Page Link
