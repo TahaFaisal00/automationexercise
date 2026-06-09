@@ -238,23 +238,18 @@ Editing Quantity Of Product In Cart
     [Arguments]                             ${product}
     CartPage.Verify Quantity Not Editable In Cart        ${product}
 
+Delete Product From Shopping Cart
+    [Documentation]     Deletes the product from the cart and verifies its removal.
+    [Arguments]                                  ${product}
+    CartPage.Click Delete Item Button            ${product}
+    CartPage.Verify Item Deleted                 ${product}
 
-Editing the Quantity of an Item to a minus Number and Navigate to Cart
-    [Arguments]                      ${ProductPath}            ${MinusQuantity}
-    HomePage.View a Product Details         ${ProductPath}
-    ProductsPage.Editing the Quantity              ${MinusQuantity}
-    Add a Product to Cart from Product Details
-    ProductsPage.Click View Cart Button after Adding an Item
-    CartPage.Verify Shopping Cart Page is Loaded
+
 
 Navigate to a Product Page and Write a Review
     [Arguments]                             ${ProductPath}     ${User}             ${Review}
     HomePage.View a Product Details         ${ProductPath}
     Submit Product Review                   ${User}             ${Review}
-
-Add a Product to Cart from Product Details
-    ProductsPage.Click Add to cart Button from Product Details Page
-    HomePage.Verify Product Added to Cart
 
 Submit Product Review
     [Arguments]             ${User}             ${Review}
@@ -264,6 +259,23 @@ Submit Product Review
     ProductsPage.Click Submit Review
     ProductsPage.Verify Review Submitted
 
+
+
+
+Add a Product to Cart from Product Details
+    ProductsPage.Click Add to cart Button from Product Details Page
+    HomePage.Verify Product Added to Cart
+
+
+Editing the Quantity of an Item to a minus Number and Navigate to Cart
+    [Arguments]                      ${ProductPath}            ${MinusQuantity}
+    HomePage.View a Product Details         ${ProductPath}
+    ProductsPage.Editing the Quantity              ${MinusQuantity}
+    Add a Product to Cart from Product Details
+    ProductsPage.Click View Cart Button after Adding an Item
+    CartPage.Verify Shopping Cart Page is Loaded
+
+
 Adding A product to The Cart and Comment on the Order from the Checkout Page
     [Arguments]         ${ProductPath}          ${Comment}
     Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
@@ -271,10 +283,8 @@ Adding A product to The Cart and Comment on the Order from the Checkout Page
     CheckoutPage.Verify Checkout Page Loaded
     CheckoutPage.Add a Comment About your Order             ${Comment}
 
-Adding A product to The Cart and Delete it
-    [Arguments]             ${ProductPath}
-    Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
-    Delete an Item from the Shopping Cart               ${ProductPath}
+
+
 
 Adding a Product to the Cart from Products Page and Continue Shopping
     [Arguments]         ${ProductPath}
@@ -286,11 +296,7 @@ Verify Cart Item And Quantity
     CartPage.Verify Product In Cart      ${ProductPath}
     CartPage.Verify Product Quantity        ${ProductPath}            ${ExpectedQuantity}
 
-Delete Product From Shopping Cart
-    [Documentation]     Deletes the product from the cart and verifies its removal.
-    [Arguments]                                  ${product}
-    CartPage.Click Delete Item Button            ${product}
-    CartPage.Verify Item Deleted                 ${product}
+
 
 Verify The Total Price Valditiy in Cart
     [Arguments]                       ${Productpath}
