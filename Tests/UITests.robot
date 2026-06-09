@@ -69,10 +69,12 @@ Give Comment On Order
     automationexerciseRes.Adding A product to The Cart and Comment on the Order from the Checkout Page    ${MEN TSHIRT}       ${PRODUCT.Comment}
 
 Delete Item From Cart
-    [Documentation]       User add item to cart then Delete it from cart. Verify Deletion feature functionality.
+    [Documentation]       Adds an item to the cart, deletes it, and verifies the delete works.
     [Tags]                functionality     ui          positive
-    automationexerciseRes.Login                                                                                                 ${MAIN USER}
-    automationexerciseRes.Adding A product to The Cart and Delete it                                      ${MEN TSHIRT}
+    automationexercise_Res.Add Product To Cart And Open Cart                  ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    automationexercise_Res.Verify Products In Cart                                ${MEN_TSHIRT}
+    automationexercise_Res.Verify Product Quantities In Cart                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
+    automationexercise_Res.Delete Product From Shopping Cart                      ${MEN_TSHIRT}
 
 Search By Product Name
     [Documentation]       Searches for a specific product and verifies only the
