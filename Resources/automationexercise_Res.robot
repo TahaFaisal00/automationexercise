@@ -244,7 +244,6 @@ Delete Product From Shopping Cart
     CartPage.Click Delete Item Button            ${product}
     CartPage.Verify Item Deleted                 ${product}
 
-
 Navigate To Product Details Page
     [Documentation]         Waits until products are loaded then enters the details page of the required product and and verifies it loading.
     [Arguments]           ${products}       ${product}
@@ -254,13 +253,11 @@ Navigate To Product Details Page
     ProductsPage.Verify Product Details Page Loaded         ${product}
 
 Submit Product Review
-    [Arguments]             ${User}             ${Review}
-    ProductsPage.Enter Name for Review           ${User}
-    ProductsPage.Enter Email for Review          ${User}
-    ProductsPage.Write a Review                  ${Review}
+    [Documentation]     Enters the name, email, and review, submits it, and verifies the submission.
+    [Arguments]       ${account}        ${product}
+    ProductsPage.Write Review       ${account.user_name}      ${account.email}      ${product.review}
     ProductsPage.Click Submit Review
     ProductsPage.Verify Review Submitted
-
 
 
 
