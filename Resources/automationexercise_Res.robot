@@ -150,24 +150,21 @@ Search Products And Verify Results
     [Documentation]     Searches the products page and verifies the expected
     ...                 products appear while the others don't.
     [Arguments]       ${all_products}      ${expected_product}     @{unexpected_products}
-    Navigate To Products Page
-    Verify All Products Visible     ${all_products}
+    Enter Products Page And Checks Products         @{all_products}
     ProductsPage.Use Search Bar     @{expected_product}
     Verify Search Results           ${expected_product}         @{unexpected_products}
 
 Choose Category And Verify Results
     [Documentation]     Filters the products page with category and verifies the expected products appear while the others don't.
     [Arguments]             ${all_products}     ${menu}    ${category}        ${expected_product}         @{unexpected_products}
-    Navigate To Products Page
-    Verify All Products Visible         @{all_products}
+    Enter Products Page And Checks Products         @{all_products}
     ProductsPage.Choose Category From Category Menu     ${menu}    ${category}
     Verify Search Results                   ${expected_product}         @{unexpected_products}
 
 Choose Brand Filter And Verify Results
     [Documentation]     Filters the products page with a brand and verifies the expected products appear while the others don't.
     [Arguments]     ${all_products}     ${brand}        ${brand_page}       ${expected_product}         @{unexpected_products}
-    Navigate To Products Page
-    Verify All Products Visible     ${all_products}
+    Enter Products Page And Checks Products         @{all_products}
     Click On Brand          ${brand}        ${brand_page}
     Verify Search Results   ${expected_product}         @{unexpected_products}
 
