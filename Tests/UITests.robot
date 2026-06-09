@@ -23,13 +23,13 @@ Register And Delete Account
     automationexerciseRes.Generate New Account Data
     automationexerciseRes.Register New Account                                                            ${TEST_ACCOUNT}
     automationexerciseRes.Delete Account                                                                  ${TEST_ACCOUNT.user_name}
-    automationexerciseRes.Invalid Credentials                                                             ${TEST_ACCOUNT}
+    automationexerciseRes.Verify Login Fails                                                              ${TEST_ACCOUNT}
     [Teardown]    API_RES.Delete Account Via API                                                          ${TEST_ACCOUNT}
 
 Login With Invalid Credential
     [Documentation]       Guest Logging in with multiple Invalid Scenarios including no email, no password and non existing user.Verify Login feature functionality
     [Tags]                functionality     ui          negative
-    [Template]                                                                                            automationexerciseRes.Invalid Credentials
+    [Template]                                                                                            automationexerciseRes.Verify Login Fails
     ${DELETED_USER}
     ${USER_EMPTY_EMAIL}
     ${USER_EMPTY_PASSWORD}
