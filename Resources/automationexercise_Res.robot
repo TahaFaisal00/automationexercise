@@ -182,10 +182,6 @@ Choose a Brand
     ProductsPage.Click on a Brand                ${Brand}
     ProductsPage.Verify Filtering Result         ${Category}
 
-Choose a Category
-    [Arguments]                             ${CategoryMenu}         ${Category}
-    ProductsPage.Click on Category Menu                  ${CategoryMenu}
-    ProductsPage.Click on a Category from a Menu         ${Category}
 
 Navigate To Products Page
     [Documentation]     Goes to Products page and assert it loaded
