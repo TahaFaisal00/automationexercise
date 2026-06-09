@@ -18,6 +18,10 @@ ${SUBMIT_SEARCH_BUTTON}         id=submit_search
 
 ${PRODUCT_NAME_HEADING}          xpath=//div[@class='product-information']//h2
 ${PRODUCT_PAGE_URL}             https://automationexercise.com/products
+
+${WOMEN_MENU}                       xpath=//*[@href='#Women']
+${TOPS_CATEGORY}                    xpath=//*[text()='Tops ']
+
 *** Keywords ***
 Verify Products Page Loaded
     Wait Until Page Contains    All Products

@@ -23,8 +23,6 @@ ${INVALID_SEARCH_INPUT}               xxxxxxxxx
 
 @{ALL_PRODUCTS}         ${MEN_TSHIRT}       ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}         ${BLUE_TOP}
 
-${WOMEN_MENU}                       xpath=//*[@href='#Women']
-${TOPS_CATEGORY}                    xpath=//*[text()='Tops ']
-${WOMEN_TOPS_PAGE}                   Women - Tops Products
+
 ${ALLEN_SOLLY_JUNIOR_BRAND}           xpath=//*[@href='/brand_products/Allen Solly Junior']
 ${ALLEN_SOLLY_JUNIOR_PAGE}            Brand - Allen Solly Junior Products
