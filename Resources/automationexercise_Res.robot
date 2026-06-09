@@ -222,12 +222,10 @@ Verify Products Quantities
         Run Keyword And Continue On Failure        Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
     END
 
-
-Editing the Quantity of an Item in the Cart
-    [Arguments]         ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
-    Quantity Should be Editable         ${Product}
-    Click on the Quantity of Item       ${Product}          ${ExpectedQuantity}
-    Editing the Quantity in Cart          ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
+Editing Quantity Of Product In Cart
+    [Arguments]                             ${product}
+    Verify Quantity In Cart Editable        ${product}
+    Click On Quantity Of Item               ${product}
 
 Editing the Quantity of an Item to a minus Number and Navigate to Cart
     [Arguments]                      ${ProductPath}            ${MinusQuantity}
