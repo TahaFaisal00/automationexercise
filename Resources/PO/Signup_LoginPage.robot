@@ -151,12 +151,12 @@ Click Login Button
 
 
 Verify Email Field Is Required
-    ${required}     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
-    Should Not Be Empty                      ${required}
+    ${required}=     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
+    Should Be Equal As Strings                      ${required}          true
 
 Verify Password Field Is Required
-    ${required}     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
-    Should Not Be Empty                      ${required}
+    ${required}=     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
+    Should Be Equal As Strings                      ${required}          true
 
 Verify Invalid Credentials Error
     Wait Until Page Contains                            Your email or password is incorrect!
