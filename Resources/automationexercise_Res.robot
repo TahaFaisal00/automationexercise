@@ -155,11 +155,13 @@ Search Products And Verify Results
     ProductsPage.Use Search Bar     @{expected_product}
     Verify Search Results           ${expected_product}         @{unexpected_products}
 
-Navigate to Products Use Category Filtering and Assert Results
-    [Arguments]                         ${CategoryMenu}         ${Category}          ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    Navigate to Products and verify Products
-    Choose a Category                   ${CategoryMenu}         ${Category}
-    Search Results                      ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+Choose Category And Verify Results
+    [Documentation]     Filters the products page with category and verifies the expected products appear while the others don't.
+    [Arguments]             ${all_products}     ${menu}    ${category}        ${expected_product}         @{unexpected_products}
+    Navigate To Products Page
+    Verify All Products Visible         @{all_products}
+    ProductsPage.Choose Category From Category Menu     ${menu}    ${category}
+    Verify Search Results                   ${expected_product}         @{unexpected_products}
 
 Navigate to Products Use Brands Filtering and Assert Results
     [Arguments]                         ${Brand}            ${Category}             ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
@@ -176,8 +178,6 @@ Navigate to Products Use Search with Invalid Input and Assert Results
 Results Should Be Empty
     [Arguments]            ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
     ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-
-
 
 Navigate To Products Page
     [Documentation]     Goes to Products page and assert it loaded
