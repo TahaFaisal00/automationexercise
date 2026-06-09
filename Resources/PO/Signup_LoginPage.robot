@@ -151,22 +151,31 @@ Click Login Button
 Verify Invalid Credentials Error
     Wait Until Page Contains                            Your email or password is incorrect!
 
-Invalid Login Error
-    [Documentation]         Checks that empty fields have 'required' attribute and Error Message
+
+
+Verify Email Field Is Required
+    ${required}     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
+    Should Not Be Empty                      ${required}
+
+
+
+
+
+
+Verify Login Error
+    [Documentation]         erifies the expected login validation (required fields or
+    ...                invalid-credentials error) and that the user stays on the login page.
     [Arguments]                                   ${user_email}      ${user_password}         ${url}
     IF    $user_email == ""
          ${required}     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
          Should Not Be Empty                      ${required}
-         Location Should Be                       ${url}
     ELSE IF    $user_password == ""
          ${required}     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
          Should Not Be Empty                      ${required}
-         Location Should Be                       ${url}
     ELSE
          Verify Invalid Credentials Error
-         Location Should Be                       ${url}
     END
-
+    Location Should Be                       ${url}
 
 
 
