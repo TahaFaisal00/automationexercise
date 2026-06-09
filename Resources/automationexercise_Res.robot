@@ -286,10 +286,7 @@ Adding A product to The Cart and Comment on the Order from the Checkout Page
 
 
 
-Adding a Product to the Cart from Products Page and Continue Shopping
-    [Arguments]         ${ProductPath}
-    HomePage.Hover And Click Add to Cart Button         ${ProductPath}
-    HomePage.Verify Product Added to Cart
+
 
 Verify Cart Item And Quantity
     [Arguments]                  ${ProductPath}        ${ExpectedQuantity}
