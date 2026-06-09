@@ -21,6 +21,8 @@ ${FROZEN_TOPS_FOR_KIDS}             Frozen Tops For Kids
 ${BLUE_TOP}                         Blue Top
 ${INVALID_SEARCH_INPUT}               xxxxxxxxx
 
+@{ALL_PRODUCTS}         ${MEN_TSHIRT}       ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}         ${BLUE_TOP}
+
 ${WOMEN_MENU}                       xpath=//*[@href='#Women']
 ${TOPS_CATEGORY}                    xpath=//*[text()='Tops ']
 ${WOMEN_TOPS_PAGE}                   Women - Tops Products
