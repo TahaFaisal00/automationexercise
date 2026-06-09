@@ -189,13 +189,11 @@ Navigate To Products Page
     HomePage.Click Products Page Link
     ProductsPage.Verify Products Page Loaded
 
-
-Search Results
-    [Arguments]         ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    ProductsPage.Search Result Should Contain            ${Product}
-    ProductsPage.Search Result Should not Contain        ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-
-
+Verify Search Results
+    [Documentation]     Verifies the expected product appears in the results and the others don't.
+    [Arguments]     ${expected_product}      @{unexpected_products}
+    ProductsPage.Search Result Should Contain       ${expected_product}
+    ProductsPage.Search Result Should Not Contain       @{unexpected_products}
 
 
 
