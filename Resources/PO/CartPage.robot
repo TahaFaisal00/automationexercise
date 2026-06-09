@@ -17,21 +17,6 @@ Verify Cart Page Loaded
     Wait Until Page Contains    Shopping Cart
     Location Should Be          ${CART_URL}
 
-Verify Product In Cart
-    [Arguments]                  @{products}
-    FOR    ${product}    IN    @{products}
-        ${product_location}=     Format String    ${PRODUCT}     ${product}
-        Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
-    END
-
-# TODO:send it to RES then fix it - ignore for now:
-Verify Product Quantities
-    [Arguments]                  ${products}     ${expected_quantities}
-    FOR    ${product}    ${expected_quantity}    IN ZIP    ${products}    ${expected_quantities}
-        ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
-        ${actual_quantity}=     Get Text    ${product_quantity_location}
-        Run Keyword And Continue On Failure        Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
-    END
 
 Verify Quantity In Cart Editable
     [Documentation]     BUG:cart quantity should be editable but the button have the class 'disabled'. asserts the field is editable expected to fail until the defect is fixed

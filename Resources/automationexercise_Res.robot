@@ -204,6 +204,21 @@ Adding Product To Cart And Continue Shopping
     HomePage.Add Item To Cart From Products Page         ${product}
     HomePage.Verify Product Added To Cart
 
+Verify Product In Cart
+    [Arguments]                  @{products}
+    FOR    ${product}    IN    @{products}
+        ${product_location}=     Format String    ${PRODUCT}     ${product}
+        Run Keyword And Continue On Failure     Wait Until Element Is Visible    ${product_location}
+    END
+
+Verify Product Quantities
+    [Arguments]                  ${products}     ${expected_quantities}
+    FOR    ${product}    ${expected_quantity}    IN ZIP    ${products}    ${expected_quantities}
+        ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
+        ${actual_quantity}=     Get Text    ${product_quantity_location}
+        Run Keyword And Continue On Failure        Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
+    END
+
 
 Editing the Quantity of an Item in the Cart
     [Arguments]         ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
