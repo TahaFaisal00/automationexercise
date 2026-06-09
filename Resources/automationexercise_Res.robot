@@ -185,10 +185,10 @@ Choose a Category
     ProductsPage.Click on Category Menu                  ${CategoryMenu}
     ProductsPage.Click on a Category from a Menu         ${Category}
 
-Navigate to Products and verify Products
-    HomePage.Navigate to Products
+Navigate To Products Page
+    [Documentation]     Goes to Products page and assert it loaded
+    HomePage.Click Products Page Link
     ProductsPage.Verify Products Page Loaded
-    ProductsPage.All Products       ${MEN TSHIRT}   ${LACE TOP FOR WOMEN}     ${FROZEN TOPS FOR KIDS}       ${BLUE TOP}
 
 Search for a Product
     [Arguments]             ${Product}
