@@ -126,17 +126,13 @@ Delete Account
     HomePage.Verify Account Deleted         ${user_name}
     HomePage.Click Continue After Account Deletion
 
-
-
-
-
-
-Invalid Credentials
-    [Arguments]                                       ${User}
-    Go To                                             ${LOGIN URL}
-    Signup&LoginPage.Verify Signup and Login Page is Loaded
-    Enter Login Credentials                           ${User}
-    Signup&LoginPage.Error                            ${User}       ${LOGIN URL}
+Verify Login Fails
+    [Documentation]     Attempts login with the given credentials and confirms
+    ...                 they're rejected.
+    [Arguments]                                       ${account}
+    Navigate To Signup And Login Page
+    Log In With Credentials                           ${account.email}      ${account.password}
+    Invalid Login Error              ${account.email}      ${account.password}        ${LOGIN URL}
 
 
 
