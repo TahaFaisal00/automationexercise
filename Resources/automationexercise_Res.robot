@@ -186,7 +186,7 @@ Verify Search Results
     ProductsPage.Search Result Should Not Contain       @{unexpected_products}
 
 
-Adding Product To Cart And Enter Cart
+Add Product To Cart And Open Cart
     [Documentation]     Adds a specific product to shopping cart and navigate to it
     [Arguments]          ${products}       ${product}
     HomePage.Verify Home Page Loaded
