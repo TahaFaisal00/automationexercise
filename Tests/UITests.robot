@@ -87,8 +87,7 @@ Filter By Category
 Filter By Brand
     [Documentation]       user filter products shown by brand. Verifys filtering feature functionality.
     [Tags]                functionality     ui          positive
-    automationexerciseRes.Login                                                                                                 ${MAIN USER}
-    automationexerciseRes.Navigate to Products Use Brands Filtering and Assert Results                    ${ALLENSOLLYJUNIORBRAND}            ${ALLENSOLLYJUNIORPAGE}      ${FROZEN TOPS FOR KIDS}       ${LACE TOP FOR WOMEN}       ${MEN TSHIRT}      ${Blue Top}
+    automationexercise_Res.Choose Brand Filter And Verify Results                             ${ALL_PRODUCTS}         ${ALLEN_SOLLY_JUNIOR_BRAND}        ${ALLEN_SOLLY_JUNIOR_PAGE}      ${FROZEN_TOPS_FOR_KIDS}       ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}      ${BLUE_TOP}
 
 Search Invalid Input
     [Documentation]       user use search feature for invalid or non existing item. verify Searching feature functionality.
