@@ -174,12 +174,6 @@ Enter Products Page And Checks Products
     Navigate To Products Page
     Verify All Products Visible           @{all_products}
 
-
-
-
-
-
-
 Navigate To Products Page
     [Documentation]     Goes to Products page and assert it loaded
     HomePage.Click Products Page Link
@@ -192,9 +186,15 @@ Verify Search Results
     ProductsPage.Search Result Should Not Contain       @{unexpected_products}
 
 
-
-
-
+Adding Product To Cart And Enter Cart
+    [Documentation]     Adds a specific product to shopping cart and navigate to it
+    [Arguments]          ${products}       ${product}
+    HomePage.Verify Home Page Loaded
+    ProductsPage.Verify All Products Visible            @{products}
+    HomePage.Add Item To Cart From Products Page         ${product}
+    HomePage.Verify Product Added To Cart
+    HomePage.Click Shopping Cart Page Link
+    CartPage.Verify Cart Page Loaded
 
 Editing the Quantity of an Item in the Cart
     [Arguments]         ${Product}          ${ExpectedQuantity}        ${EditedQuantity}
@@ -239,18 +239,10 @@ Adding A product to The Cart and Delete it
     Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
     Delete an Item from the Shopping Cart               ${ProductPath}
 
-
-Adding a Product to the Cart from Products Page and Enter Cart
-    [Arguments]         ${ProductPath}
-    HomePage.Hover And Click Add to Cart Button         ${ProductPath}
-    HomePage.Verify Product Added to Cart
-    HomePage.Navigate to the Shopping Cart
-
 Adding a Product to the Cart from Products Page and Continue Shopping
     [Arguments]         ${ProductPath}
     HomePage.Hover And Click Add to Cart Button         ${ProductPath}
     HomePage.Verify Product Added to Cart
-
 
 Verify Cart Item And Quantity
     [Arguments]                  ${ProductPath}        ${ExpectedQuantity}
@@ -262,6 +254,9 @@ Delete an Item from the Shopping Cart
     CartPage.Click Delete Item Button            ${ProductPath}
     CartPage.Verify that Items is Deleted        ${ProductPath}
 
+Verify The Total Price Valditiy in Cart
+    [Arguments]                       ${Productpath}
+    CartPage.Total Price Shouldn't be Negative          ${Productpath}
 
 Complete Placing Order
     [Arguments]            ${User}       ${ProductPath}        ${Numbers}
@@ -283,12 +278,6 @@ Entering Credit Card Details
     Payment.Enter CVC                            ${CARD.CVC}
     Payment.Enter Expiration Month               ${CARD.ExpirationDatemonth}
     Payment.Enter Expiration Year                ${CARD.ExpirationDateYear}
-
-
-Verify The Total Price Valditiy in Cart
-    [Arguments]                       ${Productpath}
-    CartPage.Total Price Shouldn't be Negative          ${Productpath}
-
 
 Handle Ad
     [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
