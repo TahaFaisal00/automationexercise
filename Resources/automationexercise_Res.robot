@@ -163,11 +163,13 @@ Choose Category And Verify Results
     ProductsPage.Choose Category From Category Menu     ${menu}    ${category}
     Verify Search Results                   ${expected_product}         @{unexpected_products}
 
-Navigate to Products Use Brands Filtering and Assert Results
-    [Arguments]                         ${Brand}            ${Category}             ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
-    Navigate to Products and verify Products
-    Choose a Brand                      ${Brand}            ${Category}
-    Search Results                      ${Product}      ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
+Choose a Brand Filter And Verify Results
+    [Documentation]     Filters the products page with a brand and verifies the expected products appear while the others don't.
+    [Arguments]     ${all_products}     ${brand}        ${brand_page}       ${expected_product}         @{unexpected_products}
+    Navigate To Products Page
+    Verify All Products Visible     ${all_products}
+    Click On Brand          ${brand}        ${brand_page}
+    Verify Search Results   ${expected_product}         @{unexpected_products}
 
 Navigate to Products Use Search with Invalid Input and Assert Results
     [Arguments]                         ${Product}          ${Invalid Product1}         ${Invalid Product2}         ${Invalid Product3}
