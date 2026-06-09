@@ -157,8 +157,9 @@ Verify Email Field Is Required
     ${required}     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
     Should Not Be Empty                      ${required}
 
-
-
+Verify Password Field Is Required
+    ${required}     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
+    Should Not Be Empty                      ${required}
 
 
 
