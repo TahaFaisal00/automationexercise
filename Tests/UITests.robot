@@ -49,12 +49,18 @@ Quantity Accept Negative Values
     automationexercise_Res.Set And Verify Quantity To Negative Number                       ${PRODUCT.minus_quantity}           ${PRODUCT.minus_quantity}
 
 
-Price Should Not Be Negative When Quantity Invalid
-    [Documentation]       User add item to cart with a negative quantity then check the price in cart. Verify cart show negative prices.
-    [Tags]                bug               ui          negative
-    automationexerciseRes.Login                                                                           ${MAIN USER}
-    automationexerciseRes.Editing the Quantity of an Item to a minus Number and Navigate to Cart          ${MEN TSHIRT}           ${PRODUCT.MinusQuantity}
-    automationexerciseRes.Verify The Total Price Valditiy in Cart                                         ${MEN TSHIRT}
+Price Is Negative When Quantity Is Negative
+    [Documentation]       User adds product to cart with a negative quantity then check the price in cart. Verify cart show negative prices.
+    [Tags]                bug               ui          positive
+    [Setup]         API_RES.Create Account Via API
+    automationexercise_Res.Log In And Verify          ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
+    automationexercise_Res.Navigate To Product Details Page                                 ${ALL_PRODUCTS}           ${MEN_TSHIRT}
+    Set Quantity And Add To Cart                                        ${PRODUCT.minus_quantity}
+    Navigate To Cart
+    Verify Products In Cart
+    Verify Product Quantities In Cart                          ${MEN_TSHIRT}           ${PRODUCT.minus_quantity}
+    Verify Product Total Price In Cart Is Negative                    ${MEN_TSHIRT}
+    [Teardown]      API_RES.Delete Account Via API
 
 Give Product Review
     [Documentation]      Submits a review for a product and verifies the review feature works.
