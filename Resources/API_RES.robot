@@ -46,7 +46,7 @@ Create Account Via API
 
 Delete Account Via API
     [Documentation]     Fixture for [Teardown]. Deletes the newly created account by the test for cleanup
-    &{body}=        Create Dictionary           email=${EMAIL}       password=${PASSWORD}
+    &{body}=        Create Dictionary           email=${TEST_ACCOUNT.email}       password=${TEST_ACCOUNT.password}
     ${response}=        DELETE On Session       ${ALIAS}        ${DELETE_ACCOUNT_API}       data=${body}        expected_status=any
     RETURN        ${response}
 
