@@ -375,7 +375,7 @@ Verify Signup Page Loaded
     ${actual_signup_name}=      Get Text    ${SIGNUP_NAME_SIGNUP_PAGE}
     Should Be Equal As Strings    ${actual_signup_name}    ${user_name}
     ${actual_signup_email}=      Get Text    ${SIGNUP_EMAIL_SIGNUP_PAGE}
-    Should Be Equal As Strings    ${actual_signup_name}    ${email}
+    Should Be Equal As Strings     ${actual_signup_email}    ${email}
 
 Verify Account Created
     Wait Until Page Contains         Account Created!

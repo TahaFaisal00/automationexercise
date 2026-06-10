@@ -52,6 +52,10 @@ Click Signup Button
     Click Element                    ${SIGNUP_BUTTON}
     Wait Until Page Contains         Enter Account Information
 
+Verify Signup Page Loaded
+    Wait Until Page Contains    Enter Account Information
+    Location Should Be          ${SIGNUP_PAGE_URL}
+
 Choose Title
     [Arguments]                      ${title}
     Select Radio Button              title                             ${title}
