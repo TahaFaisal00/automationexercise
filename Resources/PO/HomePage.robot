@@ -18,6 +18,7 @@ ${CONTINUE_BUTTON_AFTER_DELETION}   css=[data-qa='continue-button']
 ${VIEW_CART_BUTTON}                 xpath=//div[@id='cartModal']//a[@href='/view_cart']
 
 ${HOME_URL}                         https://automationexercise.com/
+${CONTINUE_SHOPPING}                xpath=//div[@class='modal-footer']//button[contains(@class,'close-modal')]
 *** Keywords ***
 Verify Home Page Loaded
     Wait Until Element Is Visible    ${AUTOMATION_EXERCISE_LOGO}
