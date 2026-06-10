@@ -24,7 +24,7 @@ Register And Delete Account
     automationexercise_Res.Register New Account                                                            ${TEST_ACCOUNT}
     automationexercise_Res.Delete Account                                                                  ${TEST_ACCOUNT.user_name}
     automationexercise_Res.Verify Login Fails                                                              ${TEST_ACCOUNT}
-    [Teardown]    API_RES.Delete Account Via API                                                          ${TEST_ACCOUNT}
+    [Teardown]    API_RES.Delete Account Via API                                                           ${TEST_ACCOUNT}
 
 Login With Invalid Credential
     [Documentation]       Guest Logging in with multiple Invalid Scenarios including no email, no password and non existing user.Verify Login feature functionality
@@ -44,10 +44,10 @@ Cart Quantity Field Is Not Editable
 
 Quantity Should Not Accept Negative Values
     [Documentation]       User add item to cart with a negative quantity then check quantity in cart. Verify cart accept negative quantity.
-    [Tags]                bug               ui          negative
-    automationexerciseRes.Login                                                                           ${MAIN USER}
-    automationexerciseRes.Editing the Quantity of an Item to a minus Number and Navigate to Cart          ${MEN TSHIRT}           ${PRODUCT.MinusQuantity}
-    automationexerciseRes.Verify Cart Item And Quantity                                                   ${MEN TSHIRT}       ${PRODUCT.MinusExpectedQuantity}
+    [Tags]                bug               ui          positive
+    automationexercise_Res.Navigate To Product Details Page                                 ${ALL_PRODUCTS}           ${MEN_TSHIRT}
+    automationexercise_Res.Set And Verify Quantity To Negative Number                       ${PRODUCT.minus_quantity}           ${PRODUCT.minus_quantity}
+
 
 Price Should Not Be Negative When Quantity Invalid
     [Documentation]       User add item to cart with a negative quantity then check the price in cart. Verify cart show negative prices.
