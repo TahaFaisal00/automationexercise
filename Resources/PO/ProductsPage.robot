@@ -44,7 +44,7 @@ Set Quantity
 Verify Quantity Value
     [Arguments]                       ${expected_quantity}
     ${actual_quantity}=            Get Value                 ${QUANTITY_FIELD}
-    Should Be Equal As Strings    ${actual_quantity}    $${expected_quantity}
+    Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
 
 Write Review
     [Arguments]      ${username}      ${email}       ${review}
