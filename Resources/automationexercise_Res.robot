@@ -296,6 +296,14 @@ Set Quantity And Add To Cart
     ProductsPage.Set Quantity              ${quantity}
     Add Product To Cart From Product Details
 
+Navigate To Cart
+    [Documentation]       Navigates to the shopping cart and verifies the cart page loaded.
+    HomePage.Click Shopping Cart Page Link
+    CartPage.Verify Cart Page Loaded
+
+
+
+
 
 Adding A product to The Cart and Comment on the Order from the Checkout Page
     [Arguments]         ${ProductPath}          ${Comment}
