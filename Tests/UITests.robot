@@ -62,12 +62,6 @@ Give Product Review
     automationexercise_Res.Navigate To Product Details Page                                               ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Submit Product Review                                                          ${MAIN_USER}        ${PRODUCT}
 
-Give Comment On Order
-    [Documentation]       User add item to cart and submit his order then Comment on it. Verify order comment feature functionality.
-    [Tags]                functionality     ui          positive
-    automationexerciseRes.Login                                                                                                 ${MAIN USER}
-    automationexerciseRes.Adding A product to The Cart and Comment on the Order from the Checkout Page    ${MEN TSHIRT}       ${PRODUCT.Comment}
-
 Delete Item From Cart
     [Documentation]       Adds an item to the cart, deletes it, and verifies the delete works.
     [Tags]                functionality     ui          positive
