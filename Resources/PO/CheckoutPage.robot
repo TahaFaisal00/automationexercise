@@ -57,7 +57,11 @@ Verify Address1
     ${actual_address1}=      Get Text     ${address1_locator}
     Should Contain    ${actual_address1}    ${expected_address1}
 
-
+Verify Address2
+    [Arguments]     ${expected_address2}
+    ${address2_locator}=     Format String    ${ADDRESS_AND_COMPANY_LOCATOR}        ${ADDRESS2_LOCATOR_POSITION}
+    ${actual_address2}=      Get Text     ${address2_locator}
+    Should Contain    ${actual_address2}    ${expected_address2}
 
 Verify City
     [Arguments]     ${expected_city}
