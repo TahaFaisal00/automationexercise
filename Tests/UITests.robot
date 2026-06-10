@@ -52,8 +52,7 @@ Quantity Accepts Negative Values
 Price Is Negative When Quantity Is Negative
     [Documentation]       Adds a product to the cart with a negative quantity and verifies the cart shows a negative price. Documents the negative-quantity bug.
     [Tags]                bug               ui          negative
-    [Setup]         API_RES.Create Account Via API
-    automationexercise_Res.Log In And Verify          ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
+    [Setup]         automationexercise_Res.Create Account And Log In
     automationexercise_Res.Navigate To Product Details Page                                 ${ALL_PRODUCTS}           ${MEN_TSHIRT}
     automationexercise_Res.Set Quantity And Add To Cart                                        ${PRODUCT.minus_quantity}
     automationexercise_Res.Navigate To Cart
