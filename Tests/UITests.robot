@@ -42,9 +42,9 @@ Cart Quantity Field Is Not Editable
     automationexercise_Res.Verify Product Quantities In Cart                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
     automationexercise_Res.Editing Quantity Of Product In Cart                    ${MEN_TSHIRT}
 
-Quantity Accept Negative Values
-    [Documentation]       User add item to cart with a negative quantity then check quantity in cart. Verify cart accept negative quantity.
-    [Tags]                bug               ui          positive
+Quantity Accepts Negative Values
+    [Documentation]       Sets a negative quantity on the product details page and verifies the page accepts it. Documents the negative-quantity bug.
+    [Tags]                bug               ui          negative
     automationexercise_Res.Navigate To Product Details Page                                 ${ALL_PRODUCTS}           ${MEN_TSHIRT}
     automationexercise_Res.Set And Verify Quantity To Negative Number                       ${PRODUCT.minus_quantity}           ${PRODUCT.minus_quantity}
 
