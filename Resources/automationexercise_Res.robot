@@ -368,5 +368,35 @@ Verify Account Deleted
     Verify Account Signed out        ${user}
 
 
+Verify Signup Page Loaded
+    [Arguments]                 ${user_name}            ${email}
+    Wait Until Page Contains    Enter Account Information
+    Location Should Be          ${SIGNUP_PAGE_URL}
+    ${actual_signup_name}=      Get Text    ${SIGNUP_NAME_SIGNUP_PAGE}
+    Should Be Equal As Strings    ${actual_signup_name}    ${user_name}
+    ${actual_signup_email}=      Get Text    ${SIGNUP_EMAIL_SIGNUP_PAGE}
+    Should Be Equal As Strings    ${actual_signup_name}    ${email}
+
+Verify Account Created
+    Wait Until Page Contains         Account Created!
+    Location Should Be               ${ACCOUNT_CREATED_URL}
+
+Verify Email Field Is Required
+    ${required}=     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
+    Should Be Equal As Strings                      ${required}          true
+
+Verify Password Field Is Required
+    ${required}=     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
+    Should Be Equal As Strings                      ${required}          true
+
+Verify Invalid Credentials Error
+    Wait Until Page Contains                            Your email or password is incorrect!
+
+
+
+
+
+
+
 
 

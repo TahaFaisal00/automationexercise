@@ -52,15 +52,6 @@ Click Signup Button
     Click Element                    ${SIGNUP_BUTTON}
     Wait Until Page Contains         Enter Account Information
 
-Verify Signup Page Loaded
-    [Arguments]                 ${user_name}            ${email}
-    Wait Until Page Contains    Enter Account Information
-    Location Should Be          ${SIGNUP_PAGE_URL}
-    ${actual_signup_name}=      Get Text    ${SIGNUP_NAME_SIGNUP_PAGE}
-    Should Be Equal As Strings    ${actual_signup_name}    ${user_name}
-    ${actual_signup_email}=      Get Text    ${SIGNUP_EMAIL_SIGNUP_PAGE}
-    Should Be Equal As Strings    ${actual_signup_name}    ${email}
-
 Choose Title
     [Arguments]                      ${title}
     Select Radio Button              title                             ${title}
@@ -130,10 +121,6 @@ Enter Mobile Number
 Click Create Account Button
     Click Element                    ${CREATE_ACCOUNT_BUTTON}
 
-Verify Account Created
-    Wait Until Page Contains         Account Created!
-    Location Should Be               ${ACCOUNT_CREATED_URL}
-
 Click Continue Button After Account Creation
     Click Element                    ${CONTINUE_BUTTON_AFTER_ACCOUNT_CREATION}
 
@@ -148,18 +135,6 @@ Enter Password To Login
 Click Login Button
     Click Element                    ${LOGIN_BUTTON}
 
-
-
-Verify Email Field Is Required
-    ${required}=     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
-    Should Be Equal As Strings                      ${required}          true
-
-Verify Password Field Is Required
-    ${required}=     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
-    Should Be Equal As Strings                      ${required}          true
-
-Verify Invalid Credentials Error
-    Wait Until Page Contains                            Your email or password is incorrect!
 
 
 
