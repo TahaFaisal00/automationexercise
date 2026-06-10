@@ -345,13 +345,13 @@ Create Account And Log In
 
 
 
-
 Handle Ad
     [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
     Sleep    2s
     Run Keyword And Ignore Error    Select Frame    xpath=//*[@id='ad_iframe']
     Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button']
     Run Keyword And Ignore Error    Unselect Frame
+
 
 Verify Account Signed In
     [Arguments]             ${user}
@@ -366,6 +366,7 @@ Verify Account Deleted
     Wait Until Page Contains         Account Deleted!
     Wait Until Page Contains         Your account has been permanently
     Verify Account Signed out        ${user}
+
 
 
 Verify Signup Name And Email
@@ -389,6 +390,64 @@ Verify Password Field Is Required
 
 Verify Invalid Credentials Error
     Wait Until Page Contains                            Your email or password is incorrect!
+
+
+Verify Quantity Value
+    [Arguments]                       ${expected_quantity}
+    ${actual_quantity}=            Get Value                 ${QUANTITY_FIELD}
+    Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
+
+Verify Review Submitted
+    Wait Until Page Contains    Thank you for your review.
+
+Search Result Should Not Contain
+    [Arguments]         @{products}
+    FOR    ${product}    IN    @{products}
+        ${product_location}=     Format String    ${PRODUCT_NAME}    ${product}
+        Wait Until Page Does Not Contain Element    ${product_location}
+    END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

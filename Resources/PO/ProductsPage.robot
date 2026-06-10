@@ -29,7 +29,6 @@ Verify Products Page Loaded
     Wait Until Page Contains    All Products
     Location Should Be         ${PRODUCT_PAGE_URL}
 
-
 Verify Product Details Page Loaded
     [Documentation]     Asserts the product details page shows the expected product name
     [Arguments]             ${product}
@@ -41,10 +40,7 @@ Set Quantity
     [Arguments]                       ${quantity}
     Input Text                        ${QUANTITY_FIELD}           ${quantity}
 
-Verify Quantity Value
-    [Arguments]                       ${expected_quantity}
-    ${actual_quantity}=            Get Value                 ${QUANTITY_FIELD}
-    Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
+
 
 Write Review
     [Arguments]      ${username}      ${email}       ${review}
@@ -55,8 +51,7 @@ Write Review
 Click Submit Review
     Click Element    ${SUBMIT_REVIEW_BUTTON}
 
-Verify Review Submitted
-    Wait Until Page Contains    Thank you for your review.
+
 
 Click Add To Cart Button From Product Details Page
     Click Element    ${ADD_TO_CART_FROM_PRODUCT_DETAILS}
@@ -89,12 +84,6 @@ Search Result Should Contain
     ${product_location}=         Format String    ${PRODUCT_NAME}        ${product}
     Wait Until Page Contains Element    ${product_location}
 
-Search Result Should Not Contain
-    [Arguments]         @{products}
-    FOR    ${product}    IN    @{products}
-        ${product_location}=     Format String    ${PRODUCT_NAME}    ${product}
-        Wait Until Page Does Not Contain Element    ${product_location}
-    END
 
 
 
