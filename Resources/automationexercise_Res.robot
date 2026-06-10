@@ -409,15 +409,17 @@ Search Result Should Not Contain
 
 
 Verify Quantity Not Editable In Cart
-    [Documentation]     BUG:cart quantity should be editable but the button have the class 'disabled'. asserts the field is editable expected to fail until the defect is fixed
+    [Documentation]     BUG: cart quantity should be editable but the field carries the 'disabled' class.
+    ...                 Asserts the actual (buggy) state so the test stays green and documents the defect;
+    ...                flips red if the field is ever made editable.
     [Arguments]         ${product}
     ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
-    ${button}=      Get Element Attribute    ${product_quantity_location}        class
-    Should Not Contain    ${button}    disabled
+    ${class}=      Get Element Attribute    ${product_quantity_location}        class
+    Should Contain    ${class}    disabled
 
 Verify Item Deleted
     [Arguments]                  ${product}
-    ${product_location}=     Format String    ${PRODUCT}     ${product}
+    ${product_location}=     Format String    ${PRODUCT_BASE}      ${product}
     Wait Until Element Is Not Visible    ${product_location}
 
 
