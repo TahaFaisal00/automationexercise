@@ -30,12 +30,15 @@ Click On Quantity Of Item
     ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
     Click Element    ${product_quantity_location}
 
-Verify Total Price In Cart Not Negative
-    [Documentation]         After Adding a Negative Amount from the 'Product Page'
+Verify Product Total Price In Cart Is Negative
+    [Documentation]         Verifies the product's total line price in the cart is negative — documents the negative-quantity bug.
     [Arguments]                       ${product}
     ${product_total_price_location}=      Format String    ${PRODUCT_TOTAL_PRICE}       ${product}
-    ${total}=       Get Text    ${product_total_price_location}
-    Should Not Contain    ${total}    -
+    ${product_total_price}=       Get Text    ${product_total_price_location}
+    ${product_clean_price}=     Replace String    ${product_total_price}    Rs.    ${EMPTY}
+    ${number}=      Convert To Number    ${product_clean_price}
+    Should Be True    ${number} < 0
+
 
 Click Delete Item Button
     [Arguments]                  ${product}
