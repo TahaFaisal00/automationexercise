@@ -303,8 +303,6 @@ Navigate To Cart
 
 
 
-
-
 Adding A product to The Cart and Comment on the Order from the Checkout Page
     [Arguments]         ${ProductPath}          ${Comment}
     Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
@@ -313,9 +311,7 @@ Adding A product to The Cart and Comment on the Order from the Checkout Page
     CheckoutPage.Add a Comment About your Order             ${Comment}
 
 
-Verify The Total Price Valditiy in Cart
-    [Arguments]                       ${Productpath}
-    CartPage.Total Price Shouldn't be Negative          ${Productpath}
+
 
 Complete Placing Order
     [Arguments]            ${User}       ${ProductPath}        ${Numbers}
