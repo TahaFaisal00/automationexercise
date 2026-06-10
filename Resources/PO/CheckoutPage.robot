@@ -18,6 +18,7 @@ ${COMPANY_LOCATOR_POSITION}         1
 ${ADDRESS1_LOCATOR_POSITION}        2
 ${ADDRESS2_LOCATOR_POSITION}        3
 
+${CITY_AND_STATE_AND_ZIPCODE_CLASS}     address_state_name
 *** Keywords ***
 Verify Checkout Page Loaded
     Wait Until Page Contains    Checkout
