@@ -53,8 +53,11 @@ Verify First Name
 
 
 
-
-
+Verify State
+    [Arguments]     ${expected_state}
+    ${state_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
+    ${actual_state}=      Get Text     ${state_locator}
+    Should Contain    ${actual_state}    ${expected_state}
 
 Verify Zipcode
     [Arguments]     ${expected_zipcode}
