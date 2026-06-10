@@ -29,7 +29,7 @@ Verify First Name
     ${actual_full_name}=       Get Text    ${FULL_NAME_LOCATOR}
     Should Contain    ${actual_full_name}    ${expected_first_name}
 
-Verify First Name
+Verify Last Name
     [Arguments]     ${expected_last_name}
     ${actual_last_name}=       Get Text    ${FULL_NAME_LOCATOR}
     Should Contain    ${actual_last_name}    ${expected_last_name}
@@ -81,26 +81,6 @@ Verify Mobile Number
     ${mobile_phone_locator}=        Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${MOBILE_PHONE_LOCATOR_CLASS}
     ${actual_mobile_number}=        Get Text    ${mobile_phone_locator}
     Should Contain    ${actual_mobile_number}    ${expected_mobile_number}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Add Order Comment
     [Arguments]            ${comment}
