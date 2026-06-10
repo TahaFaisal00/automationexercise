@@ -39,7 +39,10 @@ Verify First Name
     ${full_name}=       Get Text    ${FULL_NAME_LOCATOR}
     Should Contain    ${full_name}    ${first_name}
 
-
+Verify First Name
+    [Arguments]     ${last_name}
+    ${full_name}=       Get Text    ${FULL_NAME_LOCATOR}
+    Should Contain    ${full_name}    ${last_name}
 
 
 
