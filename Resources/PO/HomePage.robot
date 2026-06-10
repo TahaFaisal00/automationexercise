@@ -50,8 +50,9 @@ Verify Product Added To Cart
     Wait Until Page Contains          Your product has been added to cart
 
 Click Continue Shopping Button
+    Wait Until Element Is Visible    ${CONTINUE_SHOPPING}
     Click Element    ${CONTINUE_SHOPPING}
-
+    
 
 
 
