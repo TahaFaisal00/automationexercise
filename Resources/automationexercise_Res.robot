@@ -317,17 +317,21 @@ Comment On Order In Checkout Page And Navigate To Payment
     CheckoutPage.Click Place Order Button
     PaymentPage.Verify Payment Page Loaded
 
+Enter Credit Card Details
+    [Documentation]     Generates throwaway credit card details and enters them on the payment page.
+    ${name_on_card}=        FakerLibrary.Name Male
+    ${card_number}=         FakerLibrary.Credit Card Number
+    ${cvc}=                 FakerLibrary.Credit Card Security Code
+    ${expiry_month}=        FakerLibrary.Month
+    ${expiry_year}=         FakerLibrary.Year
+    VAR     &{TEST_CARD}        name_on_card=${name_on_card}       card_number=${card_number}
+    ...              cvc=${cvc}        expiry_month=${expiry_month}       expiry_year=${expiry_year}
 
-
-
-
-Entering Credit Card Details
-    [Arguments]                          ${CARD}
-    Payment.Enter Name on Card                   ${CARD.Name}
-    Payment.Enter Card Number                    ${CARD.CardNumber}
-    Payment.Enter CVC                            ${CARD.CVC}
-    Payment.Enter Expiration Month               ${CARD.ExpirationDatemonth}
-    Payment.Enter Expiration Year                ${CARD.ExpirationDateYear}
+    PaymentPage.Enter Name On Card              ${TEST_CARD. name_on_card}
+    PaymentPage.Enter Card Number               ${TEST_CARD.card_number}
+    PaymentPage.Enter CVC                       ${TEST_CARD.cvc}
+    PaymentPage.Enter Expiry Month              ${TEST_CARD.expiry_month}
+    PaymentPage.Enter Expiry Year               ${TEST_CARD.expiry_year}
 
 Complete payment and Confirm Order
     [Arguments]                             ${CARD}
