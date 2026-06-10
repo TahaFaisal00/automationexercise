@@ -42,7 +42,7 @@ Cart Quantity Field Is Not Editable
     automationexercise_Res.Verify Product Quantities In Cart                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
     automationexercise_Res.Editing Quantity Of Product In Cart                    ${MEN_TSHIRT}
 
-Quantity Should Not Accept Negative Values
+Quantity Accept Negative Values
     [Documentation]       User add item to cart with a negative quantity then check quantity in cart. Verify cart accept negative quantity.
     [Tags]                bug               ui          positive
     automationexercise_Res.Navigate To Product Details Page                                 ${ALL_PRODUCTS}           ${MEN_TSHIRT}
