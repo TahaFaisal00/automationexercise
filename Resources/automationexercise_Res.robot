@@ -202,6 +202,7 @@ Add Product To Cart And Continue Shopping
     ProductsPage.Verify All Products Visible            @{products}
     HomePage.Add Item To Cart From Products Page         ${product}
     HomePage.Verify Product Added To Cart
+    HomePage.Click Continue Shopping Button
 
 Verify Products In Cart
     [Documentation]     Check if the given products exist in cart after adding them
