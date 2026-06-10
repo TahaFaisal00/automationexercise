@@ -286,13 +286,12 @@ Add a Product to Cart from Product Details
     HomePage.Verify Product Added to Cart
 
 
-Editing the Quantity of an Item to a minus Number and Navigate to Cart
-    [Arguments]                      ${ProductPath}            ${MinusQuantity}
-    HomePage.View a Product Details         ${ProductPath}
-    ProductsPage.Editing the Quantity              ${MinusQuantity}
-    Add a Product to Cart from Product Details
-    ProductsPage.Click View Cart Button after Adding an Item
-    CartPage.Verify Shopping Cart Page is Loaded
+Set And Verify Quantity To Negative Number
+    [Documentation]     Edits the quantity of product on the product details page to a negative quantity and verifies it.
+    [Arguments]         ${quantity}     ${expected_quantity}
+    ProductsPage.Set Quantity              ${quantity}
+    ProductsPage.Verify Quantity Value      ${expected_quantity}
+
 
 
 Adding A product to The Cart and Comment on the Order from the Checkout Page
