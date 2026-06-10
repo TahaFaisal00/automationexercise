@@ -265,19 +265,19 @@ Navigate To Checkout Page From Cart
     CartPage.Click Proceed To Checkout Button
     CheckoutPage.Verify Checkout Page Loaded
 
-
-Verify Delivery And Billing Address Details
-    [Documentation]         Checks all the address details of the user in checkout page
-    [Arguments]                 ${details}
-    Wait Until Page Contains    Address Details
-    Wait Until Page Contains    Your delivery address
-    Wait Until Page Contains    ${details.first_name}
-    Wait Until Page Contains    ${details.company}
-    Wait Until Page Contains    ${details.address1}
-    Wait Until Page Contains    ${details.address2}
-    Wait Until Page Contains    ${details.state}
-    Wait Until Page Contains    ${details.mobile_number}
-
+Verify Delivery Address Details
+    [Documentation]         Verifies all delivery address fields on the checkout page against the account data.
+    [Arguments]                 ${account}
+    Verify First Name           ${account.first_name}
+    Verify Last Name            ${account.last_name}
+    Verify Company              ${account.company}
+    Verify Address1             ${account.address1}
+    Verify Address2             ${account.address2}
+    Verify City                 ${account.city}
+    Verify State                ${account.state}
+    Verify Zipcode              ${account.zipcode}
+    Verify Country              ${account.country}
+    Verify Mobile Number        ${account.mobile_number}
 
 
 
