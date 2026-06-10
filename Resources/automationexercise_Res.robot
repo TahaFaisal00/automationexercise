@@ -353,9 +353,19 @@ Handle Ad
     Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button']
     Run Keyword And Ignore Error    Unselect Frame
 
+Verify Account Signed In
+    [Arguments]             ${user}
+    Wait Until Page Contains         Logged in as ${user}
 
+Verify Account Signed Out
+    [Arguments]             ${user}
+    Wait Until Page Does Not Contain         Logged in as ${user}
 
-
+Verify Account Deleted
+    [Arguments]             ${user}
+    Wait Until Page Contains         Account Deleted!
+    Wait Until Page Contains         Your account has been permanently
+    Verify Account Signed out        ${user}
 
 
 

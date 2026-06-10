@@ -28,16 +28,8 @@ Click Signup And Login Page Link
     Click Link                       ${SIGNUP_AND_LOGIN_PAGE}
     Wait Until Page Contains         New User Signup!
 
-Verify Account Signed In
-    [Arguments]             ${user}
-    Wait Until Page Contains         Logged in as ${user}
-
 Click Logout Link
     Click Link                       ${LOGOUT_BUTTON}
-
-Verify Account Signed Out
-    [Arguments]             ${user}
-    Wait Until Page Does Not Contain         Logged in as ${user}
 
 Add Item To Cart From Products Page
     [Arguments]                             ${product}
@@ -53,9 +45,6 @@ Verify Product Added To Cart
 Click Continue Shopping Button
     Wait Until Element Is Visible    ${CONTINUE_SHOPPING}
     Click Element    ${CONTINUE_SHOPPING}
-    
-
-
 
 View Product Details
     [Arguments]         ${product}
@@ -74,12 +63,6 @@ Click Shopping Cart Page Link
 Click Delete Account Link
     Click Link                  ${DELETE_ACCOUNT_BUTTON}
     Wait Until Page Contains    Account Deleted!
-
-Verify Account Deleted
-    [Arguments]             ${user}
-    Wait Until Page Contains         Account Deleted!
-    Wait Until Page Contains         Your account has been permanently
-    Verify Account Signed out        ${user}
 
 Click Continue After Account Deletion
     Click Link        ${CONTINUE_BUTTON_AFTER_DELETION}
