@@ -301,7 +301,14 @@ Navigate To Cart
     HomePage.Click Shopping Cart Page Link
     CartPage.Verify Cart Page Loaded
 
-
+Verify Product Total Price In Cart Is Negative
+    [Documentation]         Verifies the product's total line price in the cart is negative — documents the negative-quantity bug.
+    [Arguments]                       ${product}
+    ${product_total_price_location}=      Format String    ${PRODUCT_TOTAL_PRICE}       ${product}
+    ${product_total_price}=       Get Text    ${product_total_price_location}
+    ${product_clean_price}=     Replace String    ${product_total_price}    Rs.    ${EMPTY}
+    ${number}=      Convert To Number    ${product_clean_price}
+    Should Be True    ${number} < 0
 
 Adding A product to The Cart and Comment on the Order from the Checkout Page
     [Arguments]         ${ProductPath}          ${Comment}
