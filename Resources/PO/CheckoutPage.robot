@@ -50,8 +50,11 @@ Verify First Name
 
 
 
-
-
+Verify City
+    [Arguments]     ${expected_city}
+    ${city_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
+    ${actual_city}=      Get Text     ${city_locator}
+    Should Contain    ${actual_city}    ${expected_city}
 
 Verify State
     [Arguments]     ${expected_state}
