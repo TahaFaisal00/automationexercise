@@ -51,6 +51,11 @@ Verify Company
     ${actual_company}=      Get Text     ${company_locator}
     Should Contain    ${actual_company}    ${expected_company}
 
+Verify Address1
+    [Arguments]     ${expected_address1}
+    ${address1_locator}=     Format String    ${ADDRESS_AND_COMPANY_LOCATOR}        ${COMPANY_LOCATOR_POSITION}
+    ${actual_address1}=      Get Text     ${address1_locator}
+    Should Contain    ${actual_address1}    ${expected_address1}
 
 
 
