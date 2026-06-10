@@ -34,13 +34,11 @@ Verify Product Details Page Loaded
     [Arguments]             ${product}
     Wait Until Element Is Visible    ${PRODUCT_NAME_HEADING}
     ${actual_product_name}=     Get Text    ${PRODUCT_NAME_HEADING}
-    Should Be Equal As Strings    ${actual_product_name}    ${product_name}
+    Should Be Equal As Strings    ${actual_product_name}    ${product}
 
 Set Quantity
     [Arguments]                       ${quantity}
     Input Text                        ${QUANTITY_FIELD}           ${quantity}
-
-
 
 Write Review
     [Arguments]      ${username}      ${email}       ${review}
@@ -50,8 +48,6 @@ Write Review
 
 Click Submit Review
     Click Element    ${SUBMIT_REVIEW_BUTTON}
-
-
 
 Click Add To Cart Button From Product Details Page
     Click Element    ${ADD_TO_CART_FROM_PRODUCT_DETAILS}
