@@ -50,7 +50,11 @@ Verify Country
     ${actual_country}=      Get Text    ${country_locator}
     Should Contain    ${actual_country}    ${expected_country}
 
-
+Verify Mobile number
+    [Arguments]            ${expected_mobile_number}
+    ${mobile_phone_locator}=        Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${MOBILE_PHONE_LOCATOR_CLASS}
+    ${actual_mobile_number}=        Get Text    ${mobile_phone_locator}
+    Should Contain    ${actual_mobile_number}    ${expected_mobile_number}
 
 
 
