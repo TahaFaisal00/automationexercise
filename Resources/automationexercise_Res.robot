@@ -310,12 +310,12 @@ Verify Product Total Price In Cart Is Negative
     ${number}=      Convert To Number    ${product_clean_price}
     Should Be True    ${number} < 0
 
-Adding A product to The Cart and Comment on the Order from the Checkout Page
-    [Arguments]         ${ProductPath}          ${Comment}
-    Adding a Product to the Cart from Products Page and Enter Cart          ${ProductPath}
-    CartPage.Click Proceed to Checkout Button
-    CheckoutPage.Verify Checkout Page Loaded
-    CheckoutPage.Add a Comment About your Order             ${Comment}
+Comment On Order In Checkout Page And Navigate To Payment
+    [Documentation]     Writes a comment on the order on the checkout page, proceeds to payment, and verifies the payment page loaded.
+    [Arguments]         ${comment}
+    CheckoutPage.Add Order Comment               ${comment}
+    CheckoutPage.Click Place Order Button
+    PaymentPage.Verify Payment Page Loaded
 
 
 
