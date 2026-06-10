@@ -40,16 +40,15 @@ Verify First Name
     Should Contain    ${full_name}    ${first_name}
 
 Verify First Name
-    [Arguments]     ${last_name}
-    ${full_name}=       Get Text    ${FULL_NAME_LOCATOR}
-    Should Contain    ${full_name}    ${last_name}
+    [Arguments]     ${expected_last_name}
+    ${actual_last_name}=       Get Text    ${FULL_NAME_LOCATOR}
+    Should Contain    ${actual_last_name}    ${expected_last_name}
 
 Verify Country
     [Arguments]     ${expected_country}
     ${country_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${COUNTRY_LOCATOR_CLASS}
     ${actual_country}=      Get Text    ${country_locator}
     Should Contain    ${actual_country}    ${expected_country}
-
 
 
 
