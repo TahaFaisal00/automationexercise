@@ -35,9 +35,9 @@ Verify Delivery And Billing Address Details
     Wait Until Page Contains    ${details.mobile_number}
 
 Verify First Name
-    [Arguments]     ${first_name}
-    ${full_name}=       Get Text    ${FULL_NAME_LOCATOR}
-    Should Contain    ${full_name}    ${first_name}
+    [Arguments]     ${expected_first_name}
+    ${actual_full_name}=       Get Text    ${FULL_NAME_LOCATOR}
+    Should Contain    ${actual_full_name}    ${expected_first_name}
 
 Verify First Name
     [Arguments]     ${expected_last_name}
