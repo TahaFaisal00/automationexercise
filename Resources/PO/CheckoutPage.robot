@@ -45,6 +45,23 @@ Verify First Name
     ${actual_last_name}=       Get Text    ${FULL_NAME_LOCATOR}
     Should Contain    ${actual_last_name}    ${expected_last_name}
 
+
+
+
+
+
+
+
+
+
+
+
+Verify Zipcode
+    [Arguments]     ${expected_zipcode}
+    ${zipcode_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
+    ${actual_zipcode}=      Get Text     ${zipcode_locator}
+    Should Contain    ${actual_zipcode}    ${expected_zipcode}
+
 Verify Country
     [Arguments]     ${expected_country}
     ${country_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${COUNTRY_LOCATOR_CLASS}
