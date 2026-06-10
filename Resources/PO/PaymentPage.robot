@@ -42,8 +42,9 @@ Enter Expiry Year
     Input Text            ${EXPIRY_YEAR_FIELD}    ${year}
 
 Click Pay And Confirm Order Button
-    Click Element          ${CONFIRM_ORDER_BUTTON}
-    Wait Until Page Contains    Your order has been placed successfully!
+    Wait Until Element Is Visible    ${CONFIRM_ORDER_BUTTON}
+    Click Element                    ${CONFIRM_ORDER_BUTTON}
+
 
 Verify Order Submitted
     Wait Until Element Is Visible    ${ORDER_PLACED_HEADER}
