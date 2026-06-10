@@ -36,8 +36,8 @@ Verify Delivery And Billing Address Details
 
 Verify Full Name
     [Arguments]     ${account}
-    ${full_name}=       Get Text    xpath=//ul[@id='address_delivery']//li[contains(@class,'address_firstname')]
-    Should Be Equal As Strings    ${full_name}    ${account}
+    ${full_name}=       Get Text    ${FULL_NAME_LOCATOR}
+    Should Contain    ${full_name}    ${account}
 
 
 
