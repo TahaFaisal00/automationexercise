@@ -290,7 +290,11 @@ Add Product To Cart From Product Details
     ProductsPage.Click Add To Cart Button From Product Details Page
     HomePage.Verify Product Added To Cart
 
-
+Set Quantity And Add To Cart
+    [Documentation]     Sets the quantity on the product details page, then adds the product to the cart and verifies it was added.
+    [Arguments]     ${quantity}
+    ProductsPage.Set Quantity              ${quantity}
+    Add Product To Cart From Product Details
 
 
 Adding A product to The Cart and Comment on the Order from the Checkout Page
