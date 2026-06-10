@@ -9,7 +9,7 @@ Resource        PO/Signup_LoginPage.robot
 Resource        PO/ProductsPage.robot
 Resource        PO/CartPage.robot
 Resource        PO/CheckoutPage.robot
-Resource        PO/Payment.robot
+Resource        PO/PaymentPage.robot
 
 *** Keywords ***
 Setup Account Test
@@ -320,12 +320,6 @@ Comment On Order In Checkout Page And Navigate To Payment
 
 
 
-Complete Placing Order
-    [Arguments]            ${User}       ${ProductPath}        ${Numbers}
-    CheckoutPage.Verify Checkout Page Loaded
-    CheckoutPage.Verify Delivery and Billing Address Details         ${User}
-    Verify Cart Item And Quantity           ${ProductPath}        ${Numbers}
-    CheckoutPage.Click Place Order Button
 
 Entering Credit Card Details
     [Arguments]                          ${CARD}
