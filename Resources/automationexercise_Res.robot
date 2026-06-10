@@ -419,7 +419,7 @@ Verify Quantity Not Editable In Cart
 
 Verify Item Deleted
     [Arguments]                  ${product}
-    ${product_location}=     Format String    ${PRODUCT_BASE}      ${product}
+    ${product_location}=     Format String   ${CART_PRODUCT_LOCATOR}      ${product}
     Wait Until Element Is Not Visible    ${product_location}
 
 
