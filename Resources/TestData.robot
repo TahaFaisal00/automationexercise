@@ -13,7 +13,7 @@ ${LOGIN_URL}                 https://automationexercise.com/login
 
 &{CREDIT_CARD}               name=TAHA MOE EOM       card_number=8709 9213 1245 2810            cvc=720        expiration_date_month=3     expiration_date_year=2029
 
-&{PRODUCT}                   base_quantity=1             edited_quantity=2       minus_quantity=-5    edited_expected_quantity=2            minus_expected_quantity=1          review=This is a Good Quality T-Shirt           comment=Test comment
+&{PRODUCT}                   base_quantity=1             edited_quantity=2       minus_quantity=-5              minus_expected_quantity=1          review=This is a Good Quality T-Shirt           comment=Test comment
 
 ${MEN_TSHIRT}                       Men Tshirt
 ${LACE_TOP_FOR_WOMEN}               Lace Top For Women
