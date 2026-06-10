@@ -333,11 +333,11 @@ Enter Credit Card Details
     PaymentPage.Enter Expiry Month              ${TEST_CARD.expiry_month}
     PaymentPage.Enter Expiry Year               ${TEST_CARD.expiry_year}
 
-Complete payment and Confirm Order
-    [Arguments]                             ${CARD}
-    Entering Credit Card Details            ${CARD}
-    Payment.Click Pay and Confirm Order Button
-    Payment.Verify that Order was Submitted
+Complete Payment And Confirm Order
+    [Documentation]     Pays and confirms the order, verifies it was placed.
+    PaymentPage.Click Pay And Confirm Order Button
+    PaymentPage.Verify Order Submitted
+
 
 
 Handle Ad
