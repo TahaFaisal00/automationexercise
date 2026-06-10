@@ -268,16 +268,16 @@ Navigate To Checkout Page From Cart
 Verify Delivery Address Details
     [Documentation]         Verifies all delivery address fields on the checkout page against the account data.
     [Arguments]                 ${account}
-    Verify First Name           ${account.first_name}
-    Verify Last Name            ${account.last_name}
-    Verify Company              ${account.company}
-    Verify Address1             ${account.address1}
-    Verify Address2             ${account.address2}
-    Verify City                 ${account.city}
-    Verify State                ${account.state}
-    Verify Zipcode              ${account.zipcode}
-    Verify Country              ${account.country}
-    Verify Mobile Number        ${account.mobile_number}
+    CheckoutPage.Verify First Name           ${account.first_name}
+    CheckoutPage.Verify Last Name            ${account.last_name}
+    CheckoutPage.Verify Company              ${account.company}
+    CheckoutPage.Verify Address1             ${account.address1}
+    CheckoutPage.Verify Address2             ${account.address2}
+    CheckoutPage.Verify City                 ${account.city}
+    CheckoutPage.Verify State                ${account.state}
+    CheckoutPage.Verify Zipcode              ${account.zipcode}
+    CheckoutPage.Verify Country              ${account.country}
+    CheckoutPage.Verify Mobile Number        ${account.mobile_number}
 
 
 
