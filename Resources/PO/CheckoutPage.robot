@@ -1,6 +1,6 @@
 *** Settings ***
 Library         SeleniumLibrary
-
+Library         String
 *** Variables ***
 ${COMMENT_FIELD}            name=message
 ${PLACE_ORDER_BUTTON}       xpath=//a[@href='/payment']
@@ -17,10 +17,6 @@ ${ADDRESS_AND_COMPANY_LOCATOR}      ${FULL_NAME_LOCATOR}/following-sibling::li[{
 ${COMPANY_LOCATOR_POSITION}         1
 ${ADDRESS1_LOCATOR_POSITION}        2
 ${ADDRESS2_LOCATOR_POSITION}        3
-
-
-
-
 
 *** Keywords ***
 Verify Checkout Page Loaded
