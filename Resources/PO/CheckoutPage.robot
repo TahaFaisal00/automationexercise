@@ -34,10 +34,10 @@ Verify Delivery And Billing Address Details
     Wait Until Page Contains    ${details.state}
     Wait Until Page Contains    ${details.mobile_number}
 
-Verify Full Name
-    [Arguments]     ${account}
+Verify First Name
+    [Arguments]     ${first_name}
     ${full_name}=       Get Text    ${FULL_NAME_LOCATOR}
-    Should Contain    ${full_name}    ${account}
+    Should Contain    ${full_name}    ${first_name}
 
 
 
