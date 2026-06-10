@@ -193,8 +193,7 @@ Add Product To Cart And Open Cart
     ProductsPage.Verify All Products Visible            @{products}
     HomePage.Add Item To Cart From Products Page         ${product}
     HomePage.Verify Product Added To Cart
-    HomePage.Click Shopping Cart Page Link
-    CartPage.Verify Cart Page Loaded
+    Navigate To Cart
 
 Add Product To Cart And Continue Shopping
     [Documentation]     Adds a specific product to shopping cart
