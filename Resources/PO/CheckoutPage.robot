@@ -45,7 +45,11 @@ Verify First Name
     ${actual_last_name}=       Get Text    ${FULL_NAME_LOCATOR}
     Should Contain    ${actual_last_name}    ${expected_last_name}
 
-
+Verify Company
+    [Arguments]     ${expected_company}
+    ${company_locator}=     Format String    ${ADDRESS_AND_COMPANY_LOCATOR}        ${COMPANY_LOCATOR_POSITION}
+    ${actual_company}=      Get Text     ${company_locator}
+    Should Contain    ${actual_company}    ${expected_company}
 
 
 
