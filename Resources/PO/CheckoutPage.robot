@@ -38,19 +38,19 @@ Verify Company
     [Arguments]     ${expected_company}
     ${company_locator}=     Format String    ${ADDRESS_AND_COMPANY_LOCATOR}        ${COMPANY_LOCATOR_POSITION}
     ${actual_company}=      Get Text     ${company_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_company}    ${expected_company}
+    Run Keyword And Continue On Failure     Should Be Equal As Strings    ${actual_company}    ${expected_company}
 
 Verify Address1
     [Arguments]     ${expected_address1}
     ${address1_locator}=     Format String    ${ADDRESS_AND_COMPANY_LOCATOR}        ${ADDRESS1_LOCATOR_POSITION}
     ${actual_address1}=      Get Text     ${address1_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_address1}    ${expected_address1}
+    Run Keyword And Continue On Failure     Should Be Equal As Strings    ${actual_address1}    ${expected_address1}
 
 Verify Address2
     [Arguments]     ${expected_address2}
     ${address2_locator}=     Format String    ${ADDRESS_AND_COMPANY_LOCATOR}        ${ADDRESS2_LOCATOR_POSITION}
     ${actual_address2}=      Get Text     ${address2_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_address2}    ${expected_address2}
+    Run Keyword And Continue On Failure     Should Be Equal As Strings    ${actual_address2}    ${expected_address2}
 
 Verify City
     [Arguments]     ${expected_city}
@@ -74,7 +74,7 @@ Verify Country
     [Arguments]     ${expected_country}
     ${country_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${COUNTRY_LOCATOR_CLASS}
     ${actual_country}=      Get Text    ${country_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_country}    ${expected_country}
+    Run Keyword And Continue On Failure     Should Be Equal As Strings    ${actual_country}    ${expected_country}
 
 Verify Mobile Number
     [Arguments]            ${expected_mobile_number}
