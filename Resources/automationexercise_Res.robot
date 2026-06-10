@@ -279,18 +279,17 @@ Verify Delivery Address Details
     CheckoutPage.Verify Country              ${account.country}
     CheckoutPage.Verify Mobile Number        ${account.mobile_number}
 
-
-
-Add a Product to Cart from Product Details
-    ProductsPage.Click Add to cart Button from Product Details Page
-    HomePage.Verify Product Added to Cart
-
-
 Set And Verify Quantity To Negative Number
     [Documentation]     Edits the quantity of product on the product details page to a negative quantity and verifies it.
     [Arguments]         ${quantity}     ${expected_quantity}
     ProductsPage.Set Quantity              ${quantity}
     ProductsPage.Verify Quantity Value      ${expected_quantity}
+
+Add Product To Cart From Product Details
+    [Documentation]     Adds the product on the product details page to the cart and verifies it was added.
+    ProductsPage.Click Add To Cart Button From Product Details Page
+    HomePage.Verify Product Added To Cart
+
 
 
 
