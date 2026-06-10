@@ -338,6 +338,12 @@ Complete Payment And Confirm Order
     PaymentPage.Click Pay And Confirm Order Button
     PaymentPage.Verify Order Submitted
 
+Create Account And Log In
+    [Documentation]     Setup fixture. Creates an account via API, then logs in with the generated credentials.
+    API_RES.Create Account Via API
+    Log In And Verify    ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
+
+
 
 
 Handle Ad
