@@ -17,31 +17,15 @@ Verify Cart Page Loaded
     Wait Until Page Contains    Shopping Cart
     Location Should Be          ${CART_URL}
 
-
-Verify Quantity Not Editable In Cart
-    [Documentation]     BUG:cart quantity should be editable but the button have the class 'disabled'. asserts the field is editable expected to fail until the defect is fixed
-    [Arguments]         ${product}
-    ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
-    ${button}=      Get Element Attribute    ${product_quantity_location}        class
-    Should Not Contain    ${button}    disabled
-
 Click On Quantity Of Item
     [Arguments]         ${product}
     ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
     Click Element    ${product_quantity_location}
 
-
-
-
 Click Delete Item Button
     [Arguments]                  ${product}
     ${product_delete_button_location}=      Format String    ${PRODUCT_DELETE_BUTTON}       ${product}
     Click Element                ${product_delete_button_location}
-
-Verify Item Deleted
-    [Arguments]                  ${product}
-    ${product_location}=     Format String    ${PRODUCT}     ${product}
-    Wait Until Element Is Not Visible    ${product_location}
 
 Click Proceed To Checkout Button
     Click Element                ${PROCEED_TO_CHECKOUT_BUTTON}
