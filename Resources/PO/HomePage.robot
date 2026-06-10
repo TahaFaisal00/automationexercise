@@ -49,6 +49,12 @@ Add Item To Cart From Products Page
 Verify Product Added To Cart
     Wait Until Page Contains          Your product has been added to cart
 
+Click Continue Shopping Button
+    Click Element    ${CONTINUE_SHOPPING}
+
+
+
+
 View Product Details
     [Arguments]         ${product}
     ${view_details}=     Format String    ${VIEW_DETAILS_LINK}      ${product}
