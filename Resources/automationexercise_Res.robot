@@ -157,9 +157,9 @@ Search Products And Verify Results
 
 Choose Category And Verify Results
     [Documentation]     Filters the products page with category and verifies the expected products appear while the others don't.
-    [Arguments]             ${all_products}     ${menu}    ${category}        ${expected_product}         @{unexpected_products}
+    [Arguments]             ${all_products}     ${menu}    ${category}    ${category_page}    ${expected_product}         @{unexpected_products}
     Enter Products Page And Checks Products         @{all_products}
-    ProductsPage.Choose Category From Category Menu     ${menu}    ${category}
+    ProductsPage.Choose Category From Category Menu     ${menu}    ${category}      ${category_page}
     Verify Search Results                   ${expected_product}         @{unexpected_products}
 
 Choose Brand Filter And Verify Results
