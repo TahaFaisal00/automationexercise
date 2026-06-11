@@ -4,6 +4,7 @@ Library             SeleniumLibrary
 Resource            ../../Resources/Common.robot
 Resource            ../../Resources/TestData.robot
 Resource            ../../Resources/automationexercise_Res.robot
+Resource            ../../Resources/API_RES.robot
 
 Suite Setup         Common.Launch Browser
 Suite Teardown      Common.Shutdown Browser
@@ -29,3 +30,4 @@ Registered User Completes Purchase
     Enter Credit Card Details
     Complete Payment And Confirm Order
     Verify Order Submitted
+    [Teardown]      API_RES.Delete Account Via API
