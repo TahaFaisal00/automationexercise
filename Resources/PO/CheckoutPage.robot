@@ -24,6 +24,15 @@ Verify Checkout Page Loaded
     Wait Until Page Contains    Checkout
     Location Should Be    ${CHECKOUT_URL}
 
+Get Delivery Full Name
+    ${full_name}=    Get Text    ${FULL_NAME_LOCATOR}
+    RETURN    ${full_name}
+
+Get Delivery City State Zipcode
+    ${locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
+    ${text}=        Get Text    ${locator}
+    RETURN      ${text}
+
 Add Order Comment
     [Arguments]            ${comment}
     Input Text    ${COMMENT_FIELD}    ${comment}

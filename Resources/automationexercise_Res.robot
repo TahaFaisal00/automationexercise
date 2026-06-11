@@ -442,12 +442,12 @@ Verify Item Deleted
 
 Verify First Name
     [Arguments]     ${expected_first_name}
-    ${actual_full_name}=       Get Text    ${FULL_NAME_LOCATOR}
+    ${actual_full_name}=       CheckoutPage.Get Delivery Full Name
     Run Keyword And Continue On Failure     Should Contain    ${actual_full_name}    ${expected_first_name}
 
 Verify Last Name
     [Arguments]     ${expected_last_name}
-    ${actual_last_name}=       Get Text    ${FULL_NAME_LOCATOR}
+    ${actual_last_name}=       CheckoutPage.Get Delivery Full Name
     Run Keyword And Continue On Failure     Should Contain    ${actual_last_name}    ${expected_last_name}
 
 Verify Company
@@ -470,21 +470,18 @@ Verify Address2
 
 Verify City
     [Arguments]     ${expected_city}
-    ${city_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
-    ${actual_city}=      Get Text     ${city_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_city}    ${expected_city}
+    ${expected_city_state_zipcode}=         Get Delivery City State Zipcode
+    Run Keyword And Continue On Failure     Should Contain    ${expected_city_state_zipcode}    ${expected_city}
 
 Verify State
     [Arguments]     ${expected_state}
-    ${state_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
-    ${actual_state}=      Get Text     ${state_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_state}    ${expected_state}
+    ${expected_city_state_zipcode}=        Get Delivery City State Zipcode
+    Run Keyword And Continue On Failure     Should Contain    ${expected_city_state_zipcode}}    ${expected_state}
 
 Verify Zipcode
     [Arguments]     ${expected_zipcode}
-    ${zipcode_locator}=     Format String    ${ADDRESS_DELIVERY_DETAILS_LOCATOR}        ${CITY_AND_STATE_AND_ZIPCODE_CLASS}
-    ${actual_zipcode}=      Get Text     ${zipcode_locator}
-    Run Keyword And Continue On Failure     Should Contain    ${actual_zipcode}    ${expected_zipcode}
+    ${expected_city_state_zipcode}=     Get Delivery City State Zipcode
+    Run Keyword And Continue On Failure     Should Contain    ${expected_city_state_zipcode}    ${expected_zipcode}
 
 Verify Country
     [Arguments]     ${expected_country}
