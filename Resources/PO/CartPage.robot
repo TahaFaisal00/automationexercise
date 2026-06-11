@@ -40,7 +40,7 @@ Click Delete Item Button
     Click Element                ${product_delete_button_location}
 
 Click Proceed To Checkout Button
-    Wait Until Page Contains Element     ${PROCEED_TO_CHECKOUT_BUTTON}
+    Wait Until Page Contains Element    ${PROCEED_TO_CHECKOUT_BUTTON}
     Click Element                ${PROCEED_TO_CHECKOUT_BUTTON}
 
 Click Register Or Login On Checkout Block
