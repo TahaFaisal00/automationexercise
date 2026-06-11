@@ -328,7 +328,7 @@ Enter Credit Card Details
     VAR     &{TEST_CARD}        name_on_card=${name_on_card}       card_number=${card_number}
     ...              cvc=${cvc}        expiry_month=${expiry_month}       expiry_year=${expiry_year}
 
-    PaymentPage.Enter Name On Card              ${TEST_CARD. name_on_card}
+    PaymentPage.Enter Name On Card              ${TEST_CARD.name_on_card}
     PaymentPage.Enter Card Number               ${TEST_CARD.card_number}
     PaymentPage.Enter CVC                       ${TEST_CARD.cvc}
     PaymentPage.Enter Expiry Month              ${TEST_CARD.expiry_month}
