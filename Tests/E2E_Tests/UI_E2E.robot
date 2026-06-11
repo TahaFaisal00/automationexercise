@@ -39,21 +39,25 @@ Guest Converts To Registered And Purchases
     ...                checkout guard and cart persistence across registration.
     ...                Account deleted via API (teardown).
     [Tags]      e2e     ui      positive
-    Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
-    Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
-    Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
-    Navigate To Cart
-    Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
-    Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
-
-
-
-
-
-
-
-
-
+    automationexercise_Res.Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    automationexercise_Res.Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
+    automationexercise_Res.Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
+    automationexercise_Res.Navigate To Cart
+    automationexercise_Res.Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
+    automationexercise_Res.Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
+    automationexercise_Res.Attempt Checkout As Guest
+    automationexercise_Res.Navigate From Cart To Signup After Block
+    automationexercise_Res.Generate New Account Data
+    automationexercise_Res.Register New Account        ${TEST_ACCOUNT}
+    automationexercise_Res.Navigate To Cart
+    automationexercise_Res.Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
+    automationexercise_Res.Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
+    automationexercise_Res.Navigate To Checkout Page From Cart
+    automationexercise_Res.Verify Delivery Address Details          ${TEST_ACCOUNT}
+    automationexercise_Res.Navigate From Checkout Page To Payment
+    automationexercise_Res.Enter Credit Card Details
+    automationexercise_Res.Complete Payment And Confirm Order
+    automationexercise_Res.Verify Order Submitted
     [Teardown]      API_RES.Delete Account Via API
 
 
