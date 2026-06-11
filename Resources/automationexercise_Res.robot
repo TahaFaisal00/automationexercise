@@ -96,7 +96,7 @@ Enter Address Information
     [Documentation]     Enters the address information section of the signup form.
     [Arguments]               ${account}
     Signup_LoginPage.Enter First Name       ${account.first_name}
-    Signup_LoginPage.Enter Last Name        ${account.second_name}
+    Signup_LoginPage.Enter Last Name        ${account.last_name}
     Signup_LoginPage.Enter Company Name      ${account.company}
     Signup_LoginPage.Enter Address 1           ${account.address1}
     Signup_LoginPage.Enter Address 2           ${account.address2}
