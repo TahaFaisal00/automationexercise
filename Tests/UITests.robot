@@ -19,7 +19,7 @@ Login And Logout
 Register And Delete Account
     [Documentation]       Registers a new account, deletes it, then confirms the
     ...                   deleted account can no longer log in.
-    [Tags]                functionality      ui          negative
+    [Tags]                functionality      ui          Positive
     automationexercise_Res.Generate New Account Data
     automationexercise_Res.Register New Account                                                            ${TEST_ACCOUNT}
     automationexercise_Res.Delete Account                                                                  ${TEST_ACCOUNT.user_name}
