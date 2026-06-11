@@ -137,7 +137,7 @@ Verify Login Fails
 Verify Login Error
     [Documentation]         erifies the expected login validation (required fields or
     ...                invalid-credentials error) and that the user stays on the login page.
-    [Arguments]                                   ${$email}      ${$password}
+    [Arguments]                                   ${email}      ${password}
     IF    $email == ""
          Verify Email Field Is Required
     ELSE IF    $password == ""
