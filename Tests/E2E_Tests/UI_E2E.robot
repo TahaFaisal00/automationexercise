@@ -14,7 +14,7 @@ Registered User Completes Purchase
     ...                Verifies cart quantities, checkout address matches the
     ...                API-created account, and order confirmation.
     ...                Account created/deleted via API (setup/teardown).
-    [Tags]
+    [Tags]          e2e     ui        positive
     [Setup]         automationexercise_Res.Setup Account Test
     Log In And Verify    ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
     Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
