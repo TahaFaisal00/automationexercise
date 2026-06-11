@@ -12,6 +12,8 @@ ${CART_PRODUCT_LOCATOR}                          xpath=//a[normalize-space()='{}
 ${PROCEED_TO_CHECKOUT_BUTTON}       xpath=//a[normalize-space()='Proceed To Checkout']
 
 ${CART_URL}                         https://automationexercise.com/view_cart
+
+${REGISTER_LOGIN}                   xpath=//div[@class='modal-content']//a[@href='/login']
 *** Keywords ***
 Verify Cart Page Loaded
     Wait Until Page Contains    Shopping Cart
@@ -31,7 +33,9 @@ Click Proceed To Checkout Button
     Click Element                ${PROCEED_TO_CHECKOUT_BUTTON}
     Wait Until Page Contains                    Checkout
 
-
+Click Register Or Login On Checkout Block
+    Wait Until Element Is Visible    ${REGISTER_LOGIN}
+    Click Element                    ${REGISTER_LOGIN}
 
 
 

@@ -347,6 +347,13 @@ Create Account And Log In
 
 
 
+
+
+
+
+
+
+
 Handle Ad
     [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
     Run Keyword And Ignore Error    Select Frame    xpath=//*[@id='ad_iframe']
