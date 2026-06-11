@@ -14,7 +14,7 @@ ${PAYMENT_URL}               https://automationexercise.com/payment
 ${ORDER_PLACED_HEADER}          css=[data-qa='order-placed']
 
 ${CONTINUE_BUTTON_ORDER_PLACED}        css=[data-qa='continue-button']
-${DOWNLOAD_INVOICE_BUTTON}          xpath=//a[contain(@href,'/download_invoice/400')]
+${DOWNLOAD_INVOICE_BUTTON}          xpath=//a[contains(@href,'/download_invoice')]
 
 *** Keywords ***
 Verify Payment Page Loaded
