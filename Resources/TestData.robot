@@ -18,4 +18,5 @@ ${INVALID_SEARCH_INPUT}               xxxxxxxxx
 
 @{ALL_PRODUCTS}         ${MEN_TSHIRT}       ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}         ${BLUE_TOP}
 
-
+@{E2E_CART_PRODUCTS}          ${MEN_TSHIRT}             ${BLUE_TOP}
+@{E2E_CART_QUANTITIES}          ${PRODUCT.base_quantity}          ${PRODUCT.edited_quantity}
