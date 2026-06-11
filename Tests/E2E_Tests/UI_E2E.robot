@@ -18,18 +18,18 @@ Registered User Completes Purchase
     [Tags]          e2e     ui        positive
     [Setup]         automationexercise_Res.Setup Account Test
     Log In And Verify    ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
-    Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
-    Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
-    Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
-    Navigate To Cart
-    Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
-    Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
-    Navigate To Checkout Page From Cart
-    Verify Delivery Address Details          ${TEST_ACCOUNT}
-    Navigate From Checkout Page To Payment
-    Enter Credit Card Details
-    Complete Payment And Confirm Order
-    Verify Order Submitted
+    automationexercise_Res.Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    automationexercise_Res.Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
+    automationexercise_Res.Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
+    automationexercise_Res.Navigate To Cart
+    automationexercise_Res.Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
+    automationexercise_Res.Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
+    automationexercise_Res.Navigate To Checkout Page From Cart
+    automationexercise_Res.Verify Delivery Address Details          ${TEST_ACCOUNT}
+    automationexercise_Res.Navigate From Checkout Page To Payment
+    automationexercise_Res.Enter Credit Card Details
+    automationexercise_Res.Complete Payment And Confirm Order
+    automationexercise_Res.Verify Order Submitted
     [Teardown]      API_RES.Delete Account Via API
 
 
