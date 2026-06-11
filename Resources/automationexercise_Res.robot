@@ -345,13 +345,12 @@ Create Account And Log In
     API_RES.Create Account Via API
     Log In And Verify    ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
 
-
-
-
-
-
-
-
+Verify Guest Cannot Checkout
+    [Documentation]     Asserts a guest is blocked at checkout — the register/login
+    ...                modal appears instead of the checkout page.
+    ...                Precondition: items in cart and Proceed To Checkout
+    ${block_message}=           CartPage.Get Checkout Block Message
+    Should Contain    ${block_message}    Login account to proceed on checkout
 
 
 Handle Ad

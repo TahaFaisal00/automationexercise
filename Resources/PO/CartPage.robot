@@ -14,6 +14,8 @@ ${PROCEED_TO_CHECKOUT_BUTTON}       xpath=//a[normalize-space()='Proceed To Chec
 ${CART_URL}                         https://automationexercise.com/view_cart
 
 ${REGISTER_LOGIN}                   xpath=//div[@class='modal-content']//a[@href='/login']
+
+${CHECKOUT_BLOCK_CENTER}            xpath=//div[@class='modal-content']//p[@class='text-center' and not(a)]
 *** Keywords ***
 Verify Cart Page Loaded
     Wait Until Page Contains    Shopping Cart
@@ -23,6 +25,14 @@ Click On Quantity Of Item
     [Arguments]         ${product}
     ${product_quantity_location}=        Format String    ${PRODUCT_QUANTITY}        ${product}
     Click Element    ${product_quantity_location}
+
+Get Checkout Block Message
+    Wait Until Element Is Visible    ${CHECKOUT_BLOCK_CENTER}
+    ${block_text}=       Get Text    ${CHECKOUT_BLOCK_CENTER}
+    RETURN      ${block_text}
+
+
+
 
 Click Delete Item Button
     [Arguments]                  ${product}
