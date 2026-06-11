@@ -1,6 +1,3 @@
-*** Settings ***
-Library                 SeleniumLibrary
-
 *** Variables ***
 ${LOGIN_URL}                 https://automationexercise.com/login
 &{MAIN_USER}                 user_name=Taha           email=taha111@gmail.com      password=taha2021       first_name=Taha      second_name=Moe
