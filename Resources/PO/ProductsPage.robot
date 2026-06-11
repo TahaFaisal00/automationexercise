@@ -66,10 +66,10 @@ Use Search Bar
     Click Element           ${SUBMIT_SEARCH_BUTTON}
 
 Choose Category From Category Menu
-    [Arguments]                    ${category_menu}      ${category}
+    [Arguments]                    ${category_menu}      ${category}        ${category_page}
     Click Element                 ${category_menu}
     Click Link                   ${category}
-    Wait Until Page Contains     ${category}
+    Wait Until Page Contains    ${category_page}
 
 Click On Brand
     [Arguments]                 ${brand}     ${brand_page}
