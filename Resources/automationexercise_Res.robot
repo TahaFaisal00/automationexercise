@@ -63,7 +63,8 @@ Register New Account
     [Arguments]                                     ${account}
     Navigate To Signup And Login Page
     Submit Initial Signup                           ${account}
-    Signup_LoginPage.Verify Signup Page Loaded     ${account.user_name}        ${account.email}
+    Signup_LoginPage.Verify Signup Page Loaded
+    Verify Signup Name And Email            ${account.user_name}      ${account.email}
     Enter Account Information                       ${account}
     Enter Date Of Birth                             ${account}
     Signup_LoginPage.Select Newsletter Checkbox
