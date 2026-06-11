@@ -31,3 +31,36 @@ Registered User Completes Purchase
     Complete Payment And Confirm Order
     Verify Order Submitted
     [Teardown]      API_RES.Delete Account Via API
+
+
+Guest Converts To Registered And Purchases
+    [Documentation]    Guest fills cart, is blocked at checkout, registers via UI,
+    ...                then completes purchase. Verifies the unauthenticated
+    ...                checkout guard and cart persistence across registration.
+    ...                Account deleted via API (teardown).
+    [Tags]      e2e     ui      positive
+    Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
+    Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
+    Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
+    Navigate To Cart
+    Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
+    Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
+
+
+
+
+
+
+
+
+
+    [Teardown]      API_RES.Delete Account Via API
+
+
+
+
+
+
+
+
+
