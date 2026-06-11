@@ -319,6 +319,11 @@ Comment On Order In Checkout Page And Navigate To Payment
     CheckoutPage.Click Place Order Button
     PaymentPage.Verify Payment Page Loaded
 
+Navigate From Chechout Page To Payment
+    [Documentation]     proceeds to payment, and verifies the payment page loaded.
+    CheckoutPage.Click Place Order Button
+    PaymentPage.Verify Payment Page Loaded
+
 Enter Credit Card Details
     [Documentation]     Generates throwaway credit card details and enters them on the payment page.
     ${name_on_card}=        FakerLibrary.Name Male
