@@ -8,7 +8,7 @@ ${LOGIN_URL}                 https://automationexercise.com/login
 &{USER_EMPTY_EMAIL}                  email=${EMPTY}              password=mmmm21
 &{USER_EMPTY_PASSWORD}               email=mmmm@gmail.com        password=${EMPTY}
 
-&{PRODUCT}                   base_quantity=1             edited_quantity=2       minus_quantity=-5              minus_expected_quantity=1          review=This is a Good Quality T-Shirt           comment=Test comment
+&{PRODUCT}                   base_quantity=1             edited_quantity=2       minus_quantity=-5                review=This is a Good Quality T-Shirt           comment=Test comment
 
 ${MEN_TSHIRT}                       Men Tshirt
 ${LACE_TOP_FOR_WOMEN}               Lace Top For Women
