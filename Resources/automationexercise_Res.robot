@@ -262,7 +262,13 @@ Navigate To Checkout Page From Cart
     CheckoutPage.Verify Checkout Page Loaded
 
 Verify Delivery Address Details
-    [Documentation]         Verifies all delivery address fields on the checkout page against the account data.
+    [Documentation]         Verifies every delivery-address field on the checkout page
+    ...                against the account data. Soft-asserts (continue on failure) so
+    ...                one wrong field doesn't mask the others. Page quirks: first and
+    ...                last name are read from one combined name element, and
+    ...                city/state/zipcode share a single element — those use partial
+    ...                matches, not equality. Assumes the checkout page is loaded with
+    ...                a saved address.
     [Arguments]                 ${account}
     Verify First Name           ${account.first_name}
     Verify Last Name            ${account.last_name}
@@ -357,6 +363,9 @@ Verify Account Signed Out
     Wait Until Page Does Not Contain         Logged in as ${user}
 
 Verify Account Deleted
+    [Documentation]     Confirms deletion: the 'Account Deleted!' confirmation shows,
+    ...                then re-verifies the user is signed out. Asserts more than the
+    ...                name implies.
     [Arguments]             ${user}
     Wait Until Page Contains         Account Deleted!
     Wait Until Page Contains         Your account has been permanently
@@ -365,6 +374,8 @@ Verify Account Deleted
 
 
 Verify Signup Name And Email
+    [Documentation]     Asserts the name and email echoed back on the signup form match
+    ...                what was submitted. Assumes the initial signup step is done.
     [Arguments]                 ${user_name}            ${email}
     ${actual_signup_name}=      Get Text    ${SIGNUP_NAME_SIGNUP_PAGE}
     Should Be Equal As Strings    ${actual_signup_name}    ${user_name}
@@ -372,14 +383,22 @@ Verify Signup Name And Email
     Should Be Equal As Strings     ${actual_signup_email}    ${email}
 
 Verify Account Created
+    [Documentation]     Success = the 'Account Created!' confirmation is shown AND the
+    ...                location is the account_created page. Both must hold.
     Wait Until Page Contains         Account Created!
     Location Should Be               ${ACCOUNT_CREATED_URL}
 
 Verify Email Field Is Required
+    [Documentation]     Proves the email field is mandatory by asserting its HTML
+    ...                'required' attribute is set — not by checking for a visible
+    ...                error message.
     ${required}=     Get Element Attribute    ${EMAIL_LOGIN_FIELD}       required
     Should Be Equal As Strings                      ${required}          true
 
 Verify Password Field Is Required
+    [Documentation]     Proves the password field is mandatory by asserting its HTML
+    ...                'required' attribute is set — not by checking for a visible
+    ...                error message.
     ${required}=     Get Element Attribute    ${PASSWORD_LOGIN_FIELD}    required
     Should Be Equal As Strings                      ${required}          true
 
@@ -388,6 +407,8 @@ Verify Invalid Credentials Error
 
 
 Verify Quantity Value
+    [Documentation]      Asserts the product-details quantity input holds the expected
+    ...                value.
     [Arguments]                       ${expected_quantity}
     ${actual_quantity}=            Get Value                 ${QUANTITY_FIELD}
     Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
