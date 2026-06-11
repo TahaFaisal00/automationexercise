@@ -363,6 +363,13 @@ Attempt Checkout As Guest
     Click Proceed To Checkout Button
     Verify Guest Cannot Checkout
 
+Navigate From Cart To Signup After Block
+    [Documentation]     Clicks the Register/Login link in the checkout block modal and
+    ...                confirms the signup/login page loads.
+    ...                Precondition: the guest checkout block modal is open
+    ...                (i.e. Attempt Checkout As Guest ran first).
+    Click Register Or Login On Checkout Block
+    Verify Signup Login Page Loaded
 
 Handle Ad
     [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
