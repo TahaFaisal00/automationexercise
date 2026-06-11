@@ -24,7 +24,7 @@ Launch Browser
 
     Set Window Size       ${WINDOWS_WIDTH}    ${WINDOWS_HEIGHT}
     Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
-    Set Selenium Speed     ${SELENIUMSPEED}
+    Set Selenium Speed     ${SELENIUM_SPEED}
 Test Isolation Setup
     [Documentation]     Resets client state before each test so tests are independent of execusion order.
     Delete All Cookies
