@@ -22,8 +22,8 @@ Launch Browser
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
     Open Browser    ${URL}    ${BROWSER}    options=${options}
 
-    Set Window Size       ${WINDOWSWIDTH}    ${WINDOWSHEIGHT}
-    Set Selenium Implicit Wait    ${IMPLICITWAIT}
+    Set Window Size       ${WINDOWS_WIDTH}    ${WINDOWS_HEIGHT}
+    Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
     Set Selenium Speed     ${SELENIUMSPEED}
 Test Isolation Setup
     [Documentation]     Resets client state before each test so tests are independent of execusion order.
