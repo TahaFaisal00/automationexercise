@@ -357,6 +357,12 @@ Verify Guest Cannot Checkout
     ${block_message}=           CartPage.Get Checkout Block Message
     Should Contain    ${block_message}    Login account to proceed on checkout
 
+Attempt Checkout As Guest
+    [Documentation]     Guest clicks Proceed To Checkout and is stopped by the
+    ...                register/login modal instead of reaching the checkout page.
+    Click Proceed To Checkout Button
+    Verify Guest Cannot Checkout
+
 
 Handle Ad
     [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
