@@ -319,7 +319,7 @@ Comment On Order In Checkout Page And Navigate To Payment
     CheckoutPage.Click Place Order Button
     PaymentPage.Verify Payment Page Loaded
 
-Navigate From Chechout Page To Payment
+Navigate From Checkout Page To Payment
     [Documentation]     proceeds to payment, and verifies the payment page loaded.
     CheckoutPage.Click Place Order Button
     PaymentPage.Verify Payment Page Loaded
