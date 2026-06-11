@@ -24,7 +24,7 @@ Log In And Verify
     [Arguments]                               ${email}      ${password}     ${user_name}
     Navigate To Signup And Login Page
     Log In With Credentials                          ${email}       ${password}
-    HomePage.Verify Account Signed In           ${user_name}
+    Verify Account Signed In           ${user_name}
 
 Navigate To Signup And Login Page
     [Documentation]     Goes to Signup/Login page and assert page loaded
@@ -42,7 +42,7 @@ Log Out And Verify
     [Documentation]     Logs the user out and confirms they're signed out.
     [Arguments]         ${user_name}
     HomePage.Click Logout Link
-    HomePage.Verify Account Signed Out      ${user_name}
+    Verify Account Signed Out      ${user_name}
 
 Generate New Account Data
     [Documentation]     Builds the test account — unique fields from Faker, fixed
@@ -110,10 +110,10 @@ Complete Account Creation
     ...                 account is created and signed in on the home page.
     [Arguments]                   ${account}
     Signup_LoginPage.Click Create Account Button
-    Signup_LoginPage.Verify Account Created
+    Verify Account Created
     Signup_LoginPage.Click Continue Button After Account Creation
     HomePage.Verify Home Page Loaded
-    HomePage.Verify Account Signed In           ${account.user_name}
+    Verify Account Signed In           ${account.user_name}
 
 Delete Account
     [Documentation]     Deletes the logged-in account through the UI and confirms it's gone.
@@ -122,7 +122,7 @@ Delete Account
     Go To    ${URL}
     HomePage.Verify Home Page Loaded
     HomePage.Click Delete Account Link
-    HomePage.Verify Account Deleted         ${user_name}
+    Verify Account Deleted         ${user_name}
     HomePage.Click Continue After Account Deletion
 
 Verify Login Fails
@@ -138,11 +138,11 @@ Verify Login Error
     ...                invalid-credentials error) and that the user stays on the login page.
     [Arguments]                                   ${$email}      ${$password}
     IF    $email == ""
-         Signup_LoginPage.Verify Email Field Is Required
+         Verify Email Field Is Required
     ELSE IF    $password == ""
-         Signup_LoginPage.Verify Password Field Is Required
+         Verify Password Field Is Required
     ELSE
-         Signup_LoginPage.Verify Invalid Credentials Error
+         Verify Invalid Credentials Error
     END
     Signup_LoginPage.Verify Signup Login Page Loaded
 
@@ -183,7 +183,7 @@ Verify Search Results
     [Documentation]     Verifies the expected product appears in the results and the others don't.
     [Arguments]     ${expected_product}      @{unexpected_products}
     ProductsPage.Search Result Should Contain       ${expected_product}
-    ProductsPage.Search Result Should Not Contain       @{unexpected_products}
+    Search Result Should Not Contain       @{unexpected_products}
 
 
 Add Product To Cart And Open Cart
@@ -236,13 +236,13 @@ Verify Product Quantities In Cart
 Editing Quantity Of Product In Cart
     [Documentation]      Check if the quantity of product in cart is editable then proceed to click it
     [Arguments]                             ${product}
-    CartPage.Verify Quantity Not Editable In Cart        ${product}
+    Verify Quantity Not Editable In Cart        ${product}
 
 Delete Product From Shopping Cart
     [Documentation]     Deletes the product from the cart and verifies its removal.
     [Arguments]                                  ${product}
     CartPage.Click Delete Item Button            ${product}
-    CartPage.Verify Item Deleted                 ${product}
+    Verify Item Deleted                 ${product}
 
 Navigate To Product Details Page
     [Documentation]         Waits until products are loaded then enters the details page of the required product and and verifies it loading.
@@ -257,7 +257,7 @@ Submit Product Review
     [Arguments]       ${account}        ${product}
     ProductsPage.Write Review       ${account.user_name}      ${account.email}      ${product.review}
     ProductsPage.Click Submit Review
-    ProductsPage.Verify Review Submitted
+    Verify Review Submitted
 
 Navigate To Checkout Page From Cart
     [Documentation]     Proceeds from the cart to the checkout page and verifies it loaded.
@@ -268,22 +268,22 @@ Navigate To Checkout Page From Cart
 Verify Delivery Address Details
     [Documentation]         Verifies all delivery address fields on the checkout page against the account data.
     [Arguments]                 ${account}
-    CheckoutPage.Verify First Name           ${account.first_name}
-    CheckoutPage.Verify Last Name            ${account.last_name}
-    CheckoutPage.Verify Company              ${account.company}
-    CheckoutPage.Verify Address1             ${account.address1}
-    CheckoutPage.Verify Address2             ${account.address2}
-    CheckoutPage.Verify City                 ${account.city}
-    CheckoutPage.Verify State                ${account.state}
-    CheckoutPage.Verify Zipcode              ${account.zipcode}
-    CheckoutPage.Verify Country              ${account.country}
-    CheckoutPage.Verify Mobile Number        ${account.mobile_number}
+    Verify First Name           ${account.first_name}
+    Verify Last Name            ${account.last_name}
+    Verify Company              ${account.company}
+    Verify Address1             ${account.address1}
+    Verify Address2             ${account.address2}
+    Verify City                 ${account.city}
+    Verify State                ${account.state}
+    Verify Zipcode              ${account.zipcode}
+    Verify Country              ${account.country}
+    Verify Mobile Number        ${account.mobile_number}
 
 Set And Verify Quantity To Negative Number
     [Documentation]     Edits the quantity of product on the product details page to a negative quantity and verifies it.
     [Arguments]         ${quantity}     ${expected_quantity}
     ProductsPage.Set Quantity              ${quantity}
-    ProductsPage.Verify Quantity Value      ${expected_quantity}
+    Verify Quantity Value      ${expected_quantity}
 
 Add Product To Cart From Product Details
     [Documentation]     Adds the product on the product details page to the cart and verifies it was added.
@@ -336,7 +336,7 @@ Enter Credit Card Details
 Complete Payment And Confirm Order
     [Documentation]     Pays and confirms the order, verifies it was placed.
     PaymentPage.Click Pay And Confirm Order Button
-    PaymentPage.Verify Order Submitted
+    Verify Order Submitted
 
 Create Account And Log In
     [Documentation]     Setup fixture. Creates an account via API, then logs in with the generated credentials.
