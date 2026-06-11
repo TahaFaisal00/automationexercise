@@ -84,7 +84,7 @@ Search By Product Name
 Filter By Category
     [Documentation]       Filters products by category and verifies only the matching products appear.
     [Tags]                functionality     ui          positive
-    automationexercise_Res.Choose Category And Verify Results                                              ${ALL_PRODUCTS}       ${WOMEN_MENU}       ${TOPS_CATEGORY}        ${BLUE_TOP}       ${MEN_TSHIRT}          ${FROZEN_TOPS_FOR_KIDS}
+    automationexercise_Res.Choose Category And Verify Results                                              ${ALL_PRODUCTS}       ${WOMEN_MENU}       ${TOPS_CATEGORY}       ${TOPS_CATEGORY_PAGE}      ${BLUE_TOP}       ${MEN_TSHIRT}          ${FROZEN_TOPS_FOR_KIDS}
 
 Filter By Brand
     [Documentation]       user filter products shown by brand. Verifys filtering feature functionality.
