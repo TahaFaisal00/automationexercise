@@ -483,45 +483,10 @@ Verify Mobile Number
     Run Keyword And Continue On Failure     Should Contain    ${actual_mobile_number}    ${expected_mobile_number}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Verify Order Submitted
+    Wait Until Element Is Visible    ${ORDER_PLACED_HEADER}
+    ${actual_header}=        Get Text    ${ORDER_PLACED_HEADER}
+    Should Be Equal As Strings    ${actual_header}    Order Placed!
 
 
 

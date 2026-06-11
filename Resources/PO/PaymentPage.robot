@@ -45,12 +45,6 @@ Click Pay And Confirm Order Button
     Wait Until Element Is Visible    ${CONFIRM_ORDER_BUTTON}
     Click Element                    ${CONFIRM_ORDER_BUTTON}
 
-
-Verify Order Submitted
-    Wait Until Element Is Visible    ${ORDER_PLACED_HEADER}
-    ${actual_header}=        Get Text    ${ORDER_PLACED_HEADER}
-    Should Be Equal As Strings    ${actual_header}    Order Placed!
-
 Click Continue After Order Placement
     Wait Until Element Is Visible    ${CONTINUE_BUTTON_ORDER_PLACED}
     Click Element                    ${CONTINUE_BUTTON_ORDER_PLACED}
