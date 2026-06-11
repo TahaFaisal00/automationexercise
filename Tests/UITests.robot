@@ -40,7 +40,7 @@ Cart Quantity Field Is Not Editable
     automationexercise_Res.Add Product To Cart And Open Cart                  ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Verify Products In Cart                                ${MEN_TSHIRT}
     automationexercise_Res.Verify Product Quantities In Cart                             ${MEN_TSHIRT}       ${PRODUCT.base_quantity}
-    automationexercise_Res.Editing Quantity Of Product In Cart                    ${MEN_TSHIRT}
+    automationexercise_Res.Verify Quantity Not Editable In Cart                    ${MEN_TSHIRT}
 
 Quantity Accepts Negative Values
     [Documentation]       Sets a negative quantity on the product details page and verifies the page accepts it. Documents the negative-quantity bug.

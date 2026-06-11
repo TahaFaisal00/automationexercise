@@ -234,11 +234,6 @@ Verify Product Quantities In Cart
         Run Keyword And Continue On Failure        Should Be Equal As Strings    ${actual_quantity}    ${expected_quantity}
     END
 
-Editing Quantity Of Product In Cart
-    [Documentation]      Check if the quantity of product in cart is editable then proceed to click it
-    [Arguments]                             ${product}
-    Verify Quantity Not Editable In Cart        ${product}
-
 Delete Product From Shopping Cart
     [Documentation]     Deletes the product from the cart and verifies its removal.
     [Arguments]                                  ${product}
