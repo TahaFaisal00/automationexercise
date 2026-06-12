@@ -59,13 +59,23 @@ Create Account Via API
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
+Create Delete Account Body
+    [Arguments]     &{account}
+    &{body}=        Create Dictionary           email=${account.email}       password=${account.password}
+    RETURN      &{body}
 
+Send Delete Account Request
+    [Arguments]     &{body}
+    ${response}=        DELETE On Session       ${ALIAS}        ${DELETE_ACCOUNT_API}       data=${body}        expected_status=any
+    RETURN      ${response}
 
 Delete Account Via API
-    [Documentation]     Fixture for [Teardown]. Deletes the newly created account by the test for cleanup
-    &{body}=        Create Dictionary           email=${TEST_ACCOUNT.email}       password=${TEST_ACCOUNT.password}
-    ${response}=        DELETE On Session       ${ALIAS}        ${DELETE_ACCOUNT_API}       data=${body}        expected_status=any
-    RETURN        ${response}
+    [Documentation]     Fixture for [Teardown]. Deletes the newly created account by the test for cleanup.
+    &{body}=        Create Delete Account Body      &{TEST_ACCOUNT}
+    ${response}=     Send Delete Account Request     &{body}
+    RETURN      ${response}
+
+
 
 
 
