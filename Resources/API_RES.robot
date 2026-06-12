@@ -137,18 +137,22 @@ Update Account Via API
    [Arguments]      ${field}        ${value}
    &{body}=        Build Account Body       &{TEST_ACCOUNT}
    Set To Dictionary    ${body}         ${field}            ${value}
-   ${request}=      Send Update Account Request     &{body}
-    RETURN      ${request}
+   ${response}=      Send Update Account Request     &{body}
+    RETURN      ${response}
 
 
 
-
-
-
-
-
-
-
+Attempt Update Account With Missing Field Via API
+   [Documentation]      Negative-path action. Builds an account body from the [Setup]-created
+    ...                account (${TEST_ACCOUNT}), removes ${field} so it's absent from the payload,
+    ...                and sends the update. ${TEST_ACCOUNT} is never mutated and the update is
+    ...                expected to fail, so the account persists unchanged and the test deletes it
+    ...                in teardown. Returns the raw response for the test to assert.
+   [Arguments]      ${field}
+   &{body}=        Build Account Body       &{TEST_ACCOUNT}
+   Remove From Dictionary    ${body}         ${field}
+   ${response}=      Send Update Account Request     &{body}
+    RETURN      ${response}
 
 
 
