@@ -123,7 +123,22 @@ Attempt Delete Account With Missing Field Via API
     RETURN      ${response}
 
 
+Send Update Account Request
+    [Arguments]     &{body}
+    ${response}=     PUT On Session      ${ALIAS}            ${UPDATE_ACCOUNT_API}       data=${body}
+    RETURN      ${response}
 
+Update Account Via API
+   [Documentation]      Positive-path action. Builds an account body from the [Setup]-created
+    ...                account (${TEST_ACCOUNT}), overwrites ${field} with ${value} on the body
+    ...                only, and sends the update. ${TEST_ACCOUNT} is never mutated, so teardown
+    ...                keeps valid credentials to delete the account. Returns the raw response
+    ...                for the test to assert.
+   [Arguments]      ${field}        ${value}
+   &{body}=        Build Account Body       &{TEST_ACCOUNT}
+   Set To Dictionary    ${body}         ${field}            ${value}
+   ${request}=      Send Update Account Request     &{body}
+    RETURN      ${request}
 
 
 
