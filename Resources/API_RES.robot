@@ -254,6 +254,13 @@ Attempt Verify Login With Invalid Method Via API
     RETURN  ${response}
 
 
+Get All Brands List Via API
+    [Documentation]     Positive-path action. Sends a GET to the brands-list endpoint and returns
+    ...                the raw response for the test to assert. Read-only — no account or teardown
+    ...                involved.
+    ${response}=     GET On Session      ${ALIAS}        ${BRANDS_LIST_API}
+    RETURN  ${response}
+
 
 
 
