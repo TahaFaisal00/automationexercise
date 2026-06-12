@@ -80,8 +80,7 @@ Attempt Create Account With Missing Field Via API
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
-
-Create Delete Account Body
+Build Delete Account Body
     [Arguments]     &{account}
     &{body}=        Create Dictionary           email=${account.email}       password=${account.password}
     RETURN      &{body}
@@ -97,13 +96,31 @@ Delete Account Via API
     ${response}=     Send Delete Account Request     &{body}
     RETURN      ${response}
 
+Attempt Delete Account With Invalid Field Via API
+    [Documentation]    Negative-path action. Builds a delete body from the account created in
+    ...                [Setup] (${TEST_ACCOUNT}), overwrites ${field} with ${invalid_value} on the
+    ...                body only, and sends the delete request. ${TEST_ACCOUNT} is never mutated, so
+    ...                the teardown keeps valid credentials to delete the real account. The delete
+    ...                is expected to fail and the account persists, so the test must clean up in
+    ...                teardown. Returns the raw response for the test to assert.
+    [Arguments]      ${field}       ${invalid_value}
+    &{body}=        Create Delete Account Body      &{TEST_ACCOUNT}
+    Set To Dictionary    ${body}    ${field}        ${invalid_value}
+    ${response}=     Send Delete Account Request     &{body}
+    RETURN      ${response}
 
-
-
-
-
-
-
+Attempt Delete Account With Missing Field Via API
+    [Documentation]     Negative-path action. Builds a delete body from the account created in
+    ...                [Setup] (${TEST_ACCOUNT}), removes ${field} so it's absent from the payload,
+    ...                and sends the delete request. ${TEST_ACCOUNT} is never mutated, so the
+    ...                teardown keeps valid credentials to delete the real account. The delete is
+    ...                expected to fail and the account persists, so the test must clean up in
+    ...                teardown. Returns the raw response for the test to assert.
+    [Arguments]     ${field}
+    &{body}=        Create Delete Account Body      &{TEST_ACCOUNT}
+    Remove From Dictionary    ${body}        ${field}
+    ${response}=     Send Delete Account Request     &{body}
+    RETURN      ${response}
 
 
 
