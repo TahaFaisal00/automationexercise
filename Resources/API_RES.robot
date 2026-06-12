@@ -1,15 +1,9 @@
 *** Settings ***
-Library     RequestsLibrary
-Library     FakerLibrary
-
+Library            RequestsLibrary
+Library            FakerLibrary
+Resource           API_TestData.robot
 Suite Setup          Open Session
-*** Variables ***
-${BASE_URL}                                  https://automationexercise.com
-${ALIAS}          Auto
-${REGISTER_ACCOUNT_API}         /api/createAccount
-${DELETE_ACCOUNT_API}           /api/deleteAccount
-${COUNTRY}                  Test
-${TITLE}                    Mr
+
 *** Keywords ***
 Open Session
     [Documentation]     Opens the shared HTTP session used be all tests
