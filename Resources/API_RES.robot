@@ -32,6 +32,7 @@ Generate Fake Account Data
     ...         mobile_number=${fake_mobile_number}
     RETURN      &{account}
 
+
 Build Account Body
     [Arguments]     ${account}
     &{body}=        Create Dictionary       name=${account.user_name}          email=${account.email}
@@ -79,6 +80,7 @@ Attempt Create Account With Missing Field Via API
     Remove From Dictionary    ${body}         ${field}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
+
 
 Build Delete Account Body
     [Arguments]     &{account}
@@ -140,8 +142,6 @@ Update Account Via API
    ${response}=      Send Update Account Request     &{body}
     RETURN      ${response}
 
-
-
 Attempt Update Account With Missing Field Via API
    [Documentation]      Negative-path action. Builds an account body from the [Setup]-created
     ...                account (${TEST_ACCOUNT}), removes ${field} so it's absent from the payload,
@@ -153,6 +153,32 @@ Attempt Update Account With Missing Field Via API
    Remove From Dictionary    ${body}         ${field}
    ${response}=      Send Update Account Request     &{body}
     RETURN      ${response}
+
+
+Build Get User Params
+    [Arguments]     &{account}
+    &{params}=     Create Dictionary       email=${account.email}
+    RETURN  ${params}
+
+Send Get User Request
+    [Arguments]     &{params}
+    ${response}=        GET On Session      ${ALIAS}       ${USER_DETAIL_BY_EMAIL_API}       params=${params}
+    RETURN  ${response}
+
+Get User Details Via API
+    [Documentation]     Positive-path action. Builds the query params from the [Setup]-created
+    ...                account (${TEST_ACCOUNT}), sends the get-user-details request, and returns
+    ...                the raw response for the test to assert. Reads only and mutates nothing;
+    ...                the test still deletes the account in teardown, since GET leaves it in place.
+    &{params}=      Build Get User Params       &{TEST_ACCOUNT}
+    ${response}=      Send Get User Request       &{params}
+    RETURN  ${response}
+
+
+
+
+
+
 
 
 
