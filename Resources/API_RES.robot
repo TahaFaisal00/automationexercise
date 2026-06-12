@@ -244,3 +244,37 @@ Attempt Verify Login With Missing Field Via API
     RETURN  ${response}
 
 
+Attempt Verify Login With Invalid Method Via API
+    [Documentation]    Negative-path action. Sends a DELETE to the verify-login endpoint — the
+    ...                wrong HTTP method — to trigger the 405 method-not-allowed response. Sends
+    ...                no body (the server rejects on the method before reading one) and mutates
+    ...                nothing; the [Setup]-created account persists, so the test deletes it in
+    ...                teardown. Returns the raw response for the test to assert.
+    ${response}=        DELETE On Session       ${ALIAS}            ${VERIFY_LOGIN_API}
+    RETURN  ${response}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
