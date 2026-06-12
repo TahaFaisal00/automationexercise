@@ -200,3 +200,47 @@ Attempt Get User Details With Missing Field Via API
     RETURN  ${response}
 
 
+Build Verify Login Body
+    [Arguments]     &{account}
+    &{body}=        Create Dictionary       email=${account.email}       password=${account.password}
+    RETURN      ${body}
+
+Send Verify Login Request
+    [Arguments]     &{body}
+    ${response}=        POST On Session     ${ALIAS}        ${VERIFY_LOGIN_API}        data=${body}
+    RETURN      ${response}
+
+Verify Login Via API
+    [Documentation]    Positive-path action. Builds the verify-login body (email + password) from
+    ...                the [Setup]-created account (${TEST_ACCOUNT}) and sends it. Reads only and
+    ...                mutates nothing; the test deletes the account in teardown. Returns the raw
+    ...                response for the test to assert.
+    &{body}=        Build Verify Login Body      &{TEST_ACCOUNT}
+    ${response}=        Send Verify Login Request       &{body}
+    RETURN  ${response}
+
+Attempt Verify Login With Invalid Field Via API
+    [Documentation]    Negative-path action. Builds the verify-login body from the [Setup]-created
+    ...                account (${TEST_ACCOUNT}), overwrites ${field} with ${invalid_value} on the
+    ...                body only, and sends it. ${TEST_ACCOUNT} is never mutated; reads only, so the
+    ...                account persists and the test deletes it in teardown. Returns the raw response
+    ...                for the test to assert.
+    [Arguments]     ${field}        ${invaild _email}
+    &{body}=        Build Verify Login Body      &{TEST_ACCOUNT}
+    Set To Dictionary    ${body}     ${field}       ${invaild _email}
+    ${response}=        Send Verify Login Request       &{body}
+    RETURN  ${response}
+
+Attempt Verify Login With Missing Field Via API
+    [Documentation]    Negative-path action. Builds the verify-login body from the [Setup]-created
+    ...                account (${TEST_ACCOUNT}), removes ${field} so it's absent from the payload,
+    ...                and sends it. ${TEST_ACCOUNT} is never mutated; reads only, so the account
+    ...                persists and the test deletes it in teardown. Returns the raw response for the
+    ...                test to assert.
+    [Arguments]         ${field}
+    &{body}=        Build Verify Login Body      &{TEST_ACCOUNT}
+    Remove From Dictionary    ${body}       ${field}
+    ${response}=        Send Verify Login Request       &{body}
+    RETURN  ${response}
+
+
