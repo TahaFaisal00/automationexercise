@@ -261,6 +261,14 @@ Get All Brands List Via API
     ${response}=     GET On Session      ${ALIAS}        ${BRANDS_LIST_API}
     RETURN  ${response}
 
+Attempt Get All Brands List With Invalid Method Via API
+    [Documentation]     Negative-path action. Sends a PUT to the brands-list endpoint — the wrong
+    ...                HTTP method — to trigger the 405 method-not-allowed response. Sends no body
+    ...                (the server rejects on the method) and mutates nothing. Returns the raw
+    ...                response for the test to assert.
+    ${response}=     PUT On Session      ${ALIAS}       ${BRANDS_LIST_API}
+    RETURN  ${response}
+
 
 
 
