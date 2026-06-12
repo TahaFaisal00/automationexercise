@@ -32,7 +32,7 @@ Generate Fake Account Data
     ...         mobile_number=${fake_mobile_number}
     RETURN      &{account}
 
-Build Create Account body
+Build Account Body
     [Arguments]     ${account}
     &{body}=        Create Dictionary       name=${account.user_name}          email=${account.email}
     ...     password=${account.password}          title=${account.title}       firstname=${account.first_name}
@@ -50,7 +50,7 @@ Create Account Via API
     [Documentation]     Fixture for [Setup]. Creates a new account via API and publishes the full account dict to TEST scope for the test and teardown.
     &{account}=     Generate Fake Account Data
     VAR         &{TEST_ACCOUNT}          &{account}         scope=TEST
-    &{body}=        Build Create Account body       &{TEST_ACCOUNT}
+    &{body}=        Build Account Body       &{TEST_ACCOUNT}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
@@ -64,7 +64,7 @@ Attempt Create Account With Invalid Field Via API
     &{account}=     Generate Fake Account Data
     Set To Dictionary       ${account}          ${field}           ${invalid_value}
     VAR         &{TEST_ACCOUNT}          &{account}         scope=TEST
-    &{body}=        Build Create Account body       &{TEST_ACCOUNT}
+    &{body}=        Build Account Body       &{TEST_ACCOUNT}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
@@ -75,7 +75,7 @@ Attempt Create Account With Missing Field Via API
     ...                assertions itself. Creates no account, so no teardown is needed.
     [Arguments]     ${field}
     &{account}=     Generate Fake Account Data
-    &{body}=        Build Create Account body       &{account}
+    &{body}=        Build Account Body       &{account}
     Remove From Dictionary    ${body}         ${field}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
@@ -117,10 +117,11 @@ Attempt Delete Account With Missing Field Via API
     ...                expected to fail and the account persists, so the test must clean up in
     ...                teardown. Returns the raw response for the test to assert.
     [Arguments]     ${field}
-    &{body}=        Build Delete Account Body      &{TEST_ACCOUNT}
+    &{body}=        Build Account Body      &{TEST_ACCOUNT}
     Remove From Dictionary    ${body}        ${field}
     ${response}=     Send Delete Account Request     &{body}
     RETURN      ${response}
+
 
 
 
