@@ -92,7 +92,7 @@ Send Delete Account Request
 
 Delete Account Via API
     [Documentation]     Fixture for [Teardown]. Deletes the newly created account by the test for cleanup.
-    &{body}=        Create Delete Account Body      &{TEST_ACCOUNT}
+    &{body}=        Build Delete Account Body      &{TEST_ACCOUNT}
     ${response}=     Send Delete Account Request     &{body}
     RETURN      ${response}
 
@@ -104,7 +104,7 @@ Attempt Delete Account With Invalid Field Via API
     ...                is expected to fail and the account persists, so the test must clean up in
     ...                teardown. Returns the raw response for the test to assert.
     [Arguments]      ${field}       ${invalid_value}
-    &{body}=        Create Delete Account Body      &{TEST_ACCOUNT}
+    &{body}=        Build Delete Account Body      &{TEST_ACCOUNT}
     Set To Dictionary    ${body}    ${field}        ${invalid_value}
     ${response}=     Send Delete Account Request     &{body}
     RETURN      ${response}
@@ -117,10 +117,13 @@ Attempt Delete Account With Missing Field Via API
     ...                expected to fail and the account persists, so the test must clean up in
     ...                teardown. Returns the raw response for the test to assert.
     [Arguments]     ${field}
-    &{body}=        Create Delete Account Body      &{TEST_ACCOUNT}
+    &{body}=        Build Delete Account Body      &{TEST_ACCOUNT}
     Remove From Dictionary    ${body}        ${field}
     ${response}=     Send Delete Account Request     &{body}
     RETURN      ${response}
+
+
+
 
 
 
