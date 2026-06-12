@@ -174,11 +174,29 @@ Get User Details Via API
     ${response}=      Send Get User Request       &{params}
     RETURN  ${response}
 
+Attempt Get User Details With Invalid Field Via API
+    [Documentation]     Negative-path action. Builds query params from the [Setup]-created account
+    ...                (${TEST_ACCOUNT}), overwrites the email param with ${invalid_email}, and
+    ...                sends the request. ${TEST_ACCOUNT} is never mutated; reads only, so the
+    ...                account persists and the test deletes it in teardown. Returns the raw
+    ...                response for the test to assert.
 
+    [Arguments]      ${email}      ${invalid_email}
+    &{params}=      Build Get User Params       &{TEST_ACCOUNT}
+    Set To Dictionary    ${params}      ${email}      ${invalid_email}
+    ${response}=      Send Get User Request       &{params}
+    RETURN  ${response}
 
-
-
-
-
+Attempt Get User Details With Missing Field Via API
+    [Documentation]    Negative-path action. Builds query params from the [Setup]-created account
+    ...                (${TEST_ACCOUNT}), removes the email param so it's absent from the query, and
+    ...                sends the request. ${TEST_ACCOUNT} is never mutated; reads only, so the
+    ...                account persists and the test deletes it in teardown. Returns the raw
+    ...                response for the test to assert.
+    [Arguments]       ${email}
+    &{params}=      Build Get User Params       &{TEST_ACCOUNT}
+    Remove From Dictionary    ${params}        ${email}
+    ${response}=      Send Get User Request       &{params}
+    RETURN  ${response}
 
 
