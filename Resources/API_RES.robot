@@ -1,6 +1,7 @@
 *** Settings ***
 Library            RequestsLibrary
 Library            FakerLibrary
+Library    Collections
 Resource           API_TestData.robot
 Suite Setup          Open Session
 
@@ -52,6 +53,33 @@ Create Account Via API
     &{body}=        Build Create Account body       &{TEST_ACCOUNT}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
+
+Attempt Create Account With Invalid Field Via API
+    [Documentation]     Negative-path action. Generates valid fake account data, overwrites
+    ...                ${field} with ${invalid_value}, and sends the Create Account request.
+    ...                This API accepts invalid values (the bug under test), so an account IS
+    ...                created. The dict is published to TEST scope so the test's teardown can
+    ...                delete it. Returns the raw response for the test to assert.
+    [Arguments]     ${field}       ${invalid_value}
+    &{account}=     Generate Fake Account Data
+    Set To Dictionary       ${account}          ${field}           ${invalid_value}
+    VAR         &{TEST_ACCOUNT}          &{account}         scope=TEST
+    &{body}=        Build Create Account body       &{TEST_ACCOUNT}
+    ${response}=        Send Create Account Request     &{body}
+    RETURN      ${response}
+
+Attempt Create Account With Missing Field Via API
+    [Documentation]     Negative-path action. Generates valid fake account data, then removes
+    ...                ${field} to produce an incomplete body, and sends the Create Account
+    ...                request. Returns the raw response for the test to assert; performs no
+    ...                assertions itself. Creates no account, so no teardown is needed.
+    [Arguments]     ${field}
+    &{account}=     Generate Fake Account Data
+    &{body}=        Build Create Account body       &{account}
+    Remove From Dictionary    ${body}         ${field}
+    ${response}=        Send Create Account Request     &{body}
+    RETURN      ${response}
+
 
 Create Delete Account Body
     [Arguments]     &{account}
