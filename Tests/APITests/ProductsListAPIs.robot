@@ -20,7 +20,7 @@ POST Products List - Invalid Method - Returns 405
     ...                endpoint should return HTTP 405, but the API returns HTTP 200 and
     ...                reports 405 in the body responseCode instead.
     [Tags]          bug         api     post        negative        productslist    
-    ${response}=    Attempt Post To Products List Via API
+    ${response}=    Attempt Get All Products List With Invalid Method Via API
     Log    BUG: status should be 405 but the API returns 200. Real code is in the body
     Status Should Be    ${CODE_OK}
     Verify Response Code    ${response}    ${CODE_METHOD_NOT_ALLOWED}
