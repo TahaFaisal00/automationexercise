@@ -55,12 +55,17 @@ POST Verify Login - Missing Fields - Returns 400
     Verify Response Message Contains      ${response}            ${MISSING_FIELD_IN_POST_MESSAGE}
     [Teardown]  Delete Account Via API
 
-DELETE to Verify Login - Returns 405
-    [Tags]              bug         api     delete        positive        verifylogin     #HTTP status should be 405 not 200
-    ${response}=        DELETE On Session       Auto            /api/verifyLogin        expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['message']}    This request method is not supported.
-    Should Be Equal As Strings    ${response.json()['responseCode']}    405
+DELETE Verify Login - Invalid Method - Returns 405
+    [Documentation]     Documents an API defect: a DELETE to the verifyLogin endpoint should
+    ...                return HTTP 405, but the API returns HTTP 200 and reports 405 in the
+    ...                body responseCode instead.
+    [Tags]              bug         api     delete        negative        verifylogin
+    ${response}=        Attempt Verify Login With Invalid Method Via API
+    # BUG: status should be 405 but the api returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}    ${CODE_METHOD_NOT_ALLOWED}
+    Verify Response Message  ${response}  ${NOT_SUPPORTED_MESSAGE}
+
 
 
 
