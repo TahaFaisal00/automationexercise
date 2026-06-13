@@ -270,6 +270,38 @@ Attempt Get All Brands List With Invalid Method Via API
     RETURN  ${response}
 
 
+Build Search Product Body
+    [Arguments]     ${search}
+    &{body}=        Create Dictionary       search_product=${search}
+    RETURN  ${body}
+
+Send Search Product Request
+    [Arguments]   &{body}
+    ${response}=       POST On Session      ${ALIAS}        ${SEARCH_PRODUCT_API}     data=${body}
+    RETURN      ${response}
+
+Search Product Via API
+    [Documentation]     Action keyword. Builds the search body from ${search_value}, sends the
+    ...                request, and returns the raw response for the test to assert. Pass a real
+    ...                product name to match, or a no-match value for an empty result set. Read-only
+    [Arguments]     ${search_value}
+    &{body}=        Build Search Product Body     ${search_value}
+    ${response}=        Send Search Product Request     &{body}
+    RETURN      ${response}
+
+Attempt Search Product With Missing Field Via API
+    [Documentation]     Negative-path action. Builds a valid search body from ${PRODUCT_NAME}, removes
+    ...                ${search_field} so it's absent from the payload, and sends the request to
+    ...                trigger the "search_product is missing" error. Returns the raw response for
+    ...                the test to assert. Read-only.
+    [Arguments]      ${search_field}
+    &{body}=        Build Search Product Body     ${PRODUCT_NAME}
+    Remove From Dictionary     ${body}      ${search_field}
+    ${response}=        Send Search Product Request     &{body}
+    RETURN      ${response}
+
+
+
 
 
 
