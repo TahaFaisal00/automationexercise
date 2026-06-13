@@ -58,4 +58,5 @@ ${SEARCH_FIELD}                                              search_product
 
 ${EMAIL_FIELD}                                               email
 ${INVALID_EMAIL_VALUE}                                       xxx
-${VALID_EMAIL_VALUE}                                         mike212@gmail.com
+${NAME_FIELD}                                                name
+${VALID_NAME_VALUE}                                          Mike
