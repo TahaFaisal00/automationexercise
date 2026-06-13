@@ -57,4 +57,4 @@ ${NON_EXISTENT_PRODUCT}                                      xxxxxxxxx
 ${SEARCH_FIELD}                                              search_product
 
 ${EMAIL_FIELD}                                               email
-${INVALID_EMAIL}                                             xxx
+${INVALID_EMAIL_VALUE}                                       xxx
