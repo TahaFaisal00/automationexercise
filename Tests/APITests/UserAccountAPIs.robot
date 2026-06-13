@@ -83,32 +83,41 @@ DELETE User Account - Returns 400 With Missing Required Fields
 
 
 
-UPDATE a User Account Details - Return 200 with Valid Required Fields
-    [tags]          functional         api     put        positive        useraccounts
-    &{body}=        Create Dictionary    name=Taha          email=tahaxxx@gmail.com        password=taha0         title=mr       firstname=moe       lastname=taha      address1=asdas     country=USA     state=NY     city=NY       zipcode=10010        mobile_number=2132133213
-    ${response}=        PUT On Session      Auto            /api/updateAccount      data=${body}
-    Status Should Be    200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    200
-    Should Be Equal As Strings    ${response.json()['message']}         User updated!
+UPDATE User Account Details - Valid Fields - Return 200
+    [Documentation]     Creates an account, updates a valid field, and asserts responseCode 200
+    ...                with the update-success message.
+    [Tags]          functional         api     put        positive        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=        Update Account Via API      ${NAME_FIELD}      ${VALID_NAME_VALUE}
+    Verify Response Code    ${response}    ${CODE_OK}
+    Verify Response Message    ${response}     ${UPDATE_ACCOUNT_SUCCESS_MESSAGE}
+    [Teardown]      Delete Account Via API
 
+UPDATE User Account Details - Invalid Fields - Return 404
+    [Documentation]     Documents an API defect: updating with an email that matches no account
+    ...                should return HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
+    [Tags]          bug         api     put        negative        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=         Update Account Via API     ${EMAIL_FIELD}      ${INVALID_EMAIL_VALUE}
+    # BUG: status should be 404 but the API returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}       ${CODE_NOT_FOUND}
+    Verify Response Message    ${response}     ${ACCOUNT_NOT_FOUND_MESSAGE}
+    [Teardown]      Delete Account Via API
 
-UPDATE a User Account Details - Return 404 with Invalid Required Fields
-    [tags]          bug         api     put        negative        useraccounts     #HTTP status should be 400 not 200
-    &{body}=        Create Dictionary    name=Taha          email=xxxx        password=taha0         title=21       firstname=23       lastname=231      address1=22     country=22     state=22     city12=       zipcode=xxx        mobile_number=xxxx
-    ${response}=        PUT On Session       Auto        /api/updateAccount      data=${body}            expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    404
-    Should Be Equal As Strings    ${response.json()['message']}         Account not found!
-
-UPDATE a User Account Details - Return 400 with Missing Required Fields
-    [tags]          bug         api     put        negative        useraccounts     #HTTP status should be 400 not 200
-    &{body}=        Create Dictionary         state=sad     city=sad       zipcode=sad        mobile_number=asd
-    ${response}=        PUT On Session      Auto       /api/updateAccount         data=${body}            expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    400
-    Should Contain    ${response.json()['message']}           Bad request
-    Should Contain    ${response.json()['message']}           is missing in PUT request.
+UPDATE User Account Details - Missing Fields - Return 400
+    [Documentation]     Documents an API defect: an update missing the required field should return
+    ...                HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
+    [Tags]          bug         api     put        negative        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=        Attempt Update Account With Missing Field Via API       ${EMAIL_FIELD}
+    # BUG: status should be 400 but the API return 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}       ${CODE_BAD_REQUEST}
+    # Todo: run the test and check log for the required field message in response
+    Verify Response Message Contains        ${response}       ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains         ${response}         ${MISSING_FIELD_IN_PUT_MESSAGE}
+    [Teardown]      Delete Account Via API
 
 
 GET User Details - Valid Fields - Returns 200
@@ -142,6 +151,7 @@ GET User Details - Missing Fields - Returns 400
     # BUG: status should be 400 but API return 200. Real code is in the body
     Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}    ${CODE_BAD_REQUEST}
+    # Todo: run the test and check log for the required field message in response
     Verify Response Message Contains    ${response}     ${BAD_REQUEST_MESSAGE}
     Verify Response Message Contains    ${response}     ${MISSING_FIELD_IN_GET_MESSAGE}
     [Teardown]      Delete Account Via API
