@@ -52,11 +52,9 @@ ${RESPONSE_FIELD_PRODUCTS_LIST}                              'products'
 ${RESPONSE_FIELD_BRANDS_LIST}                                'brands'
 ${RESPONSE_FIELD_USER}                                       'user'
 
-
-
-
-
-
+${SHIRT}                                                     shirt
+${INVALID_SEARCH_INPUT}                                      xxxxxxxxx
+${SEARCH_FIELD}                                              search_product
 
 
 
