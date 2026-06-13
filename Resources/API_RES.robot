@@ -307,7 +307,7 @@ Get All Products List Via API
     ${response}=     GET On Session      ${ALIAS}        ${PRODUCTS_LIST_API}
     RETURN      ${response}
 
-Attempt Get All Products List With Invalid Method Via API
+Attempt Post To Products List Via API
     [Documentation]     Negative-path action. Sends a POST to the products-list endpoint — the wrong
     ...                HTTP method — to trigger the 405 method-not-allowed response. Sends no body
     ...                (the server rejects on the method) and mutates nothing. Returns the raw
