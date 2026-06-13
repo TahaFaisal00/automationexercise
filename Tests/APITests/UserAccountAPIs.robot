@@ -1,10 +1,8 @@
 *** Settings ***
 Library                                     RequestsLibrary
-Suite Setup                                 Create Session    Auto      ${Base URL}
-
-
-*** Variables ***
-${Base URL}                                  https://automationexercise.com
+Resource                                    ../../Resources/API_RES.robot
+Resource                                    ../../Resources/TestData.robot
+Suite Setup                                 Create Session    Auto      ${BASE_URL}
 
 *** Test Cases ***
 #name=Taha          email=tahaxxx@gmail.com        password=taha0
