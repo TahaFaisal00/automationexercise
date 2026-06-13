@@ -21,6 +21,6 @@ UPDATE Brands List - Invalid Method - Returns 405
     [Tags]          bug         api     put        negative        brandslist
     ${response}=    Attempt Get All Brands List With Invalid Method Via API
     #BUG: status should be 405 but API returns 200. Real code is in the body
-    Status Should Be    200
+    Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}     ${CODE_METHOD_NOT_ALLOWED}
     Verify Response Message    ${response}       ${NOT_SUPPORTED_MESSAGE}
