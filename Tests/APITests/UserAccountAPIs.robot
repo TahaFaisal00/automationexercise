@@ -111,31 +111,41 @@ UPDATE a User Account Details - Return 400 with Missing Required Fields
     Should Contain    ${response.json()['message']}           is missing in PUT request.
 
 
-GET an Updated User Account Details - Returns 200 With Valid Required Fields
+GET User Details - Valid Fields - Returns 200
+    [Documentation]     Creates an account, retrieves the user details, and asserts responseCode
+    ...                200 with a non-empty user object.
     [Tags]        functional         api     get        positive        useraccounts
-    &{params}     Create Dictionary       email=tahaxxx@gmail.com
-    ${response}=        GET On Session      Auto        /api/getUserDetailByEmail       params=${params}
-    Status Should Be    200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    200
-    Should Not Be Empty    ${response.json()['user']}
-    
-GET an Updated User Account Details - Returns 404 With Invalid Required Fields
-    [Tags]          bug         api     get        negative        useraccounts     #HTTP status should be 400 not 200
-    &{params}     Create Dictionary       email=xxxxxxxxxxx
-    ${response}=        GET On Session      Auto        /api/getUserDetailByEmail       params=${params}        expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    404
-    Should Be Equal As Strings    ${response.json()['message']}           Account not found with this email, try another email!
+    [Setup]     Create Account Via API
+    ${response}=       Get User Details Via API
+    Verify Response Code    ${response}    ${CODE_OK}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER}
+    [Teardown]      Delete Account Via API
 
-GET an Updated User Account Details - Returns 400 With Missing Required Fields
-    [Tags]        bug         api     get        negative        useraccounts       #HTTP status should be 400 not 200
-    &{params}     Create Dictionary
-    ${response}=        GET On Session      Auto        /api/getUserDetailByEmail       params=${params}            expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    400
-    Should Contain    ${response.json()['message']}           Bad request
-    Should Contain    ${response.json()['message']}           is missing in GET request.
+GET User Details - Invalid Fields - Returns 404
+    [Documentation]         Documents an API defect: requesting details for a non-existent email should
+    ...                return HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
+    [Tags]          bug         api     get        negative        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=        Attempt Get User Details With Invalid Field Via API         ${EMAIL_FIELD}      ${INVALID_EMAIL_VALUE}
+    # BUG: status should be 404 but API return 200. Real code is in the body
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}    ${CODE_NOT_FOUND}
+    Verify Response Message    ${response}    ${GET_ACCOUNT_NOT_FOUND_MESSAGE}
+    [Teardown]      Delete Account Via API
+
+GET User Details - Missing Fields - Returns 400
+    [Documentation]     Documents an API defect: a request missing the required field should return
+    ...                HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
+    [Tags]        bug         api     get        negative        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=       Attempt Get User Details With Missing Field Via API          ${EMAIL_FIELD}
+    # BUG: status should be 400 but API return 200. Real code is in the body
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}    ${CODE_BAD_REQUEST}
+    Verify Response Message Contains    ${response}     ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains    ${response}     ${MISSING_FIELD_IN_GET_MESSAGE}
+    [Teardown]      Delete Account Via API
+
 
 
 
