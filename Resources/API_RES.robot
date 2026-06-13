@@ -44,7 +44,7 @@ Build Account Body
 
 Send Create Account Request
     [Arguments]     &{body}
-    ${response}=        POST On Session     ${ALIAS}          ${REGISTER_ACCOUNT_API}        data=${body}
+    ${response}=        POST On Session     ${ALIAS}          ${POST_ACCOUNT_API}        data=${body}
     RETURN      ${response}
 
 Create Account Via API
