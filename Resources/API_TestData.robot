@@ -48,6 +48,9 @@ ${GET_ACCOUNT_NOT_FOUND_MESSAGE}                             Account not found w
 
 ${NOT_SUPPORTED_MESSAGE}                                     This request method is not supported.
 
+${RESPONSE_FIELD_PRODUCTS_LIST}                              'products'
+${RESPONSE_FIELD_BRANDS_LIST}                                'brands'
+${RESPONSE_FIELD_USER}                                       'user'
 
 
 
