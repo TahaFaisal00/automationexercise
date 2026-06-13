@@ -3,7 +3,7 @@ Library            RequestsLibrary
 Library            FakerLibrary
 Library    Collections
 Resource           API_TestData.robot
-Suite Setup          Open Session
+
 
 *** Keywords ***
 Open Session
