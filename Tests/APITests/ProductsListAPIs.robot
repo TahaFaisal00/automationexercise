@@ -22,6 +22,6 @@ POST Products List - Invalid Method - Returns 405
     [Tags]          bug         api     post        negative        productslist    
     ${response}=    Attempt Get All Products List With Invalid Method Via API
     #BUG: status should be 405 but the API returns 200. Real code is in the body
-    Status Should Be    ${CODE_OK}
+    Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}    ${CODE_METHOD_NOT_ALLOWED}
     Verify Response Message    ${response}    ${NOT_SUPPORTED_MESSAGE}
