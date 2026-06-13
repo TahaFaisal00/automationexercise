@@ -55,6 +55,15 @@ Create Account Via API
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
+Attempt Create Account With Duplicate Email Via API
+    [Documentation]     Reuses the TEST_ACCOUNT published by Create Account Via API to send a
+    ...                second create request with identical credentials, triggering the
+    ...                already-exists path. Precondition: Create Account Via API must have run
+    ...                first (typically in [Setup]). Returns the response without asserting.
+    &{body}=        Build Account Body       ${TEST_ACCOUNT}
+    ${response}=        Send Create Account Request     &{body}
+    RETURN      ${response}
+
 Attempt Create Account With Invalid Field Via API
     [Documentation]     Negative-path action. Generates valid fake account data, overwrites
     ...                ${field} with ${invalid_value}, and sends the Create Account request.
