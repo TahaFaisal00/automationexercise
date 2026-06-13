@@ -1,7 +1,7 @@
 *** Settings ***
 Library                                     RequestsLibrary
 Resource                                    ../../Resources/API_RES.robot
-Resource                                    ../../Resources/TestData.robot
+Resource                                    ../../Resources/API_TestData.robot
 Suite Setup                                 Create Session    Auto      ${BASE_URL}
 
 *** Test Cases ***
