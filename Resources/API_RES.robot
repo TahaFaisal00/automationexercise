@@ -51,7 +51,7 @@ Create Account Via API
     [Documentation]     Fixture for [Setup]. Creates a new account via API and publishes the full account dict to TEST scope for the test and teardown.
     &{account}=     Generate Fake Account Data
     VAR         &{TEST_ACCOUNT}          &{account}         scope=TEST
-    &{body}=        Build Account Body       &{TEST_ACCOUNT}
+    &{body}=        Build Account Body       ${TEST_ACCOUNT}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
