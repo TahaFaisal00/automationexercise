@@ -29,6 +29,7 @@ POST Search Product - Missing Fields - Returns 400
     [Tags]          bug         api     post        negative        searchproducts
     ${response}=     Attempt Search Product With Missing Field Via API    ${SEARCH_FIELD}
     # BUG: transport status should be 400 but the API returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}   ${response}
     Verify Response Code    ${response}           ${CODE_BAD_REQUEST}
     Verify Response Message Contains     ${response}     ${BAD_REQUEST_MESSAGE}
     Verify Response Message Contains    ${response}    ${SEARCH_PRODUCT_MISSING_FIELD_MESSAGE}
