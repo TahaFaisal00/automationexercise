@@ -41,45 +41,52 @@ POST Register a New User Account - Returns 400 With Missing Required Fields
 
 
 
-DELETE User Account - Returns 200 with Valid Required Fields
+DELETE User Account - Valid Fields - Returns 200
+    [Documentation]     Creates an account, deletes it, and asserts responseCode 200 with the
+    ...                delete-success message.
     [Tags]          functional         api     delete        positive        useraccounts
-    &{body}=        Create Dictionary           email=deleteme@gmail.com       password=Delete
-    ${response}=        DELETE On Session       Auto        /api/deleteAccount      data=${body}
-    Status Should Be    200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    200
-    Should Be Equal As Strings    ${response.json()['message']}         Account deleted!
+    [Setup]     Create Account Via API
+    ${response}=        Delete Account Via API
+    Verify Response Code    ${response}    ${CODE_OK}
+    Verify Response Message    ${response}         ${DELETE_ACCOUNT_SUCCESS_MESSAGE}
 
-DELETE an Already Deleted User Account - Returns 404 with Valid Required Fields
-    [Tags]          bug         api     delete        negative        useraccounts     #HTTP status should be 404 not 200
-    &{body}=        Create Dictionary           email=deleteme@gmail.com       password=Delete
-    ${response}=        DELETE On Session       Auto        /api/deleteAccount      data=${body}      expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    404
-    Should Be Equal As Strings    ${response.json()['message']}         Account not found!
-GET a Deleted User Account Details - Returns 404 With Valid Required Fields
-    [Tags]          bug         api     delete        negative        useraccounts     #HTTP status should be 404 not 200
-    &{params}     Create Dictionary       email=deleteme@gmail.com
-    ${response}=        GET On Session      Auto        /api/getUserDetailByEmail       params=${params}     expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    404
-    Should Be Equal As Strings    ${response.json()['message']}         Account not found with this email, try another email!
-DELETE User Account - Returns 404 With Invalid Required Fields
-    [Tags]          bug         api     delete        negative        useraccounts         #HTTP status should be 404 not 200
-    &{body}=        Create Dictionary           email=xxxxxxxxxxxxxx       password=xxxxxxxxxxxxxx
-    ${response}=        DELETE On Session       Auto        /api/deleteAccount      data=${body}            expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    404
-    Should Be Equal As Strings    ${response.json()['message']}         Account not found!
-DELETE User Account - Returns 400 With Missing Required Fields
-    [Tags]          bug         api     delete        negative        useraccounts     #HTTP status should be 400 not 200
-    &{body}=        Create Dictionary
-    ${response}=        DELETE On Session       Auto        /api/deleteAccount      data=${body}        expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    400
-    Should Contain    ${response.json()['message']}           Bad request
-    Should Contain    ${response.json()['message']}           is missing in DELETE request.
+DELETE User Account - Already Deleted - Returns 404
+    [Documentation]     Documents an API defect: deleting an already-deleted account should return
+    ...                HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
+    [Tags]          bug         api     delete        negative        useraccounts
+    [Setup]     Create Account Via API
+    Delete Account Via API
+    ${response}=        Delete Account Via API
+    # BUG: status should be 404 but the API returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}       ${CODE_NOT_FOUND}
+    Verify Response Message    ${response}     ${ACCOUNT_NOT_FOUND_MESSAGE}
 
+DELETE User Account - Invalid Fields - Returns 404
+    [Documentation]     Documents an API defect: deleting with an email that matches no account
+    ...                should return HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
+    [Tags]          bug         api     delete        negative        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=        Attempt Delete Account With Invalid Field Via API       ${EMAIL_FIELD}      ${INVALID_EMAIL_VALUE}
+    # BUG: status should be 404 but the API returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}       ${CODE_NOT_FOUND}
+    Verify Response Message    ${response}     ${ACCOUNT_NOT_FOUND_MESSAGE}
+    [Teardown]      Delete Account Via API
+
+DELETE User Account - Missing Fields - Returns 400
+    [Documentation]     Documents an API defect: a delete missing the required field should return
+    ...                HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
+    [Tags]          bug         api     delete        negative        useraccounts
+    [Setup]     Create Account Via API
+    ${response}=        Attempt Delete Account With Missing Field Via API        ${EMAIL_FIELD}
+    # BUG: status should be 400 but the API returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}      ${CODE_BAD_REQUEST}
+    # Todo: run the test and check log for the required field message in response
+    Verify Response Message Contains      ${response}          ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains      ${response}          ${MISSING_FIELD_IN_DELETE_MESSAGE}
+    [Teardown]      Delete Account Via API
 
 
 
@@ -129,6 +136,18 @@ GET User Details - Valid Fields - Returns 200
     Verify Response Code    ${response}    ${CODE_OK}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER}
     [Teardown]      Delete Account Via API
+
+GET User Details - Deleted User - Returns 404
+    [Documentation]     Documents an API defect: fetching details for a deleted user should return
+    ...                HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
+    [Tags]          bug         api     get        negative        useraccounts
+    [Setup]     Create Account Via API
+    Delete Account Via API
+    ${response}=        Get User Details Via API
+    # BUG: status should be 404 but the API returns 200. Real code is in the body.
+    Status Should Be    ${CODE_OK}      ${response}
+    Verify Response Code    ${response}       ${CODE_NOT_FOUND}
+    Verify Response Message      ${response}       ${GET_ACCOUNT_NOT_FOUND_MESSAGE}
 
 GET User Details - Invalid Fields - Returns 404
     [Documentation]         Documents an API defect: requesting details for a non-existent email should
