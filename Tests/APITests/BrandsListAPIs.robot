@@ -6,19 +6,21 @@ Resource                                    ../../Resources/API_TestData.robot
 Suite Setup                                 Create Session    Auto      ${BASE_URL}
 
 *** Test Cases ***
-#name=Taha                                   email=tahaxxx@gmail.com        password=taha0
-#name=DeleteMe                               email=deleteme@gmail.com        password=Delete
-GET All Brands List - Returns 200
+GET Brands List - Valid Method - Returns 200
+    [Documentation]     Sends a GET to the brands list endpoint and asserts the body
+    ...                returns responseCode 200 with a non-empty brands list.
     [Tags]          functional         api     get        positive        brandslist
-    ${response}     GET On Session      Auto        /api/brandsList
-    Status Should Be    200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    200
-    Should Not Be Empty   ${response.json()['brands']}
+    ${response}=    Get All Brands List Via API
+    Verify Response Code    ${response}     ${CODE_OK}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_BRANDS_LIST}
 
-UPDATE to All Brands List - Returns 405
-    [Tags]          bug         api     put        positive        brandslist                    #HTTP status should be 405 not 200
-    ${response}     PUT On Session      Auto       /api/brandsList      expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    405
-    Should Be Equal As Strings    ${response.json()['message']}    This request method is not supported.
+UPDATE Brands List - Invalid Method - Returns 405
+    [Documentation]     Documents an API defect: a PUT to the brands list endpoint should
+    ...                return HTTP 405, but the API returns HTTP 200 and reports 405 in
+    ...                the body responseCode instead.
+    [Tags]          bug         api     put        negative        brandslist
+    ${response}=    Attempt Get All Brands List With Invalid Method Via API
+    #BUG: status should be 405 but API returns 200. Real code is in the body
+    Status Should Be    200
+    Verify Response Code    ${response}     ${CODE_METHOD_NOT_ALLOWED}
+    Verify Response Message    ${response}       ${NOT_SUPPORTED_MESSAGE}
