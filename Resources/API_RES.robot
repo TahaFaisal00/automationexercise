@@ -301,8 +301,19 @@ Attempt Search Product With Missing Field Via API
     RETURN      ${response}
 
 
+Get All Products List Via API
+    [Documentation]     Positive-path action. Sends a GET to the products-list endpoint and returns
+    ...                the raw response for the test to assert. Read-only — no account or teardown.
+    ${response}=     GET On Session      ${ALIAS}        ${PRODUCTS_LIST_API}
+    RETURN      ${response}
 
-
+Attempt Get All Products List With Invalid Method Via API
+    [Documentation]     Negative-path action. Sends a POST to the products-list endpoint — the wrong
+    ...                HTTP method — to trigger the 405 method-not-allowed response. Sends no body
+    ...                (the server rejects on the method) and mutates nothing. Returns the raw
+    ...                response for the test to assert.
+    ${response}=     POST On Session      ${ALIAS}        ${PRODUCTS_LIST_API}
+    RETURN      ${response}
 
 
 
