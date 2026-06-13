@@ -225,9 +225,9 @@ Attempt Verify Login With Invalid Field Via API
     ...                body only, and sends it. ${TEST_ACCOUNT} is never mutated; reads only, so the
     ...                account persists and the test deletes it in teardown. Returns the raw response
     ...                for the test to assert.
-    [Arguments]     ${field}        ${invaild _email}
+    [Arguments]     ${field}        ${invaild_email}
     &{body}=        Build Verify Login Body      &{TEST_ACCOUNT}
-    Set To Dictionary    ${body}     ${field}       ${invaild _email}
+    Set To Dictionary    ${body}     ${field}       ${invaild_email}
     ${response}=        Send Verify Login Request       &{body}
     RETURN  ${response}
 
