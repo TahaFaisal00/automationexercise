@@ -5,34 +5,34 @@ Resource                                    ../../Resources/API_RES.robot
 Resource                                    ../../Resources/API_TestData.robot
 Suite Setup                                 Create Session    Auto      ${BASE_URL}
 
-
 *** Test Cases ***
-#name=Taha                                   email=tahaxxx@gmail.com        password=taha0
-#name=DeleteMe                               email=deleteme@gmail.com        password=Delete
-POST to Search Product - Returns 200 with Valid Required Fileds
+POST Search Product - Valid Fields - Returns 200
+    [Documentation]     Searches for an existing product and asserts the API returns
+    ...                responseCode 200 with a non-empty products list.
     [Tags]          functional         api     post        positive        searchproducts
-    &{body}=        Create Dictionary       search_product=shirt
-    ${response}     POST On Session      Auto        /api/searchProduct     data=${body}
-    Status Should Be        200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    200
-    Should Not Be Empty    ${response.json()['products']}
+    ${response}=        Search Product Via API    ${SHIRT}
+    Verify Response Code     ${response}      ${CODE_OK}
+    Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_PRODUCTS_LIST}
 
-POST to Search Product - Returns 200 with Empty Results for Invalid Required Fileds
-    [Tags]          functional         api     post        negative        searchproducts
-    &{body}=        Create Dictionary       search_product=xxxxxxxxx
-    ${response}     POST On Session      Auto        /api/searchProduct     data=${body}        expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    200
-    Should Be Empty    ${response.json()['products']}
+POST Search Product - Invalid Fields - Returns 200 with Empty Results
+    [Documentation]     Searches for a term with no matches and asserts the API returns
+    ...                responseCode 200 with an empty products list.
+    [Tags]          functional         api     post        positive        searchproducts
+    ${response}=      Search Product Via API    ${NON_EXISTENT_PRODUCT}
+    Verify Response Code    ${response}      ${CODE_OK}
+    Verify Response Products Empty    ${response}
 
-POST to Search Product - Returns 400 with Missing Required Fileds
-    [Tags]          bug         api     post        negative        searchproducts             #HTTP status should be 400 not 200
-    &{body}=        Create Dictionary
-    ${response}     POST On Session      Auto        /api/searchProduct     data=${body}        expected_status=200
-    Log    message=${response.json()}
-    Should Be Equal As Strings    ${response.json()['responseCode']}    400
-    Should Be Equal As Strings    ${response.json()['message']}    Bad request, search_product parameter is missing in POST request.
+POST Search Product - Missing Fields - Returns 400
+    [Documentation]     Documents an API defect: a search missing the required field should
+    ...                return HTTP 400, but the API returns HTTP 200 and reports 400 in the
+    ...                body responseCode instead.
+    [Tags]          bug         api     post        negative        searchproducts
+    ${response}=     Attempt Search Product With Missing Field Via API    ${SEARCH_FIELD}
+    # BUG: transport status should be 400 but the API returns 200. Real code is in the body.
+    Verify Response Code    ${response}           ${CODE_BAD_REQUEST}
+    Verify Response Message Contains     ${response}     ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains    ${response}    ${SEARCH_PRODUCT_MISSING_FIELD_MESSAGE}
+    Verify Response Message Contains    ${response}    ${MISSING_FIELD_IN_POST_MESSAGE}
 
 
 
