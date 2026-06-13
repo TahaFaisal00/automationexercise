@@ -43,7 +43,7 @@ ${MISSING_FIRST_NAME_FIELD_MESSAGE}                          firstname parameter
 ${MISSING_EMAIL_FIELD_MESSAGE}                               email parameter
 ${SEARCH_PRODUCT_MISSING_FIELD_MESSAGE}                      search_product parameter
 
-${DELETE_ACCOUNT_NOT_FOUND_MESSAGE}                          Account not found!
+${ACCOUNT_NOT_FOUND_MESSAGE}                          Account not found!
 ${GET_ACCOUNT_NOT_FOUND_MESSAGE}                             Account not found with this email, try another email!
 
 ${NOT_SUPPORTED_MESSAGE}                                     This request method is not supported.
