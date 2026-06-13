@@ -315,24 +315,33 @@ Attempt Get All Products List With Invalid Method Via API
     ${response}=     POST On Session      ${ALIAS}        ${PRODUCTS_LIST_API}
     RETURN      ${response}
 
+Verify Response Code
+    [Documentation]     Asserts the API's responseCode field equals the expected value.
+    ...                Checks the body-level code, NOT the HTTP transport status (always 200 here).
+    [Arguments]    ${response}       ${expected_code}
+    Should Be Equal As Strings    ${response.json()['responseCode']}    ${expected_code}
 
+Verify Response Message
+    [Documentation]     Asserts the message field exactly equals the expected string.
+    ...                Use for success messages where the full text matters
+    [Arguments]     ${response}         ${expected_message}
+    Should Be Equal As Strings    ${response.json()['message']}         ${expected_message}
 
+Verify Response Message Contains
+    [Documentation]      Asserts the message field contains the given substring.
+    ...                Use for error fragments
+    [Arguments]       ${response}       ${expected_message}
+    Should Contain    ${response.json()['message']}         ${expected_message}
 
+Verify Response Field Not Empty
+    [Documentation]     Asserts the named field in the response body is not empty.
+    [Arguments]      ${response}             ${field}
+    Should Not Be Empty   ${response.json()[${field}]}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Verify Response Products Empty
+    [Documentation]     Asserts the products list is empty (e.g. a search with no matches).
+    [Arguments]     ${response}
+    Should Be Empty    ${response.json()['products']}
 
 
 
