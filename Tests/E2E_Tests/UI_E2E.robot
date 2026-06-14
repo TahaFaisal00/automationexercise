@@ -21,7 +21,7 @@ Registered User Completes Purchase
     automationexercise_Res.Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
     automationexercise_Res.Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
-    automationexercise_Res.Navigate To Cart
+    automationexercise_Res.Navigate To Cart After Adding Product to Cart
     automationexercise_Res.Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
     automationexercise_Res.Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
     automationexercise_Res.Navigate To Checkout Page From Cart
@@ -42,14 +42,14 @@ Guest Converts To Registered And Purchases
     automationexercise_Res.Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
     automationexercise_Res.Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
-    automationexercise_Res.Navigate To Cart
+    automationexercise_Res.Navigate To Cart After Adding Product to Cart
     automationexercise_Res.Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
     automationexercise_Res.Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
     automationexercise_Res.Attempt Checkout As Guest
     automationexercise_Res.Navigate From Cart To Signup After Block
     automationexercise_Res.Generate New Account Data
     automationexercise_Res.Register New Account        ${TEST_ACCOUNT}
-    automationexercise_Res.Navigate To Cart
+    automationexercise_Res.Navigate To Cart From Navbar
     automationexercise_Res.Verify Products In Cart         ${MEN_TSHIRT}           ${BLUE_TOP}
     automationexercise_Res.Verify Product Quantities In Cart       ${E2E_CART_PRODUCTS}            ${E2E_CART_QUANTITIES}
     automationexercise_Res.Navigate To Checkout Page From Cart

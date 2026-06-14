@@ -188,7 +188,7 @@ Add Product To Cart And Open Cart
     ProductsPage.Verify All Products Visible            @{products}
     HomePage.Add Item To Cart From Products Page         ${product}
     HomePage.Verify Product Added To Cart
-    Navigate To Cart
+    Navigate To Cart After Adding Product to Cart
 
 Add Product To Cart And Continue Shopping
     [Documentation]     Adds a specific product to shopping cart
@@ -292,9 +292,16 @@ Set Quantity And Add To Cart
     ProductsPage.Set Quantity              ${quantity}
     Add Product To Cart From Product Details
 
-Navigate To Cart
-    [Documentation]       Navigates to the shopping cart and verifies the cart page loaded.
-    HomePage.Click Shopping Cart Page Link
+Navigate To Cart After Adding Product to Cart
+    [Documentation]       Navigates to the shopping cart after adding a product from
+    ...    homepage or product details and verifies the cart page loaded.
+    HomePage.Click View Cart Link
+    CartPage.Verify Cart Page Loaded
+
+Navigate To Cart From Navbar
+    [Documentation]     Navigates to the shopping cart via the navbar cart link and
+    ...                verifies the cart page loaded.
+    HomePage.Click Shopping Cart Link
     CartPage.Verify Cart Page Loaded
 
 Verify Product Total Price In Cart Is Negative

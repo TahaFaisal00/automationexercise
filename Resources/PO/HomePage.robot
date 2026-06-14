@@ -17,6 +17,8 @@ ${DELETE_ACCOUNT_BUTTON}            xpath=//a[@href='/delete_account']
 ${CONTINUE_BUTTON_AFTER_DELETION}   css=[data-qa='continue-button']
 ${VIEW_CART_BUTTON}                 xpath=//div[@id='cartModal']//a[@href='/view_cart']
 
+${SHOPPING_CART_LINK}               xpath=//ul[contains(class,'navbar-nav')]//a[@href='/view_cart']
+
 ${HOME_URL}                         https://automationexercise.com/
 ${CONTINUE_SHOPPING}                xpath=//div[@class='modal-footer']//button[contains(@class,'close-modal')]
 *** Keywords ***
@@ -57,9 +59,16 @@ Click Products Page Link
     Click Link                  ${PRODUCTS_PAGE}
     Wait Until Page Contains             All Products
 
-Click Shopping Cart Page Link
+Click View Cart Link
+    Wait Until Element Is Visible         ${VIEW_CART_BUTTON}
     Click Link                            ${VIEW_CART_BUTTON}
     Wait Until Page Contains             Shopping Cart
+
+Click Shopping Cart Link
+    Wait Until Element Is Visible    ${SHOPPING_CART_LINK}
+    Click Link               ${SHOPPING_CART_LINK}
+    Wait Until Page Contains             Shopping Cart
+
 
 Click Delete Account Link
     Click Link                  ${DELETE_ACCOUNT_BUTTON}
