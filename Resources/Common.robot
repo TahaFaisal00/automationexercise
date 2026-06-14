@@ -9,6 +9,8 @@ ${WINDOWS_HEIGHT}        1024
 ${IMPLICIT_WAIT}         10s
 ${SELENIUM_SPEED}        0
 ${HEADLESS}              ${FALSE}
+
+${AD_BLOCK_RULES}    --host-resolver-rules=MAP *.doubleclick.net 127.0.0.1,MAP *.googlesyndication.com 127.0.0.1,MAP *.googleadservices.com 127.0.0.1
 *** Keywords ***
 Launch Browser
     [Documentation]    Opens Chrome with configured options.
@@ -20,6 +22,7 @@ Launch Browser
     END
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
+    Call Method    ${options}    add_argument    ${AD_BLOCK_RULES}
     Open Browser    ${URL}    ${BROWSER}    options=${options}
 
     Set Window Size       ${WINDOWS_WIDTH}    ${WINDOWS_HEIGHT}
