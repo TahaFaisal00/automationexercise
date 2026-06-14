@@ -27,7 +27,7 @@ POST Search Product - Missing Fields - Returns 400
     ...                return HTTP 400, but the API returns HTTP 200 and reports 400 in the
     ...                body responseCode instead.
     [Tags]          bug         api     post        negative        searchproducts
-    ${response}=     Attempt Search Product With Missing Field Via API    ${SEARCH_FIELD}
+    ${response}=     Attempt Search Product With Missing Field Via API    ${SHIRT}        ${SEARCH_FIELD}
     # BUG: transport status should be 400 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}   ${response}
     Verify Response Code    ${response}           ${CODE_BAD_REQUEST}
