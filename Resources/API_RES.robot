@@ -128,7 +128,7 @@ Attempt Delete Account With Missing Field Via API
     ...                expected to fail and the account persists, so the test must clean up in
     ...                teardown. Returns the raw response for the test to assert.
     [Arguments]     ${field}
-    &{body}=        Build Account Body      &{TEST_ACCOUNT}
+    &{body}=        Build Delete Account Body      &{TEST_ACCOUNT}
     Remove From Dictionary    ${body}        ${field}
     ${response}=     Send Delete Account Request     &{body}
     RETURN      ${response}
