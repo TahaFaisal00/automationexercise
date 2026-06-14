@@ -401,9 +401,9 @@ Verify Signup Name And Email
     [Documentation]     Asserts the name and email echoed back on the signup form match
     ...                what was submitted. Assumes the initial signup step is done.
     [Arguments]                 ${user_name}            ${email}
-    ${actual_signup_name}=      Get Text    ${SIGNUP_NAME_SIGNUP_PAGE}
+    ${actual_signup_name}=      Get Value    ${SIGNUP_NAME_SIGNUP_PAGE}
     Should Be Equal As Strings    ${actual_signup_name}    ${user_name}
-    ${actual_signup_email}=      Get Text    ${SIGNUP_EMAIL_SIGNUP_PAGE}
+    ${actual_signup_email}=      Get Value    ${SIGNUP_EMAIL_SIGNUP_PAGE}
     Should Be Equal As Strings     ${actual_signup_email}    ${email}
 
 Verify Account Created
