@@ -5,9 +5,9 @@ Resource        ../Common.robot
 *** Variables ***
 #${PRODUCT_BASE} Not usable alone. always add [@class='...'] to it
 ${PRODUCT_BASE}                    xpath=//p[normalize-space()='{}']/ancestor::div
-${PRODUCT_CARD}                    ${PRODUCT_BASE}[@class='single-products']
-${OVERLAY_ADD_TO_CART}             ${PRODUCT_BASE}[@class='overlay-content']//a[contains(@class,'add-to-cart')]
-${VIEW_DETAILS_LINK}               ${PRODUCT_BASE}[@class='product-image-wrapper']//a[contains(@href,'product_details')]
+${PRODUCT_CARD}                    ${PRODUCT_BASE}\[@class='single-products']
+${OVERLAY_ADD_TO_CART}             ${PRODUCT_BASE}\[@class='overlay-content']//a[contains(@class,'add-to-cart')]
+${VIEW_DETAILS_LINK}               ${PRODUCT_BASE}\[@class='product-image-wrapper']//a[contains(@href,'product_details')]
 
 ${AUTOMATION_EXERCISE_LOGO}         xpath=//img[@alt='Website for automation practice']
 ${SIGNUP_AND_LOGIN_PAGE}            xpath=//a[@href='/login']
