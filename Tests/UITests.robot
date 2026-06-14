@@ -79,7 +79,7 @@ Search By Product Name
     [Documentation]       Searches for a specific product and verifies only the
     ...                   matching product appears in the results.
     [Tags]                functionality     ui          positive
-    automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}       ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
+    automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}       ${MEN_TSHIRT}        ${MEN_TSHIRT}      ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
 
 Filter By Category
     [Documentation]       Filters products by category and verifies only the matching products appear.
@@ -94,14 +94,7 @@ Filter By Brand
 Search Invalid Input
     [Documentation]       user use search feature for invalid or non existing item. verify Searching feature functionality.
     [Tags]                functionality     ui          negative
-    automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}         ${INVALID_SEARCH_INPUT}         ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
-
-
-
-
-
-
-E2E Guest flow Login flow
+    automationexercise_Res.Search Products And Verify Results                                              ${ALL_PRODUCTS}         ${INVALID_SEARCH_INPUT}      ${EMPTY}        ${MEN_TSHIRT}         ${LACE_TOP_FOR_WOMEN}       ${FROZEN_TOPS_FOR_KIDS}     ${BLUE_TOP}
 
 
 

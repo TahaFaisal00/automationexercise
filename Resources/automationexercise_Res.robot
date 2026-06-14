@@ -150,9 +150,9 @@ Verify Login Error
 Search Products And Verify Results
     [Documentation]     Searches the products page and verifies the expected
     ...                 products appear while the others don't.
-    [Arguments]       ${all_products}      ${expected_product}     @{unexpected_products}
+    [Arguments]       ${all_products}    ${searched_product}         ${expected_product}     @{unexpected_products}
     Enter Products Page And Checks Products         ${all_products}
-    ProductsPage.Use Search Bar     ${expected_product}
+    ProductsPage.Use Search Bar     ${searched_product}
     Verify Search Results           ${expected_product}         @{unexpected_products}
 
 Choose Category And Verify Results
@@ -179,12 +179,6 @@ Navigate To Products Page
     [Documentation]     Goes to Products page and assert it loaded
     HomePage.Click Products Page Link
     ProductsPage.Verify Products Page Loaded
-
-Verify Search Results
-    [Documentation]     Verifies the expected product appears in the results and the others don't.
-    [Arguments]     ${expected_product}      @{unexpected_products}
-    ProductsPage.Search Result Should Contain       ${expected_product}
-    Search Result Should Not Contain       @{unexpected_products}
 
 
 Add Product To Cart And Open Cart
@@ -440,11 +434,15 @@ Verify Quantity Value
 Verify Review Submitted
     Wait Until Page Contains    Thank you for your review.
 
-Search Result Should Not Contain
-    [Arguments]         @{products}
-    FOR    ${product}    IN    @{products}
-        ${product_location}=     Format String    ${PRODUCT_NAME}    ${product}
-        Wait Until Page Does Not Contain Element    ${product_location}
+Verify Search Results
+    [Documentation]     Asserts the expected product appears when one is expected,
+    ...                and that the unexpected products do not appear.
+    [Arguments]         ${expected_product}      @{unexpected_products}
+    IF    $expected_product != ""
+         ProductsPage.Search Result Should Contain      ${expected_product}
+    END
+    FOR    ${unexpected_product}    IN    @{unexpected_products}
+         ProductsPage.Search Result Should Not Contain      ${unexpected_product}
     END
 
 

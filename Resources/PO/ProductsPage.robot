@@ -77,11 +77,14 @@ Click On Brand
     Wait Until Page Contains    ${brand_page}
 
 Search Result Should Contain
-    [Arguments]                  ${product}
-    ${product_location}=         Format String    ${PRODUCT_NAME}        ${product}
-    Wait Until Page Contains Element    ${product_location}
+    [Arguments]                  ${expected_product}
+    ${expected_product_location}=         Format String    ${PRODUCT_NAME}        ${expected_product}
+    Wait Until Page Contains Element    ${expected_product_location}
 
-
+Search Result Should Not Contain
+    [Arguments]     ${unexpected_product}
+    ${unexpected_product_location}=     Format String    ${PRODUCT_NAME}    ${unexpected_product}
+    Wait Until Page Does Not Contain Element    ${unexpected_product_location}
 
 
 
