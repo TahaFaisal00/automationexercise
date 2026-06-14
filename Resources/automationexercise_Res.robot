@@ -372,12 +372,6 @@ Navigate From Cart To Signup After Block
     Click Register Or Login On Checkout Block
     Verify Signup Login Page Loaded
 
-Handle Ad
-    [Documentation]     Closes Google Ad iframe that appears mid-test               Frame selection handles iframe context then clicks 'dismiss button'
-    Run Keyword And Ignore Error    Select Frame    xpath=//*[@id='ad_iframe']
-    Run Keyword And Ignore Error    Click Element    xpath=//*[@id='dismiss-button']
-    Run Keyword And Ignore Error    Unselect Frame
-
 
 Verify Account Signed In
     [Arguments]             ${user}
