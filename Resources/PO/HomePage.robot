@@ -17,7 +17,7 @@ ${DELETE_ACCOUNT_BUTTON}            xpath=//a[@href='/delete_account']
 ${CONTINUE_BUTTON_AFTER_DELETION}   css=[data-qa='continue-button']
 ${VIEW_CART_BUTTON}                 xpath=//div[@id='cartModal']//a[@href='/view_cart']
 
-${SHOPPING_CART_LINK}               xpath=//ul[contains(class,'navbar-nav')]//a[@href='/view_cart']
+${SHOPPING_CART_LINK}               xpath=//ul[contains(@class,'navbar-nav')]//a[@href='/view_cart']
 
 ${HOME_URL}                         https://automationexercise.com/
 ${CONTINUE_SHOPPING}                xpath=//div[@class='modal-footer']//button[contains(@class,'close-modal')]
