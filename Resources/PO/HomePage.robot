@@ -65,6 +65,7 @@ Click Delete Account Link
     Wait Until Page Contains    Account Deleted!
 
 Click Continue After Account Deletion
+    Wait Until Page Contains Element    ${CONTINUE_BUTTON_AFTER_DELETION}
     Click Link        ${CONTINUE_BUTTON_AFTER_DELETION}
     Verify Home Page Loaded
 
