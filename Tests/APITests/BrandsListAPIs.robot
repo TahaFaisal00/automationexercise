@@ -3,7 +3,7 @@ Library                                     RequestsLibrary
 Library                                     String
 Resource                                    ../../Resources/API_RES.robot
 Resource                                    ../../Resources/API_TestData.robot
-Suite Setup                                 Create Session    Auto      ${BASE_URL}
+Suite Setup                                 Open Session
 
 *** Test Cases ***
 GET Brands List - Valid Method - Returns 200

@@ -2,7 +2,7 @@
 Library                                     RequestsLibrary
 Resource                                    ../../Resources/API_RES.robot
 Resource                                    ../../Resources/API_TestData.robot
-Suite Setup                                 Create Session    Auto      ${BASE_URL}
+Suite Setup                                 Open Session
 
 *** Test Cases ***
 POST New User Account - Valid Fields - Returns 201

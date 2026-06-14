@@ -2,7 +2,7 @@
 Library                                     RequestsLibrary
 Resource                                    ../../Resources/API_RES.robot
 Resource                                    ../../Resources/API_TestData.robot
-Suite Setup                                 Create Session    Auto      ${BASE_URL}
+Suite Setup                                 Open Session
 
 *** Test Cases ***
 Full Account Lifecycle - Create Login Delete Then Login Fails
