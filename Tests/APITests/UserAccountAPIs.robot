@@ -47,8 +47,8 @@ POST New User Account - Missing Fields - Returns 400
     # BUG: status should be 400 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}      ${CODE_BAD_REQUEST}
-    # Todo: run the test and check log for the required field message in response
     Verify Response Message Contains   ${response}      ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains    ${response}    ${MISSING_EMAIL_FIELD_MESSAGE}
     Verify Response Message Contains   ${response}         ${MISSING_FIELD_IN_POST_MESSAGE}
 
 
@@ -95,8 +95,8 @@ DELETE User Account - Missing Fields - Returns 400
     # BUG: status should be 400 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}      ${CODE_BAD_REQUEST}
-    # Todo: run the test and check log for the required field message in response
     Verify Response Message Contains      ${response}          ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains    ${response}    ${MISSING_EMAIL_FIELD_MESSAGE}
     Verify Response Message Contains      ${response}          ${MISSING_FIELD_IN_DELETE_MESSAGE}
     [Teardown]      Delete Account Via API
 
@@ -133,8 +133,8 @@ UPDATE User Account Details - Missing Fields - Return 400
     # BUG: status should be 400 but the API return 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}       ${CODE_BAD_REQUEST}
-    # Todo: run the test and check log for the required field message in response
     Verify Response Message Contains        ${response}       ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains    ${response}    ${MISSING_EMAIL_FIELD_MESSAGE}
     Verify Response Message Contains         ${response}         ${MISSING_FIELD_IN_PUT_MESSAGE}
     [Teardown]      Delete Account Via API
 
@@ -182,8 +182,8 @@ GET User Details - Missing Fields - Returns 400
     # BUG: status should be 400 but API return 200. Real code is in the body
     Status Should Be    ${CODE_OK}      ${response}
     Verify Response Code    ${response}    ${CODE_BAD_REQUEST}
-    # Todo: run the test and check log for the required field message in response
     Verify Response Message Contains    ${response}     ${BAD_REQUEST_MESSAGE}
+    Verify Response Message Contains    ${response}    ${MISSING_EMAIL_FIELD_MESSAGE}
     Verify Response Message Contains    ${response}     ${MISSING_FIELD_IN_GET_MESSAGE}
     [Teardown]      Delete Account Via API
 
