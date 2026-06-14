@@ -1,0 +1,25 @@
+# Robot Framework output artifacts
+output.xml
+log.html
+report.html
+output-*.xml
+log-*.html
+report-*.html
+selenium-screenshot-*.png
+geckodriver-*.log
+
+# Allure
+allure-results/
+allure-report/
+
+# IDE
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
