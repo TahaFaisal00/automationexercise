@@ -9,7 +9,7 @@ ${WINDOWS_HEIGHT}        1024
 ${IMPLICIT_WAIT}         10s
 ${SELENIUM_SPEED}        0
 ${HEADLESS}              ${FALSE}
-
+${HEADLESS_ARG}          --headless=new
 ${AD_BLOCK_RULES}    --host-resolver-rules=MAP *.doubleclick.net 127.0.0.1,MAP *.googlesyndication.com 127.0.0.1,MAP *.googleadservices.com 127.0.0.1
 *** Keywords ***
 Launch Browser
@@ -18,7 +18,7 @@ Launch Browser
     ...                Override in CI with: --variable HEADLESS:True.
     ${options}=    Evaluate    selenium.webdriver.ChromeOptions()    modules=selenium.webdriver
     IF    ${HEADLESS}
-        Call Method    ${options}    add_argument    --headless=new
+        Call Method    ${options}    add_argument    ${HEADLESS_ARG}
     END
     Call Method    ${options}    add_argument    --no-sandbox
     Call Method    ${options}    add_argument    --disable-dev-shm-usage
