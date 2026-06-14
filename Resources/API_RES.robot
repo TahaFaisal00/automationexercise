@@ -353,4 +353,27 @@ Verify Response Products Empty
     Should Be Empty    ${response.json()['products']}
 
 
+Verify Create Account Succeeds
+    [Documentation]     Asserts create-account returns 201 with the success message.
+    [Arguments]     ${response}
+    Verify Response Code    ${response}    ${CODE_CREATED}
+    Verify Response Message      ${response}           ${CREATE_ACCOUNT_SUCCESS_MESSAGE}
+
+Verify Login Succeeds
+    [Documentation]     Asserts login returns 200 with "User exists!".
+    [Arguments]         ${response}
+    Verify Response Code    ${response}    ${CODE_OK}
+    Verify Response Message       ${response}        ${VERIFY_LOGIN_SUCCESS_MESSAGE}
+
+Verify Delete Account Succeeds
+    [Documentation]     Asserts delete-account returns 200 with "Account deleted!".
+    [Arguments]     ${response}
+    Verify Response Code    ${response}    ${CODE_OK}
+    Verify Response Message    ${response}         ${DELETE_ACCOUNT_SUCCESS_MESSAGE}
+
+Verify Login Fails
+    [Documentation]     Asserts login returns 404 with "User not found!".
+    [Arguments]     ${response}
+    Verify Response Code    ${response}    ${CODE_NOT_FOUND}
+    Verify Response Message       ${response}               ${VERIFY_LOGIN_USER_NOT_FOUND_MESSAGE}
 
