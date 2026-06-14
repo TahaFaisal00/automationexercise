@@ -39,6 +39,7 @@ Guest Converts To Registered And Purchases
     ...                checkout guard and cart persistence across registration.
     ...                Account deleted via API (teardown).
     [Tags]      e2e     ui      positive
+    [Setup]     Common.Test Isolation Setup
     automationexercise_Res.Add Product To Cart And Continue Shopping       ${ALL_PRODUCTS}     ${MEN_TSHIRT}
     automationexercise_Res.Navigate To Product Details Page            ${ALL_PRODUCTS}     ${BLUE_TOP}
     automationexercise_Res.Set Quantity And Add To Cart            ${PRODUCT.edited_quantity}
