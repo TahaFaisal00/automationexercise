@@ -3,10 +3,10 @@ Library         SeleniumLibrary
 Library         String
 *** Variables ***
 # ${PRODUCT_BASE} Won't work alone. add [class='...'] to it
-${PRODUCT_BASE}                     xpath=//a[normalize-space()='{}']/ancestor::tr//td
-${PRODUCT_QUANTITY}                 ${PRODUCT_BASE}\[@class='cart_quantity']//button
-${PRODUCT_TOTAL_PRICE}              ${PRODUCT_BASE}\[@class='cart_total']//p[@class='cart_total_price']
-${PRODUCT_DELETE_BUTTON}            ${PRODUCT_BASE}\[@class='cart_delete']//a[@class='cart_quantity_delete']
+${PRODUCT_BASE_IN_CART}                     xpath=//a[normalize-space()='{}']/ancestor::tr//td
+${PRODUCT_QUANTITY}                 ${PRODUCT_BASE_IN_CART}\[@class='cart_quantity']//button
+${PRODUCT_TOTAL_PRICE}              ${PRODUCT_BASE_IN_CART}\[@class='cart_total']//p[@class='cart_total_price']
+${PRODUCT_DELETE_BUTTON}            ${PRODUCT_BASE_IN_CART}\[@class='cart_delete']//a[@class='cart_quantity_delete']
 
 ${CART_PRODUCT_LOCATOR}                          xpath=//a[normalize-space()='{}']
 ${PROCEED_TO_CHECKOUT_BUTTON}       xpath=//a[normalize-space()='Proceed To Checkout']
