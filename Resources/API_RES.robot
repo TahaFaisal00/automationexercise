@@ -85,7 +85,7 @@ Attempt Create Account With Missing Field Via API
     ...                assertions itself. Creates no account, so no teardown is needed.
     [Arguments]     ${field}
     &{account}=     Generate Fake Account Data
-    &{body}=        Build Account Body       &{account}
+    &{body}=        Build Account Body       ${account}
     Remove From Dictionary    ${body}         ${field}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
