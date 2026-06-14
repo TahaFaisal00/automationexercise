@@ -146,7 +146,7 @@ Update Account Via API
     ...                keeps valid credentials to delete the account. Returns the raw response
     ...                for the test to assert.
    [Arguments]      ${field}        ${value}
-   &{body}=        Build Account Body       &{TEST_ACCOUNT}
+   &{body}=        Build Account Body       ${TEST_ACCOUNT}
    Set To Dictionary    ${body}         ${field}            ${value}
    ${response}=      Send Update Account Request     &{body}
     RETURN      ${response}
@@ -158,7 +158,7 @@ Attempt Update Account With Missing Field Via API
     ...                expected to fail, so the account persists unchanged and the test deletes it
     ...                in teardown. Returns the raw response for the test to assert.
    [Arguments]      ${field}
-   &{body}=        Build Account Body       &{TEST_ACCOUNT}
+   &{body}=        Build Account Body       ${TEST_ACCOUNT}
    Remove From Dictionary    ${body}         ${field}
    ${response}=      Send Update Account Request     &{body}
     RETURN      ${response}
