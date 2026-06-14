@@ -304,7 +304,7 @@ Attempt Search Product With Missing Field Via API
     ...                trigger the "search_product is missing" error. Returns the raw response for
     ...                the test to assert. Read-only.
     [Arguments]      ${search_field}
-    &{body}=        Build Search Product Body     ${PRODUCT_NAME}
+    &{body}=        Build Search Product Body    ${search_value}
     Remove From Dictionary     ${body}      ${search_field}
     ${response}=        Send Search Product Request     &{body}
     RETURN      ${response}
