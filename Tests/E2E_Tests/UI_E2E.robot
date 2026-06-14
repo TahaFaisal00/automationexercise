@@ -6,7 +6,7 @@ Resource            ../../Resources/TestData.robot
 Resource            ../../Resources/automationexercise_Res.robot
 Resource            ../../Resources/API_RES.robot
 
-Suite Setup         Common.Launch Browser
+Suite Setup         Run Keywords     API_RES.Open Session   AND   Common.Launch Browser
 Suite Teardown      Common.Shutdown Browser
 
 *** Test Cases ***
