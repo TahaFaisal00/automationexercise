@@ -35,6 +35,7 @@ Add Item To Cart From Products Page
     [Arguments]                             ${product}
     ${add_to_cart}=        Format String    ${OVERLAY_ADD_TO_CART}     ${product}
     ${product_cart}=       Format String    ${PRODUCT_CARD}            ${product}
+    Wait Until Element Is Visible           ${product_cart}
     Mouse Over                              ${product_cart}
     Wait Until Element Is Visible           ${add_to_cart}
     Click Element                           ${add_to_cart}

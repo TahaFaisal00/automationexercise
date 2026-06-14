@@ -521,7 +521,7 @@ Verify Mobile Number
 Verify Order Submitted
     Wait Until Element Is Visible    ${ORDER_PLACED_HEADER}
     ${actual_header}=        Get Text    ${ORDER_PLACED_HEADER}
-    Should Be Equal As Strings    ${actual_header}    Order Placed!
+    Should Be Equal As Strings    ${actual_header}    ORDER PLACED!
 
 
 
