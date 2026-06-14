@@ -74,7 +74,7 @@ Attempt Create Account With Invalid Field Via API
     &{account}=     Generate Fake Account Data
     Set To Dictionary       ${account}          ${field}           ${invalid_value}
     VAR         &{TEST_ACCOUNT}          &{account}         scope=TEST
-    &{body}=        Build Account Body       &{TEST_ACCOUNT}
+    &{body}=        Build Account Body       ${TEST_ACCOUNT}
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
