@@ -1,51 +1,54 @@
 *** Settings ***
-Library         SeleniumLibrary
-Library         String
+Library     SeleniumLibrary
+Library     String
+
 
 *** Variables ***
-${PRODUCT_NAME}             xpath=//p[normalize-space()='{}']
-${QUANTITY_FIELD}           id=quantity
+${PRODUCT_NAME}                         xpath=//p[normalize-space()='{}']
+${QUANTITY_FIELD}                       id=quantity
 
-${NAME_FIELD_REVIEW}        id=name
-${EMAIL_FIELD_REVIEW}       id=email
-${REVIEW_FIELD}             id=review
-${SUBMIT_REVIEW_BUTTON}     id=button-review
+${NAME_FIELD_REVIEW}                    id=name
+${EMAIL_FIELD_REVIEW}                   id=email
+${REVIEW_FIELD}                         id=review
+${SUBMIT_REVIEW_BUTTON}                 id=button-review
 
-${ADD_TO_CART_FROM_PRODUCT_DETAILS}                 xpath=//button[normalize-space()='Add to cart']
+${ADD_TO_CART_FROM_PRODUCT_DETAILS}     xpath=//button[normalize-space()='Add to cart']
 
-${SEARCH_FIELD}               id=search_product
-${SUBMIT_SEARCH_BUTTON}         id=submit_search
+${SEARCH_FIELD}                         id=search_product
+${SUBMIT_SEARCH_BUTTON}                 id=submit_search
 
-${PRODUCT_NAME_HEADING}          xpath=//div[@class='product-information']//h2
-${PRODUCT_PAGE_URL}             https://automationexercise.com/products
+${PRODUCT_NAME_HEADING}                 xpath=//div[@class='product-information']//h2
+${PRODUCT_PAGE_URL}                     https://automationexercise.com/products
 
-${WOMEN_MENU}                       xpath=//div[@id='accordian']//a[@href='#Women']
-${TOPS_CATEGORY}                    xpath=//div[@id='Women']//a[normalize-space()='Tops']
-${TOPS_CATEGORY_PAGE}               Women - Tops Products
+${WOMEN_MENU}                           xpath=//div[@id='accordian']//a[@href='#Women']
+${TOPS_CATEGORY}                        xpath=//div[@id='Women']//a[normalize-space()='Tops']
+${TOPS_CATEGORY_PAGE}                   Women - Tops Products
 
-${ALLEN_SOLLY_JUNIOR_BRAND}           xpath=//a[@href='/brand_products/Allen Solly Junior']
-${ALLEN_SOLLY_JUNIOR_PAGE}            Brand - Allen Solly Junior Products
+${ALLEN_SOLLY_JUNIOR_BRAND}             xpath=//a[@href='/brand_products/Allen Solly Junior']
+${ALLEN_SOLLY_JUNIOR_PAGE}              Brand - Allen Solly Junior Products
+
+
 *** Keywords ***
 Verify Products Page Loaded
     Wait Until Page Contains    All Products
-    Location Should Be         ${PRODUCT_PAGE_URL}
+    Location Should Be    ${PRODUCT_PAGE_URL}
 
 Verify Product Details Page Loaded
-    [Documentation]     Asserts the product details page shows the expected product name
-    [Arguments]             ${product}
+    [Documentation]    Asserts the product details page shows the expected product name
+    [Arguments]    ${product}
     Wait Until Element Is Visible    ${PRODUCT_NAME_HEADING}
-    ${actual_product_name}=     Get Text    ${PRODUCT_NAME_HEADING}
+    ${actual_product_name}=    Get Text    ${PRODUCT_NAME_HEADING}
     Should Be Equal As Strings    ${actual_product_name}    ${product}
 
 Set Quantity
-    [Arguments]                       ${quantity}
-    Input Text                        ${QUANTITY_FIELD}           ${quantity}
+    [Arguments]    ${quantity}
+    Input Text    ${QUANTITY_FIELD}    ${quantity}
 
 Write Review
-    [Arguments]      ${username}      ${email}       ${review}
-    Input Text       ${NAME_FIELD_REVIEW}         ${username}
-    Input Text       ${EMAIL_FIELD_REVIEW}        ${email}
-    Input Text       ${REVIEW_FIELD}              ${review}
+    [Arguments]    ${username}    ${email}    ${review}
+    Input Text    ${NAME_FIELD_REVIEW}    ${username}
+    Input Text    ${EMAIL_FIELD_REVIEW}    ${email}
+    Input Text    ${REVIEW_FIELD}    ${review}
 
 Click Submit Review
     Click Element    ${SUBMIT_REVIEW_BUTTON}
@@ -54,45 +57,34 @@ Click Add To Cart Button From Product Details Page
     Click Element    ${ADD_TO_CART_FROM_PRODUCT_DETAILS}
 
 Verify All Products Visible
-    [Arguments]         @{products}
+    [Arguments]    @{products}
     FOR    ${product}    IN    @{products}
-        ${product_location}=     Format String    ${PRODUCT_NAME}        ${product}
+        ${product_location}=    Format String    ${PRODUCT_NAME}    ${product}
         Wait Until Page Contains Element    ${product_location}
     END
 
 Use Search Bar
-    [Arguments]                    ${search}
-    Input Text              ${SEARCH_FIELD}           ${search}
-    Click Element           ${SUBMIT_SEARCH_BUTTON}
+    [Arguments]    ${search}
+    Input Text    ${SEARCH_FIELD}    ${search}
+    Click Element    ${SUBMIT_SEARCH_BUTTON}
 
 Choose Category From Category Menu
-    [Arguments]                    ${category_menu}      ${category}        ${category_page}
-    Click Element                 ${category_menu}
-    Click Link                   ${category}
+    [Arguments]    ${category_menu}    ${category}    ${category_page}
+    Click Element    ${category_menu}
+    Click Link    ${category}
     Wait Until Page Contains    ${category_page}
 
 Click On Brand
-    [Arguments]                 ${brand}     ${brand_page}
-    Click Link                  ${brand}
+    [Arguments]    ${brand}    ${brand_page}
+    Click Link    ${brand}
     Wait Until Page Contains    ${brand_page}
 
 Search Result Should Contain
-    [Arguments]                  ${expected_product}
-    ${expected_product_location}=         Format String    ${PRODUCT_NAME}        ${expected_product}
+    [Arguments]    ${expected_product}
+    ${expected_product_location}=    Format String    ${PRODUCT_NAME}    ${expected_product}
     Wait Until Page Contains Element    ${expected_product_location}
 
 Search Result Should Not Contain
-    [Arguments]     ${unexpected_product}
-    ${unexpected_product_location}=     Format String    ${PRODUCT_NAME}    ${unexpected_product}
+    [Arguments]    ${unexpected_product}
+    ${unexpected_product_location}=    Format String    ${PRODUCT_NAME}    ${unexpected_product}
     Wait Until Page Does Not Contain Element    ${unexpected_product_location}
-
-
-
-
-
-
-
-
-
-
-
