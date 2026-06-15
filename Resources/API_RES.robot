@@ -331,14 +331,14 @@ Attempt Get All Products List With Invalid Method Via API
 Verify Response Code
     [Documentation]    Asserts the API's responseCode field equals the expected value.
     ...    Checks the body-level code, NOT the HTTP transport status (always 200 here).
-    [Arguments]                ${response}    ${expected_code}
-    Should Be Equal As Strings ${response.json()['responseCode']}    ${expected_code}
+    [Arguments]                     ${response}    ${expected_code}
+    Should Be Equal As Strings      ${response.json()['responseCode']}    ${expected_code}
 
 Verify Response Message
     [Documentation]    Asserts the message field exactly equals the expected string.
     ...    Use for success messages where the full text matters
-    [Arguments]                ${response}    ${expected_message}
-    Should Be Equal As Strings ${response.json()['message']}    ${expected_message}
+    [Arguments]                     ${response}    ${expected_message}
+    Should Be Equal As Strings      ${response.json()['message']}    ${expected_message}
 
 Verify Response Message Contains
     [Documentation]    Asserts the message field contains the given substring.
