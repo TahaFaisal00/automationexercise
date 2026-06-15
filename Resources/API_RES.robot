@@ -55,6 +55,19 @@ Create Account Via API
     ${response}=        Send Create Account Request     &{body}
     RETURN      ${response}
 
+Create Account and Verify Succeeds
+    [Documentation]     Creates a valid account and asserts full success (201 + message). Retryable unit.
+    ${response}=        Create Account Via API
+    Verify Create Account Succeeds      ${response}
+
+Create Account With Retry
+    [Documentation]     Reliable valid-account creation. Retried because the demo API intermittently
+    ...                returns 400 for valid input; each attempt regenerates the account,
+    ...                so an "email already exists" 400 also clears. A persistent 400 fails after 3 tries.
+    Wait Until Keyword Succeeds    3x    2s    Create Account and Verify Succeeds
+
+
+
 Attempt Create Account With Duplicate Email Via API
     [Documentation]     Reuses the TEST_ACCOUNT published by Create Account Via API to send a
     ...                second create request with identical credentials, triggering the

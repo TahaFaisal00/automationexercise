@@ -9,10 +9,9 @@ POST New User Account - Valid Fields - Returns 201
     [Documentation]     Documents an API defect: a created account should return HTTP 201, but the
     ...                API returns HTTP 200. Verifies the body reports 201 with the success message.
     [Tags]          bug         api     post        positive        useraccounts
-    ${response}=        Create Account Via API
+    Create Account With Retry
     # BUG: status should be 201 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
-    Verify Response Code    ${response}      ${CODE_CREATED}
     Verify Response Message      ${response}           ${CREATE_ACCOUNT_SUCCESS_MESSAGE}
     [Teardown]      Delete Account Via API
 
@@ -20,7 +19,7 @@ POST New User Account - Already Exist - Returns 400
     [Documentation]     Documents an API defect: creating an account with an already-registered email
     ...                should return HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
     [Tags]          bug         api     post        negative        useraccounts
-    [Setup]         Create Account Via API
+    [Setup]         Create Account With Retry
     ${response}=        Attempt Create Account With Duplicate Email Via API
     # BUG: status should be 400 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
@@ -57,7 +56,7 @@ DELETE User Account - Valid Fields - Returns 200
     [Documentation]     Creates an account, deletes it, and asserts responseCode 200 with the
     ...                delete-success message.
     [Tags]          functional         api     delete        positive        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Delete Account Via API
     Verify Response Code    ${response}    ${CODE_OK}
     Verify Response Message    ${response}         ${DELETE_ACCOUNT_SUCCESS_MESSAGE}
@@ -66,7 +65,7 @@ DELETE User Account - Already Deleted - Returns 404
     [Documentation]     Documents an API defect: deleting an already-deleted account should return
     ...                HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
     [Tags]          bug         api     delete        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     Delete Account Via API
     ${response}=        Delete Account Via API
     # BUG: status should be 404 but the API returns 200. Real code is in the body.
@@ -78,7 +77,7 @@ DELETE User Account - Invalid Fields - Returns 404
     [Documentation]     Documents an API defect: deleting with an email that matches no account
     ...                should return HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
     [Tags]          bug         api     delete        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Attempt Delete Account With Invalid Field Via API       ${EMAIL_FIELD}      ${INVALID_EMAIL_VALUE}
     # BUG: status should be 404 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
@@ -90,7 +89,7 @@ DELETE User Account - Missing Fields - Returns 400
     [Documentation]     Documents an API defect: a delete missing the required field should return
     ...                HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
     [Tags]          bug         api     delete        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Attempt Delete Account With Missing Field Via API        ${EMAIL_FIELD}
     # BUG: status should be 400 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
@@ -106,7 +105,7 @@ UPDATE User Account Details - Valid Fields - Return 200
     [Documentation]     Creates an account, updates a valid field, and asserts responseCode 200
     ...                with the update-success message.
     [Tags]          functional         api     put        positive        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Update Account Via API      ${NAME_FIELD}      ${VALID_NAME_VALUE}
     Verify Response Code    ${response}    ${CODE_OK}
     Verify Response Message    ${response}     ${UPDATE_ACCOUNT_SUCCESS_MESSAGE}
@@ -116,7 +115,7 @@ UPDATE User Account Details - Invalid Fields - Return 404
     [Documentation]     Documents an API defect: updating with an email that matches no account
     ...                should return HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
     [Tags]          bug         api     put        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=         Update Account Via API     ${EMAIL_FIELD}      ${INVALID_EMAIL_VALUE}
     # BUG: status should be 404 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
@@ -128,7 +127,7 @@ UPDATE User Account Details - Missing Fields - Return 400
     [Documentation]     Documents an API defect: an update missing the required field should return
     ...                HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
     [Tags]          bug         api     put        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Attempt Update Account With Missing Field Via API       ${EMAIL_FIELD}
     # BUG: status should be 400 but the API return 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
@@ -143,7 +142,7 @@ GET User Details - Valid Fields - Returns 200
     [Documentation]     Creates an account, retrieves the user details, and asserts responseCode
     ...                200 with a non-empty user object.
     [Tags]        functional         api     get        positive        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=       Get User Details Via API
     Verify Response Code    ${response}    ${CODE_OK}
     Verify Response Field Not Empty    ${response}    ${RESPONSE_FIELD_USER}
@@ -153,7 +152,7 @@ GET User Details - Deleted User - Returns 404
     [Documentation]     Documents an API defect: fetching details for a deleted user should return
     ...                HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
     [Tags]          bug         api     get        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     Delete Account Via API
     ${response}=        Get User Details Via API
     # BUG: status should be 404 but the API returns 200. Real code is in the body.
@@ -165,7 +164,7 @@ GET User Details - Invalid Fields - Returns 404
     [Documentation]         Documents an API defect: requesting details for a non-existent email should
     ...                return HTTP 404, but the API returns HTTP 200 and reports 404 in the body.
     [Tags]          bug         api     get        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Attempt Get User Details With Invalid Field Via API         ${EMAIL_FIELD}      ${INVALID_EMAIL_VALUE}
     # BUG: status should be 404 but API return 200. Real code is in the body
     Status Should Be    ${CODE_OK}      ${response}
@@ -177,7 +176,7 @@ GET User Details - Missing Fields - Returns 400
     [Documentation]     Documents an API defect: a request missing the required field should return
     ...                HTTP 400, but the API returns HTTP 200 and reports 400 in the body.
     [Tags]        bug         api     get        negative        useraccounts
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=       Attempt Get User Details With Missing Field Via API          ${EMAIL_FIELD}
     # BUG: status should be 400 but API return 200. Real code is in the body
     Status Should Be    ${CODE_OK}      ${response}

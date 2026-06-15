@@ -15,7 +15,7 @@ Resource        PO/PaymentPage.robot
 Setup Account Test
     [Documentation]     Clean client state, then create a fresh account by API
     Common.Test Isolation Setup
-    API_RES.Create Account Via API
+    API_RES.Create Account With Retry
 
 Log In And Verify
     [Documentation]     Logs a user in and confirms they're signed in.
@@ -348,7 +348,7 @@ Complete Payment And Confirm Order
 
 Create Account And Log In
     [Documentation]     Setup fixture. Creates an account via API, then logs in with the generated credentials.
-    API_RES.Create Account Via API
+    API_RES.Create Account With Retry
     Log In And Verify    ${TEST_ACCOUNT.email}    ${TEST_ACCOUNT.password}    ${TEST_ACCOUNT.user_name}
 
 Verify Guest Cannot Checkout

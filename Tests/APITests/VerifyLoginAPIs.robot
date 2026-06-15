@@ -10,7 +10,7 @@ POST Verify Login - Valid Fields - Returns 200
     [Documentation]     Creates an account, verifies login with valid credentials, and asserts
     ...                responseCode 200 with the success message.
     [Tags]          functional         api     post        positive        verifylogin
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Login Via API
     Verify Response Code    ${response}     ${CODE_OK}
     Verify Response Message       ${response}        ${VERIFY_LOGIN_SUCCESS_MESSAGE}
@@ -20,7 +20,7 @@ POST Verify Login - Invalid Fields - Returns 404
     [Documentation]     Documents an API defect: login with an invalid field should return HTTP
     ...                404, but the API returns HTTP 200 and reports 404 in the body responseCode.
     [Tags]          bug         api     post        negative        verifylogin
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Attempt Login With Invalid Field Via API    ${EMAIL_FIELD}    ${INVALID_EMAIL_VALUE}
     # BUG: status should be 404 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}
@@ -32,7 +32,7 @@ POST Verify Login - Deleted Account - Returns 404
     [Documentation]     Documents an API defect: login against a deleted account should return HTTP
     ...                404, but the API returns HTTP 200 and reports 404 in the body responseCode.
     [Tags]          bug         api     post        negative        verifylogin
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     Delete Account Via API
     ${response}=        Login Via API
     # BUG: status should be 404 but the API returns 200. Real code is in the body.
@@ -45,7 +45,7 @@ POST Verify Login - Missing Fields - Returns 400
     [Documentation]     Documents an API defect: login missing a required field should return HTTP
     ...                400, but the API returns HTTP 200 and reports 400 in the body responseCode.
     [Tags]          bug         api     post        negative        verifylogin
-    [Setup]     Create Account Via API
+    [Setup]     Create Account With Retry
     ${response}=        Attempt Login With Missing Field Via API    ${EMAIL_FIELD}
     # BUG: status should be 400 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}      ${response}

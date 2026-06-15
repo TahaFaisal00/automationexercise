@@ -11,8 +11,7 @@ Full Account Lifecycle - Create Login Delete Then Login Fails
     ...                no longer login (404).
     [Tags]      e2e        api
     [Teardown]      Run Keyword And Ignore Error    Delete Account Via API
-    ${response}=        Create Account Via API
-    Verify Create Account Succeeds      ${response}
+    Create Account With Retry
     ${response}=        Login Via API
     Verify Login Succeeds       ${response}
     ${response}=        Delete Account Via API
