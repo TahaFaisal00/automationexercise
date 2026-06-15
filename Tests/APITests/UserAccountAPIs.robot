@@ -11,7 +11,7 @@ POST New User Account - Valid Fields - Returns 201
     [Documentation]    Documents an API defect: a created account should return HTTP 201, but the
     ...    API returns HTTP 200. Verifies the body reports 201 with the success message.
     [Tags]    bug    api    post    positive    useraccounts
-    Create Account With Retry
+    ${response}=        Create Account With Retry
     # BUG: status should be 201 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}    ${response}
     [Teardown]    Delete Account Via API
