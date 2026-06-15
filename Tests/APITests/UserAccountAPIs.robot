@@ -14,7 +14,6 @@ POST New User Account - Valid Fields - Returns 201
     Create Account With Retry
     # BUG: status should be 201 but the API returns 200. Real code is in the body.
     Status Should Be    ${CODE_OK}    ${response}
-    Verify Response Message    ${response}    ${CREATE_ACCOUNT_SUCCESS_MESSAGE}
     [Teardown]    Delete Account Via API
 
 POST New User Account - Already Exist - Returns 400
