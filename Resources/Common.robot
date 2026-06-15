@@ -8,6 +8,7 @@ ${WINDOWS_WIDTH}         1280
 ${WINDOWS_HEIGHT}        1024
 ${IMPLICIT_WAIT}         10s
 ${SELENIUM_SPEED}        0
+${SELENIUM_TIMEOUT}      15s
 ${HEADLESS}              ${FALSE}
 ${HEADLESS_ARG}          --headless=new
 ${AD_BLOCK_RULES}    --host-resolver-rules=MAP *.doubleclick.net 127.0.0.1,MAP *.googlesyndication.com 127.0.0.1,MAP *.googleadservices.com 127.0.0.1
@@ -28,6 +29,7 @@ Launch Browser
     Set Window Size       ${WINDOWS_WIDTH}    ${WINDOWS_HEIGHT}
     Set Selenium Implicit Wait    ${IMPLICIT_WAIT}
     Set Selenium Speed     ${SELENIUM_SPEED}
+    Set Selenium Timeout    ${SELENIUM_TIMEOUT}
 Test Isolation Setup
     [Documentation]     Resets client state before each test so tests are independent of execusion order.
     Delete All Cookies
