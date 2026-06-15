@@ -114,7 +114,7 @@ Tests are tagged on four axes so any slice can be run on demand:
 - **Resource / method** (API) — `useraccounts`, `brandslist`, `productslist`, `searchproducts`, `verifylogin`, plus `get` / `post` / `put` / `delete`
 
 ```bash
-robot --include api AND positive Tests/        # only happy-path API tests
+robot --include "api AND positive" Tests/        # only happy-path API tests
 robot --exclude bug Tests/                      # skip known-defect tests
 robot --include useraccounts Tests/APITests/    # everything touching the account resource
 ```
