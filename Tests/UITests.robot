@@ -55,7 +55,7 @@ Price Is Negative When Quantity Is Negative
     [Setup]         automationexercise_Res.Create Account And Log In
     automationexercise_Res.Navigate To Product Details Page                                 ${ALL_PRODUCTS}           ${MEN_TSHIRT}
     automationexercise_Res.Set Quantity And Add To Cart                                        ${PRODUCT.minus_quantity}
-    automationexercise_Res.Navigate To Cart From Navbar
+    automationexercise_Res.Navigate To Cart After Adding Product to Cart
     automationexercise_Res.Verify Products In Cart                                     ${MEN_TSHIRT}
     automationexercise_Res.Verify Product Quantities In Cart                          ${MEN_TSHIRT}           ${PRODUCT.minus_quantity}
     automationexercise_Res.Verify Product Total Price In Cart Is Negative                    ${MEN_TSHIRT}
