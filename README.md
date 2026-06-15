@@ -131,6 +131,19 @@ Some tests deliberately assert the target site's **actual broken behavior** rath
 
 **Prerequisites:** Python 3.14 and Google Chrome.
 
+
+---
+
+## CI/CD
+
+The full 42-test suite runs in a Jenkins declarative pipeline (`Jenkinsfile`): checkout → dependency install → headless execution → Robot Framework result publishing.
+
+**Pipeline stages**
+![Jenkins pipeline stages](docs/images/jenkins-stage-view.png)
+
+**Latest run — 42/42 passing, with trend and per-suite breakdown**
+![Robot Framework results](docs/images/jenkins-robot-results.png)
+
 ```bash
 # 1. Install dependencies
 pip install robotframework robotframework-seleniumlibrary robotframework-requests robotframework-faker
