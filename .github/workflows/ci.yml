@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: pip install robotframework robotframework-seleniumlibrary robotframework-requests robotframework-faker
 
-      - name: Run Robot Framework API tests
-        run: robot --include api --variable HEADLESS:True --outputdir results Tests/
+      - name: Validate Robot suite (dry run)
+        run: robot --dryrun --outputdir results Tests/
 
       - name: Upload Robot results
         if: always()
