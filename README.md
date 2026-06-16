@@ -2,6 +2,7 @@
 
 End-to-end **UI and API** test automation for [automationexercise.com](https://automationexercise.com), built with Robot Framework on a strict three-layer architecture (Tests → Resources → Page Objects).
 
+[![CI](https://github.com/TahaFaisal00/automationexercise/actions/workflows/ci.yml/badge.svg)](https://github.com/TahaFaisal00/automationexercise/actions/workflows/ci.yml)
 [![Live Report](https://img.shields.io/badge/Allure-Live%20Report-2EC866)](https://tahafaisal00.github.io/automationexercise/)
 ![Robot Framework](https://img.shields.io/badge/Robot%20Framework-7.4-00C0B5?logo=robotframework&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)
